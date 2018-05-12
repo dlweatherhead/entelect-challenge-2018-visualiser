@@ -23,11 +23,29 @@ public class Instantiator : MonoBehaviour {
 		groundTilesParent = new GameObject (PrefabHolder.GROUNDTILES_PARENT);
 	}
 
+	public void ClearScene() {
+		ClearGameObjectsWithTag ("Missile");
+		ClearGameObjectsWithTag (GetTagForBuildingType(BuildingType.Attack));
+		ClearGameObjectsWithTag (GetTagForBuildingType(BuildingType.Defense));
+		ClearGameObjectsWithTag (GetTagForBuildingType(BuildingType.Energy));
+	}
+
+	private void ClearGameObjectsWithTag(string tag) {
+		if (tag == null) {
+			return;
+		}
+
+		GameObject[] taggedGameObjects = GameObject.FindGameObjectsWithTag (tag);
+		for (int i = 0; i < taggedGameObjects.Length; i++) {
+			Destroy (taggedGameObjects[i]);
+		}
+	}
 
 	public void InstantiateGroundTile(int x, int y) {
 		GameObject o = Instantiate (prefabHolder.groundTilePrefab);
 		o.transform.position = new Vector3 (x, o.transform.position.y, y);
 		o.transform.SetParent (buildingsParent.transform);
+		o.tag = "GroundTile";
 	}
 
 	public void InstantiateMissileAtLocation(List<Missile> missiles, int x, int y) {
@@ -35,6 +53,7 @@ public class Instantiator : MonoBehaviour {
 			GameObject o = Instantiate (prefabHolder.missilePrefab);
 			o.transform.position = new Vector3 (x, o.transform.position.y, y);
 			o.transform.SetParent (missilesParent.transform);
+			o.tag = "Missile";
 		}
 	}
 
@@ -45,6 +64,7 @@ public class Instantiator : MonoBehaviour {
 				o = Instantiate (o);
 				o.transform.position = new Vector3 (x, o.transform.position.y, y);
 				o.transform.SetParent (groundTilesParent.transform);
+				o.tag = GetTagForBuildingType(buildings [b].BuildingType);
 			}
 		}
 	}
@@ -57,6 +77,19 @@ public class Instantiator : MonoBehaviour {
 				return prefabHolder.defensePrefab;
 			case BuildingType.Energy:
 				return prefabHolder.energyPrefab;
+			default:
+				return null;
+		}
+	}
+
+	private string GetTagForBuildingType(BuildingType buildingType) {
+		switch (buildingType) {
+			case BuildingType.Attack:
+				return "Attack";
+			case BuildingType.Defense:
+				return "Defense";
+			case BuildingType.Energy:
+				return "Energy";
 			default:
 				return null;
 		}

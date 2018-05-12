@@ -7,29 +7,73 @@ using EC2018.Entities;
 using EC2018.Enums;
 using Newtonsoft.Json;
 using EC2018;
+using System;
 
 [RequireComponent(typeof(Instantiator))]
 public class GameManager : MonoBehaviour {
-	private string exampleBot = "example-bot";
-	private string exampleState = "example-state";
+	public const int StartRound = 0;
+	private const int RoundNameLength = 3;
+	private const char RoundNamePad = '0';
+	private const string ExampleBotPath = "/Resources/example-bot.json";
+	private const string ExampleStatePath = "/Resources/example-state.json";
+	private const string ReplaysPath = "/Resources/tower-defence-matches";
+	private const string MapName = "/JsonMap.json";
+	private const string RoundFolderNamePrefix = "Round ";
 
 	private Bot bot;
 	private GameState gameState;
+	private int currentRound;
+	public int maxRounds = 1;
 
 	private Instantiator instantiator;
 
+	private bool isPaused = false;
+
 	void Awake() {
+		currentRound = StartRound;
 		instantiator = GetComponent<Instantiator> ();
 	}
 
 	void Start () {
-		LoadBotFromFile();
-		LoadStateFromFile();
-		PopulateSceneFromGameMap ();
+		InvokeRepeating ("PopulateCurrentScene", 0, 0.5f);
 	}
 
-	void Update () {
-		
+	void Update() {
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			if (isPaused) {
+				Debug.Log ("Starting...");
+				InvokeRepeating ("PopulateCurrentScene", 0.5f, 0.5f);
+				isPaused = false;
+			} else {
+				Debug.Log ("Pausing...");
+				CancelInvoke ("PopulateCurrentScene");
+				isPaused = true;
+			}
+		}
+	}
+
+	private void PopulateCurrentScene() {
+
+		Debug.Log (currentRound);
+
+		ClearScene ();
+
+		string roundName = ConvertRoundToFolderName (currentRound);
+		LoadJsonMapForPlayerA ("/" + roundName);
+		PopulateSceneFromGameMap ();
+
+		if (currentRound >= maxRounds) {
+			CancelInvoke ("PopulateCurrentScene");
+			Debug.Log("Replay Finished!");
+		} else {
+			if (!isPaused) {
+				currentRound++;
+			}
+		}
+	}
+
+	private void ClearScene() {
+		instantiator.ClearScene ();
 	}
 
 	private void PopulateSceneFromGameMap() {
@@ -54,13 +98,41 @@ public class GameManager : MonoBehaviour {
 
 	}
 
-	private void LoadBotFromFile() {
-		TextAsset botFile = Resources.Load<TextAsset> (exampleBot);
-		bot = JsonConvert.DeserializeObject<Bot> (botFile.text);
+	// Loading the First Replay Folder we find
+	// TODO - Create Folder selector or load newest
+	private void LoadJsonMapForPlayerA(string roundName) {
+		string[] allReplayDirs = Directory.GetDirectories (Application.dataPath + ReplaysPath);
+
+		string firstReplayFolder = allReplayDirs [0];
+
+		maxRounds = Directory.GetDirectories (firstReplayFolder).Length - 1; // Index offset
+		Debug.Log("Rounds: " + maxRounds);
+
+		string[] allPlayersDir = Directory.GetDirectories (firstReplayFolder + roundName);
+		string firstState = GetFileContents (allPlayersDir [0] + MapName);
+		gameState = JsonConvert.DeserializeObject<GameState>(firstState);
 	}
 
-	private void LoadStateFromFile() {
-		TextAsset stateFile = Resources.Load<TextAsset> (exampleState);
-		gameState = JsonConvert.DeserializeObject<GameState>(stateFile.text);
+	private void LoadExampleBotFromFile() {
+		string botFileContents = GetFileContents(ExampleBotPath);
+		bot = JsonConvert.DeserializeObject<Bot> (botFileContents);
+	}
+
+	private void LoadExampleStateFromFile() {
+		string stateFileContents = GetFileContents (ExampleStatePath);
+		gameState = JsonConvert.DeserializeObject<GameState>(stateFileContents);
+	}
+
+	private string GetFileContents(string path) {
+		string filePath = path;
+		var streamReader = new StreamReader (filePath);
+		var contents = streamReader.ReadToEnd ();
+		streamReader.Close ();
+
+		return contents;
+	}
+
+	private string ConvertRoundToFolderName(int round) {
+		return RoundFolderNamePrefix + round.ToString ().PadLeft (RoundNameLength, RoundNamePad);
 	}
 }
