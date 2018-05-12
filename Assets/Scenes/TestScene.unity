@@ -190,13 +190,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 125248058}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
+  m_LocalPosition: {x: 3.5, y: 5, z: -2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: 0, z: 0}
 --- !u!1 &423275030
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,6 +303,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb1d8483dcce6547a006561e3bb79ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackPrefab: {fileID: 1871154830845402, guid: 1fa1d08e38e03c241add826c275d2dcb,
+    type: 2}
+  defensePrefab: {fileID: 1283507142589252, guid: 724ae94cd05c82d45a636252d8c72927,
+    type: 2}
+  energyPrefab: {fileID: 1230900156086890, guid: ee186d5401288cd40a190cda2575a075,
+    type: 2}
+  missilePrefab: {fileID: 1259396454763608, guid: 45f674b248994b24aade152788c400e7,
+    type: 2}
+  groundTilePrefab: {fileID: 1193994372565126, guid: 2ddf0c36ece2e0741afd396fc099b1e7,
+    type: 2}
 --- !u!4 &1202343501
 Transform:
   m_ObjectHideFlags: 0
