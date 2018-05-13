@@ -9,6 +9,9 @@ TagManager:
   - Defense
   - Energy
   - GroundTile
+  - Player A
+  - Player B
+  - UI Holder
   layers:
   - Default
   - TransparentFX

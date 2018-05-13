@@ -26,12 +26,14 @@ public class GameManager : MonoBehaviour {
 	public int maxRounds = 1;
 
 	private Instantiator instantiator;
+	private UIManager uiManager;
 
 	private bool isPaused = false;
 
 	void Awake() {
 		currentRound = StartRound;
 		instantiator = GetComponent<Instantiator> ();
+		uiManager = GameObject.FindGameObjectWithTag ("UI Holder").GetComponent<UIManager> ();
 	}
 
 	void Start () {
@@ -64,6 +66,9 @@ public class GameManager : MonoBehaviour {
 
 		string roundName = ConvertRoundToFolderName (currentRound);
 		LoadJsonMapForPlayerA ("/" + roundName);
+
+		uiManager.UpdateUI (gameState.GameDetails, gameState.Players [0], gameState.Players [1]);
+
 		PopulateSceneFromGameMap ();
 
 		if (currentRound >= maxRounds) {
