@@ -8,52 +8,33 @@ using Newtonsoft.Json;
 using EC2018;
 using System;
 
-namespace EC2018
-{
+namespace EC2018 {
+
 	[RequireComponent(typeof(Instantiator))]
 	public class GameManager : MonoBehaviour {
 		public const int StartRound = 0;
+
 		private const int RoundNameLength = 3;
 		private const char RoundNamePad = '0';
-		private const string ExampleBotPath = "/Resources/example-bot.json";
-		private const string ExampleStatePath = "/Resources/example-state.json";
-		private const string ExampleReplaysPath = "/Resources/tower-defence-matches";
-
-		private const string DeployedReplaysPath = "/tower-defence-matches";
-
 		private const string MapName = "/JsonMap.json";
 		private const string RoundFolderNamePrefix = "Round ";
+
+		public int maxRounds = 1;
 
 		private Bot bot;
 		private GameState gameState;
 		private int currentRound;
-		public int maxRounds = 1;
-
 		private Instantiator instantiator;
 		private UIManager uiManager;
+		private string replayPath;
+		private bool isPaused;
 
-		private bool isPaused = false;
-
-		private string replaysPath;
-
-		void Awake() {
+		void Start () {
 			currentRound = StartRound;
 			instantiator = GetComponent<Instantiator> ();
 			uiManager = GameObject.FindGameObjectWithTag ("UI Holder").GetComponent<UIManager> ();
-			Debug.Log ("Game Started");
-		}
-
-		void Start () {
-			if (Application.isEditor) {
-				replaysPath = ExampleReplaysPath;
-			} else {
-				replaysPath = DeployedReplaysPath;
-			}
-
-			Debug.Log (GetApplicationPath() + replaysPath);
-
-			string[] allReplayDirs = Directory.GetDirectories (GetApplicationPath() + replaysPath);
-			string firstReplayFolder = allReplayDirs [0];
+			replayPath = GetSelectedReplayPath();
+			maxRounds = GetNumberOfRounds ();
 
 			InvokeRepeating ("PopulateCurrentScene", 0, 0.5f);
 		}
@@ -68,6 +49,10 @@ namespace EC2018
 				CancelInvoke ("PopulateCurrentScene");
 				isPaused = true;
 			}
+		}
+
+		private string GetSelectedReplayPath() {
+			return PlayerPrefs.GetString ("SelectedReplay");
 		}
 
 		private void PopulateCurrentScene() {
@@ -114,28 +99,16 @@ namespace EC2018
 			}
 		}
 
+		private int GetNumberOfRounds() {
+			return Directory.GetDirectories (replayPath).Length - 1; // Index offset
+		}
+
 		// Loading the First Replay Folder we find
 		// TODO - Create Folder selector or load newest
 		private void LoadJsonMapForPlayerA(string roundName) {
-			string[] allReplayDirs = Directory.GetDirectories (GetApplicationPath() + replaysPath);
-
-			string firstReplayFolder = allReplayDirs [0];
-
-			maxRounds = Directory.GetDirectories (firstReplayFolder).Length - 1; // Index offset
-
-			string[] allPlayersDir = Directory.GetDirectories (firstReplayFolder + roundName);
+			string[] allPlayersDir = Directory.GetDirectories (replayPath + roundName);
 			string firstState = GetFileContents (allPlayersDir [0] + MapName);
 			gameState = JsonConvert.DeserializeObject<GameState>(firstState);
-		}
-
-		private void LoadExampleBotFromFile() {
-			string botFileContents = GetFileContents(ExampleBotPath);
-			bot = JsonConvert.DeserializeObject<Bot> (botFileContents);
-		}
-
-		private void LoadExampleStateFromFile() {
-			string stateFileContents = GetFileContents (ExampleStatePath);
-			gameState = JsonConvert.DeserializeObject<GameState>(stateFileContents);
 		}
 
 		private string GetFileContents(string path) {
@@ -149,18 +122,6 @@ namespace EC2018
 
 		private string ConvertRoundToFolderName(int round) {
 			return RoundFolderNamePrefix + round.ToString ().PadLeft (RoundNameLength, RoundNamePad);
-		}
-
-		private string GetApplicationPath() {
-			string path = Application.dataPath;
-
-			if (Application.platform == RuntimePlatform.WindowsPlayer) {
-				path += "/../";
-			} else if (Application.platform == RuntimePlatform.OSXPlayer) {
-				path += "/../../";
-			}
-
-			return path;
 		}
 	}
 }
