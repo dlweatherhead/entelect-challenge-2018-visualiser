@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using System.IO;
 using EC2018.Entities;
 using EC2018.Enums;
@@ -16,7 +15,10 @@ public class GameManager : MonoBehaviour {
 	private const char RoundNamePad = '0';
 	private const string ExampleBotPath = "/Resources/example-bot.json";
 	private const string ExampleStatePath = "/Resources/example-state.json";
-	private const string ReplaysPath = "/Resources/tower-defence-matches";
+	private const string ExampleReplaysPath = "/Resources/tower-defence-matches";
+
+	private const string DeployedReplaysPath = "/tower-defence-matches";
+
 	private const string MapName = "/JsonMap.json";
 	private const string RoundFolderNamePrefix = "Round ";
 
@@ -30,16 +32,26 @@ public class GameManager : MonoBehaviour {
 
 	private bool isPaused = false;
 
+	private string replaysPath;
+
 	void Awake() {
 		currentRound = StartRound;
 		instantiator = GetComponent<Instantiator> ();
 		uiManager = GameObject.FindGameObjectWithTag ("UI Holder").GetComponent<UIManager> ();
+		Debug.Log ("Game Started");
 	}
 
 	void Start () {
-		string[] allReplayDirs = Directory.GetDirectories (Application.dataPath + ReplaysPath);
+		if (Application.isEditor) {
+			replaysPath = ExampleReplaysPath;
+		} else {
+			replaysPath = DeployedReplaysPath;
+		}
+
+		Debug.Log (GetApplicationPath() + replaysPath);
+
+		string[] allReplayDirs = Directory.GetDirectories (GetApplicationPath() + replaysPath);
 		string firstReplayFolder = allReplayDirs [0];
-		Debug.Log (firstReplayFolder);
 
 		InvokeRepeating ("PopulateCurrentScene", 0, 0.5f);
 	}
@@ -105,7 +117,7 @@ public class GameManager : MonoBehaviour {
 	// Loading the First Replay Folder we find
 	// TODO - Create Folder selector or load newest
 	private void LoadJsonMapForPlayerA(string roundName) {
-		string[] allReplayDirs = Directory.GetDirectories (Application.dataPath + ReplaysPath);
+		string[] allReplayDirs = Directory.GetDirectories (GetApplicationPath() + replaysPath);
 
 		string firstReplayFolder = allReplayDirs [0];
 
@@ -137,5 +149,17 @@ public class GameManager : MonoBehaviour {
 
 	private string ConvertRoundToFolderName(int round) {
 		return RoundFolderNamePrefix + round.ToString ().PadLeft (RoundNameLength, RoundNamePad);
+	}
+
+	private string GetApplicationPath() {
+		string path = Application.dataPath;
+
+		if (Application.platform == RuntimePlatform.WindowsPlayer) {
+			path += "/../";
+		} else if (Application.platform == RuntimePlatform.OSXPlayer) {
+			path += "/../../";
+		}
+
+		return path;
 	}
 }
