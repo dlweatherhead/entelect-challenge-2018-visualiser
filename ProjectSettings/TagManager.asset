@@ -12,6 +12,7 @@ TagManager:
   - Player A
   - Player B
   - UI Holder
+  - GameManager
   layers:
   - Default
   - TransparentFX

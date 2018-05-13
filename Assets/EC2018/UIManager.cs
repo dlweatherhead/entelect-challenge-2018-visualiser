@@ -21,6 +21,23 @@ public class UIManager : MonoBehaviour {
 	public Text DefensePriceText;
 	public Text EnergyPriceText;
 
+	private GameManager gameManager;
+
+	void Awake() {
+		gameManager = GameObject.FindGameObjectWithTag ("GameManager").GetComponent<GameManager> ();
+	}
+
+	public void OnPausePlayClick(Button button) {
+		Text text = button.GetComponentInChildren<Text> ();
+		if (text.text == "Pause") {
+			text.text = "Play";
+		} else {
+			text.text = "Pause";
+		}
+
+		gameManager.OnPauseInteraction ();
+	}
+
 	public void UpdateUI(GameDetails gameDetails, Player playerA, Player playerB) {
 		PlayerAName.text = playerA.PlayerType.ToString ();
 		PlayerBName.text = playerB.PlayerType.ToString ();

@@ -56,17 +56,15 @@ public class GameManager : MonoBehaviour {
 		InvokeRepeating ("PopulateCurrentScene", 0, 0.5f);
 	}
 
-	void Update() {
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			if (isPaused) {
-				Debug.Log ("Starting...");
-				InvokeRepeating ("PopulateCurrentScene", 0.5f, 0.5f);
-				isPaused = false;
-			} else {
-				Debug.Log ("Pausing...");
-				CancelInvoke ("PopulateCurrentScene");
-				isPaused = true;
-			}
+	public void OnPauseInteraction() {
+		if (isPaused) {
+			Debug.Log ("Starting...");
+			InvokeRepeating ("PopulateCurrentScene", 0.5f, 0.5f);
+			isPaused = false;
+		} else {
+			Debug.Log ("Pausing...");
+			CancelInvoke ("PopulateCurrentScene");
+			isPaused = true;
 		}
 	}
 
