@@ -49,12 +49,13 @@ namespace EC2018
 			o.transform.SetParent (buildingsParent.transform);
 		}
 
-		public void InstantiateMissileAtLocation(List<Missile> missiles, int x, int y) {
+		public void InstantiateMissileAtLocation(List<Missile> missiles, int x, int y, float rate) {
 			for (int m = 0; m < missiles.Count; m++) {
 				GameObject missilePrefab = missiles[m].PlayerType == PlayerType.A ? prefabHolder.missilePrefab_A : prefabHolder.missilePrefab_B;
 				GameObject o = Instantiate (missilePrefab);
 				o.transform.position = new Vector3 (x, o.transform.position.y, y);
 				o.transform.SetParent (missilesParent.transform);
+				o.GetComponent<MissileController> ().Setup (missiles[m].PlayerType == PlayerType.A ? 1 : -1, rate);
 			}
 		}
 

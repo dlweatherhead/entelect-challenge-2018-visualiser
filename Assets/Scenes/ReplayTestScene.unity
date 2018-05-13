@@ -594,7 +594,7 @@ MonoBehaviour:
     type: 2}
   energyPrefab_B: {fileID: 1606869182779346, guid: d7fda3d6fffe94c46b57009b67396aa5,
     type: 2}
-  missilePrefab_B: {fileID: 1955129508300878, guid: f78e50ed25d8aee44a474e9e92086607,
+  missilePrefab_B: {fileID: 1398540826899400, guid: f78e50ed25d8aee44a474e9e92086607,
     type: 2}
   groundTilePrefab: {fileID: 1193994372565126, guid: 2ddf0c36ece2e0741afd396fc099b1e7,
     type: 2}
