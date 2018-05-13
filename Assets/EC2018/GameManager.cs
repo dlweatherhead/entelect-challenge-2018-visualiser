@@ -35,6 +35,10 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void Start () {
+		string[] allReplayDirs = Directory.GetDirectories (Application.dataPath + ReplaysPath);
+		string firstReplayFolder = allReplayDirs [0];
+		Debug.Log (firstReplayFolder);
+
 		InvokeRepeating ("PopulateCurrentScene", 0, 0.5f);
 	}
 
@@ -56,7 +60,7 @@ public class GameManager : MonoBehaviour {
 
 		Debug.Log (currentRound);
 
-		ClearScene ();
+		instantiator.ClearScene ();
 
 		string roundName = ConvertRoundToFolderName (currentRound);
 		LoadJsonMapForPlayerA ("/" + roundName);
@@ -70,10 +74,6 @@ public class GameManager : MonoBehaviour {
 				currentRound++;
 			}
 		}
-	}
-
-	private void ClearScene() {
-		instantiator.ClearScene ();
 	}
 
 	private void PopulateSceneFromGameMap() {
@@ -95,7 +95,6 @@ public class GameManager : MonoBehaviour {
 				instantiator.InstantiateGroundTile (inner, outer);
 			}
 		}
-
 	}
 
 	// Loading the First Replay Folder we find
@@ -106,7 +105,6 @@ public class GameManager : MonoBehaviour {
 		string firstReplayFolder = allReplayDirs [0];
 
 		maxRounds = Directory.GetDirectories (firstReplayFolder).Length - 1; // Index offset
-		Debug.Log("Rounds: " + maxRounds);
 
 		string[] allPlayersDir = Directory.GetDirectories (firstReplayFolder + roundName);
 		string firstState = GetFileContents (allPlayersDir [0] + MapName);

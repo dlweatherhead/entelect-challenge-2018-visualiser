@@ -17,5 +17,6 @@ namespace EC2018.Entities
         public int DestroyScore { get; set; }
         public int EnergyGeneratedPerTurn { get; set; }
         public BuildingType BuildingType { get; set; }
+		public PlayerType PlayerType { get; set; }
     }
 }

@@ -45,21 +45,20 @@ public class Instantiator : MonoBehaviour {
 		GameObject o = Instantiate (prefabHolder.groundTilePrefab);
 		o.transform.position = new Vector3 (x, o.transform.position.y, y);
 		o.transform.SetParent (buildingsParent.transform);
-		o.tag = "GroundTile";
 	}
 
 	public void InstantiateMissileAtLocation(List<Missile> missiles, int x, int y) {
 		for (int m = 0; m < missiles.Count; m++) {
-			GameObject o = Instantiate (prefabHolder.missilePrefab);
+			GameObject missilePrefab = missiles[m].PlayerType == PlayerType.A ? prefabHolder.missilePrefab_A : prefabHolder.missilePrefab_B;
+			GameObject o = Instantiate (missilePrefab);
 			o.transform.position = new Vector3 (x, o.transform.position.y, y);
 			o.transform.SetParent (missilesParent.transform);
-			o.tag = "Missile";
 		}
 	}
 
 	public void InstantiateBuildingsAtLocation(List<Building> buildings, int x, int y) {
 		for (int b = 0; b < buildings.Count; b++) {
-			GameObject o = GetPrefabForBuilding (buildings[b]);
+			GameObject o = GetPrefabForBuilding (buildings[b], buildings[b].PlayerType);
 			if (o != null) {
 				o = Instantiate (o);
 				o.transform.position = new Vector3 (x, o.transform.position.y, y);
@@ -69,14 +68,14 @@ public class Instantiator : MonoBehaviour {
 		}
 	}
 
-	private GameObject GetPrefabForBuilding(Building building) {
+	private GameObject GetPrefabForBuilding(Building building, PlayerType playerType) {
 		switch (building.BuildingType) {
 			case BuildingType.Attack:
-				return prefabHolder.attackPrefab;
+				return playerType == PlayerType.A ? prefabHolder.attackPrefab_A : prefabHolder.attackPrefab_B;
 			case BuildingType.Defense:
-				return prefabHolder.defensePrefab;
+				return playerType != PlayerType.A ? prefabHolder.defensePrefab_B : prefabHolder.defensePrefab_A;
 			case BuildingType.Energy:
-				return prefabHolder.energyPrefab;
+				return playerType != PlayerType.A ? prefabHolder.energyPrefab_B :  prefabHolder.energyPrefab_A;
 			default:
 				return null;
 		}

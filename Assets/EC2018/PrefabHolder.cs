@@ -7,9 +7,15 @@ public class PrefabHolder : MonoBehaviour {
 	public const string GROUNDTILES_PARENT = "GroundTiles";
 	public const string MISSILES_PARENT = "Missiles";
 
-	public GameObject attackPrefab;
-	public GameObject defensePrefab;
-	public GameObject energyPrefab;
-	public GameObject missilePrefab;
+	public GameObject attackPrefab_A;
+	public GameObject defensePrefab_A;
+	public GameObject energyPrefab_A;
+	public GameObject missilePrefab_A;
+
+	public GameObject attackPrefab_B;
+	public GameObject defensePrefab_B;
+	public GameObject energyPrefab_B;
+	public GameObject missilePrefab_B;
+
 	public GameObject groundTilePrefab;
 }
