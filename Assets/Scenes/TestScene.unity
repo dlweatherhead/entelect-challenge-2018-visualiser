@@ -418,6 +418,16 @@ Prefab:
       propertyPath: m_Name
       value: Pause/Play Button
       objectReference: {fileID: 0}
+    - target: {fileID: 114347636199234958, guid: e8571cb7294fcbe4db05d14f58f9bf27,
+        type: 2}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114347636199234958, guid: e8571cb7294fcbe4db05d14f58f9bf27,
+        type: 2}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e8571cb7294fcbe4db05d14f58f9bf27, type: 2}
   m_IsPrefabParent: 0

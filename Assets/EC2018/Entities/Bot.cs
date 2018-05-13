@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EC2018
+namespace EC2018.Entities
 {
 	public class Bot
 	{
