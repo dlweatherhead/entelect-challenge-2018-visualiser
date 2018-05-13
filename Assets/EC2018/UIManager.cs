@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using EC2018.Entities;
+using EC2018.Enums;
 
 public class UIManager : MonoBehaviour {
 	public Text PlayerAName;
@@ -16,6 +17,9 @@ public class UIManager : MonoBehaviour {
 	public Text HitsA;
 	public Text HitsB;
 	public Text RoundText;
+	public Text AttackPriceText;
+	public Text DefensePriceText;
+	public Text EnergyPriceText;
 
 	public void UpdateUI(GameDetails gameDetails, Player playerA, Player playerB) {
 		PlayerAName.text = playerA.PlayerType.ToString ();
@@ -32,6 +36,10 @@ public class UIManager : MonoBehaviour {
 
 		HitsA.text = GetHits(playerA);
 		HitsB.text = GetHits(playerB);
+
+		AttackPriceText.text = GetPrice (gameDetails, BuildingType.Attack);
+		DefensePriceText.text = GetPrice (gameDetails, BuildingType.Defense);
+		EnergyPriceText.text = GetPrice (gameDetails, BuildingType.Energy);
 
 		RoundText.text = gameDetails.Round.ToString();
 	}
@@ -54,5 +62,9 @@ public class UIManager : MonoBehaviour {
 
 	private string GetHits(Player player) {
 		return player.HitsTaken.ToString ();
+	}
+
+	private string GetPrice(GameDetails gameDetails, BuildingType buildingType) {
+		return gameDetails.BuildingPrices[buildingType].ToString();
 	}
 }
