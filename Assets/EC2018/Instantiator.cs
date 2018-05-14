@@ -20,13 +20,13 @@ namespace EC2018
 		}
 
 		void Start() {
-			buildingsParent = new GameObject (PrefabHolder.BUILDINGS_PARENT);
-			missilesParent = new GameObject (PrefabHolder.MISSILES_PARENT);
-			groundTilesParent = new GameObject (PrefabHolder.GROUNDTILES_PARENT);
+			buildingsParent = new GameObject (Constants.ParentNames.Buildings);
+			missilesParent = new GameObject (Constants.ParentNames.Missiles);
+			groundTilesParent = new GameObject (Constants.ParentNames.GroundTiles);
 		}
 
 		public void ClearScene() {
-			ClearGameObjectsWithTag ("Missile");
+			ClearGameObjectsWithTag (Constants.Tags.Missile);
 			ClearGameObjectsWithTag (GetTagForBuildingType(BuildingType.Attack));
 			ClearGameObjectsWithTag (GetTagForBuildingType(BuildingType.Defense));
 			ClearGameObjectsWithTag (GetTagForBuildingType(BuildingType.Energy));
@@ -88,11 +88,11 @@ namespace EC2018
 		private string GetTagForBuildingType(BuildingType buildingType) {
 			switch (buildingType) {
 				case BuildingType.Attack:
-					return "Attack";
+					return Constants.Tags.Attack;
 				case BuildingType.Defense:
-					return "Defense";
+					return Constants.Tags.Defense;
 				case BuildingType.Energy:
-					return "Energy";
+					return Constants.Tags.Energy;
 				default:
 					return null;
 			}

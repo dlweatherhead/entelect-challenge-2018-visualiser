@@ -26,15 +26,15 @@ namespace EC2018
 		private GameManager gameManager;
 
 		void Awake() {
-			gameManager = GameObject.FindGameObjectWithTag ("GameManager").GetComponent<GameManager> ();
+			gameManager = GameObject.FindGameObjectWithTag (Constants.Tags.GameManager).GetComponent<GameManager> ();
 		}
 
 		public void OnPausePlayClick(Button button) {
 			Text text = button.GetComponentInChildren<Text> ();
-			if (text.text == "Pause") {
-				text.text = "Play";
+			if (text.text == Constants.UI.Pause) {
+				text.text = Constants.UI.Play;
 			} else {
-				text.text = "Pause";
+				text.text = Constants.UI.Pause;
 			}
 
 			gameManager.OnPauseInteraction ();

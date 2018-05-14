@@ -19,19 +19,16 @@ namespace EC2018 {
 
 		void Update () {
 			if (Input.GetKeyDown(KeyCode.C)) {
-				Debug.Log ("Switching Camera");
 				OnCameraSwithClicked ();
 			}
 		}
 
 		public void OnCameraSwithClicked() {
 			if(activeCamera == SideViewCamera) {
-				Debug.Log ("Top Camera Active");
 				TopViewCamera.SetActive(true);
 				SideViewCamera.SetActive(false);
 				activeCamera = TopViewCamera;
 			} else if (activeCamera == TopViewCamera) {
-				Debug.Log ("Side Camera Active");
 				SideViewCamera.SetActive(true);
 				TopViewCamera.SetActive(false);
 				activeCamera = SideViewCamera;

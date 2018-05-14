@@ -8,8 +8,6 @@ using UnityEngine.SceneManagement;
 namespace EC2018
 {
 	public class DirectorySelector : MonoBehaviour {
-		private const string ExampleReplaysPath = "/Resources/tower-defence-matches";
-		private const string DeployedReplaysPath = "/tower-defence-matches";
 
 		public GameObject ContentListParent;
 		public GameObject DirectoryButton;
@@ -30,7 +28,7 @@ namespace EC2018
 		}
 
 		public void OnDirectoryButtonClicked (string title) {
-			PlayerPrefs.SetString ("SelectedReplay", title);
+			PlayerPrefs.SetString (Constants.PlayerPrefKeys.SelectedReplay, title);
 			SceneManager.LoadScene (1, LoadSceneMode.Single);
 		}
 
@@ -43,10 +41,10 @@ namespace EC2018
 		}
 
 		private string GetReplaysPath() {
-			var replaysPath = DeployedReplaysPath;
+			var replaysPath = Constants.Paths.DeployedReplays;
 
 			if (Application.isEditor) {
-				replaysPath = ExampleReplaysPath;
+				replaysPath = Constants.Paths.ExampleReplays;
 			}
 
 			return applicationPath + replaysPath;
@@ -56,9 +54,9 @@ namespace EC2018
 			var path = Application.dataPath;
 
 			if (Application.platform == RuntimePlatform.WindowsPlayer) {
-				path += "/../";
+				path += Constants.Paths.WindowsPathBackNavigation;
 			} else if (Application.platform == RuntimePlatform.OSXPlayer) {
-				path += "/../../";
+				path += Constants.Paths.OSXPathBackNavigation;
 			}
 
 			return path;
