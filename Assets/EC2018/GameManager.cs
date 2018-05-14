@@ -71,6 +71,7 @@ namespace EC2018 {
 			if (currentRound >= maxRounds) {
 				CancelInvoke ("PopulateCurrentScene");
 				Debug.Log("Replay Finished!");
+				instantiator.ClearGameObjectsWithTag ("Missile"); // TODO - Update this to separate method call
 			} else {
 				if (!isPaused) {
 					currentRound++;

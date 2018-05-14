@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4252461710732536}
   - component: {fileID: 33684095257427512}
   - component: {fileID: 23171314644042802}
+  - component: {fileID: 114426013241328098}
   m_Layer: 0
   m_Name: Energy Building A
   m_TagString: Energy
@@ -80,3 +81,16 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1230900156086890}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114426013241328098
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1230900156086890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 039e5d4065f50f846b70322b07d9bbca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  constructionMaterial: {fileID: 2100000, guid: d9c234a55d7950b48b9e63ca7f0bfe70,
+    type: 2}

@@ -32,7 +32,7 @@ namespace EC2018
 			ClearGameObjectsWithTag (GetTagForBuildingType(BuildingType.Energy));
 		}
 
-		private void ClearGameObjectsWithTag(string tag) {
+		public void ClearGameObjectsWithTag(string tag) {
 			if (tag == null) {
 				return;
 			}
@@ -67,6 +67,7 @@ namespace EC2018
 					o.transform.position = new Vector3 (x, o.transform.position.y, y);
 					o.transform.SetParent (groundTilesParent.transform);
 					o.tag = GetTagForBuildingType(buildings [b].BuildingType);
+					o.GetComponent<BuildingController> ().Setup (buildings [b]);
 				}
 			}
 		}
