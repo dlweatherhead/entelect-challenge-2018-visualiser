@@ -40,6 +40,10 @@ namespace EC2018
 			gameManager.OnPauseInteraction ();
 		}
 
+		public void OnReplayMenuButtonClick() {
+			gameManager.NavigateToReplayMenu ();
+		}
+
 		public void UpdateUI(GameDetails gameDetails, Player playerA, Player playerB) {
 			PlayerAName.text = playerA.PlayerType.ToString ();
 			PlayerBName.text = playerB.PlayerType.ToString ();

@@ -7,6 +7,7 @@ using EC2018.Enums;
 using Newtonsoft.Json;
 using EC2018;
 using System;
+using UnityEngine.SceneManagement;
 
 namespace EC2018 {
 
@@ -49,6 +50,10 @@ namespace EC2018 {
 				CancelInvoke ("PopulateCurrentScene");
 				isPaused = true;
 			}
+		}
+
+		public void NavigateToReplayMenu() {
+			SceneManager.LoadScene (0, LoadSceneMode.Single);
 		}
 
 		private string GetSelectedReplayPath() {
