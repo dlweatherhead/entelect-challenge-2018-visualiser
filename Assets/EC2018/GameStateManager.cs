@@ -31,6 +31,10 @@ namespace EC2018 {
 			SetMaxRounds ();
 		}
 
+		public string GetFinalRoundPath() {
+			return replayPath + "/" + ConvertRoundToFolderName (currentRound);
+		}
+
 		private void SetMaxRounds() {
 			maxRounds = Directory.GetDirectories (replayPath).Length - 1; // Index offset
 		}

@@ -40,6 +40,7 @@ namespace EC2018 {
 			public const string OSXPathBackNavigation = "/../../";
 			public const string MapName = "/JsonMap.json";
 			public const string RoundFolderNamePrefix = "Round ";
+			public const string EndGameStateFileName = "endGameState.txt";
 		}
 	}
 }

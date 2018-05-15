@@ -16,4 +16,8 @@ public class MissileController : MonoBehaviour {
 	void Update() {
 		transform.Translate (Vector3.right * speed * Time.deltaTime);
 	}
+
+	public void Halt() {
+		speed = 0;
+	}
 }

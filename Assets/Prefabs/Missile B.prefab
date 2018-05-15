@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114977989210435366}
   m_Layer: 0
   m_Name: Missile B
-  m_TagString: Untagged
+  m_TagString: Missile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 23058330380567706}
   m_Layer: 0
   m_Name: Model
-  m_TagString: Missile
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -32,7 +32,7 @@ namespace EC2018
 			ClearGameObjectsWithTag (GetTagForBuildingType(BuildingType.Energy));
 		}
 
-		public void ClearGameObjectsWithTag(string tag) {
+		private void ClearGameObjectsWithTag(string tag) {
 			if (tag == null) {
 				return;
 			}

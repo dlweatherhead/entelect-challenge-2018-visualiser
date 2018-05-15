@@ -23,6 +23,9 @@ namespace EC2018
 		public Text DefensePriceText;
 		public Text EnergyPriceText;
 
+		public GameObject FinalGameHolder;
+		public Text FinalGameText;
+
 		private GameManager gameManager;
 
 		void Awake() {
@@ -65,6 +68,11 @@ namespace EC2018
 			EnergyPriceText.text = GetPrice (gameDetails, BuildingType.Energy);
 
 			RoundText.text = gameDetails.Round.ToString();
+		}
+
+		public void DisplayFinalGameMessage(string message) {
+			FinalGameHolder.SetActive (true);
+			FinalGameText.text = message;
 		}
 
 		private string GetPlayerType(Player player) {

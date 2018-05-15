@@ -44,7 +44,24 @@ namespace EC2018 {
 		}
 
 		public void ReplayFinished() {
-			instantiator.ClearGameObjectsWithTag (Constants.Tags.Missile); // TODO - Update this to separate method call
+			uiManager.DisplayFinalGameMessage (LoadFinalGameResults());
+
+			HaltAllGameObects ();
+		}
+
+		private string LoadFinalGameResults() {
+			var streamReader = new StreamReader (gameStateManager.GetFinalRoundPath () + "/" + Constants.Paths.EndGameStateFileName);
+			var endGameMessage = streamReader.ReadToEnd ();
+			streamReader.Close ();
+
+			return endGameMessage;
+		}
+
+		private void HaltAllGameObects() {
+			var missiles = GameObject.FindGameObjectsWithTag (Constants.Tags.Missile);
+			for (int i = 0; i < missiles.Length; i++) {
+				missiles [i].GetComponent<MissileController> ().Halt ();
+			}
 		}
 
 		// TODO - Refactor to Run with Update instead, for better separation between Game and State Managers
