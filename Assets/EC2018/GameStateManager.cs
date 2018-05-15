@@ -2,6 +2,7 @@
 using EC2018.Entities;
 using UnityEngine;
 using Newtonsoft.Json;
+using EC2018.Enums;
 
 namespace EC2018 {
 	public class GameStateManager {
@@ -79,6 +80,15 @@ namespace EC2018 {
 				gameManager.ReplayFinished ();
 			}
 
+		}
+
+		public string GetPlayerName(PlayerType playerType) {
+			var allPlayers = Directory.GetDirectories (replayPath + "/" + ConvertRoundToFolderName (0));
+			if(playerType == PlayerType.A) {
+				return new DirectoryInfo(allPlayers [0]).Name;
+			} else {
+				return new DirectoryInfo(allPlayers [1]).Name;
+			}
 		}
 
 		// Loading the First Replay Folder we find

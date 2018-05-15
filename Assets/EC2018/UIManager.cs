@@ -47,10 +47,12 @@ namespace EC2018
 			gameManager.NavigateToReplayMenu ();
 		}
 
-		public void UpdateUI(GameDetails gameDetails, Player playerA, Player playerB) {
-			PlayerAName.text = playerA.PlayerType.ToString ();
-			PlayerBName.text = playerB.PlayerType.ToString ();
+		public void SetPlayerNames(string playerAName, string playerBName) {
+			PlayerAName.text = playerAName;
+			PlayerBName.text = playerBName;
+		}
 
+		public void UpdateUI(GameDetails gameDetails, Player playerA, Player playerB) {
 			HealthA.text = GetHealth(playerA);
 			HealthB.text = GetHealth(playerB);
 

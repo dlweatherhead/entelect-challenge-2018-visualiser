@@ -27,6 +27,8 @@ namespace EC2018 {
 			uiManager = GameObject.FindGameObjectWithTag (Constants.Tags.UIHolder).GetComponent<UIManager> ();
 			gameStateManager = new GameStateManager (this, uiManager, instantiator);
 
+			uiManager.SetPlayerNames (gameStateManager.GetPlayerName(PlayerType.A), gameStateManager.GetPlayerName(PlayerType.B));
+
 			AttemptToStartReplay ();
 		}
 
