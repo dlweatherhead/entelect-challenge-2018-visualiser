@@ -68,7 +68,7 @@ namespace EC2018 {
 
 		// TODO - Refactor to Run with Update instead, for better separation between Game and State Managers
 		private void AttemptToStartReplay() {
-			if(gameStateManager.CanIncrementRound() && !isPaused) {
+			if(gameStateManager.CanIncrementRound()) {
 				InvokeRepeating (StartReplayMethod, 0.5f, 0.5f);
 			} else if(gameStateManager.IsGameFinished()) {
 				StopReplay ();

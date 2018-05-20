@@ -3,6 +3,9 @@
 /// Static store for Constants.
 /// Tags, etc.
 /// </summary>
+using UnityEngine;
+
+
 namespace EC2018 {
 	public static class Constants {
 
@@ -38,9 +41,23 @@ namespace EC2018 {
 			public const string DeployedReplays = "/tower-defence-matches";
 			public const string WindowsPathBackNavigation = "/../";
 			public const string OSXPathBackNavigation = "/../../";
+			public const string LinuxPathBackNavigation = "/../../";
 			public const string MapName = "/JsonMap.json";
 			public const string RoundFolderNamePrefix = "Round ";
 			public const string EndGameStateFileName = "endGameState.txt";
+			public static string ApplicationPath {
+				get {
+					if (Application.platform == RuntimePlatform.WindowsPlayer) {
+						return Application.dataPath + Constants.Paths.WindowsPathBackNavigation;
+					} else if (Application.platform == RuntimePlatform.OSXPlayer) {
+						return Application.dataPath + Constants.Paths.OSXPathBackNavigation;
+					} else if (Application.platform == RuntimePlatform.LinuxPlayer) {
+						return Application.dataPath + Constants.Paths.LinuxPathBackNavigation;
+					} else {
+						return Application.dataPath;
+					}
+				}
+			}
 		}
 	}
 }

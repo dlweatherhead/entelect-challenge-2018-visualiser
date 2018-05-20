@@ -15,7 +15,7 @@ namespace EC2018
 		private string applicationPath;
 
 		void Start () {
-			applicationPath = GetApplicationPath ();
+			applicationPath = Constants.Paths.ApplicationPath;
 			var replays = GetSubFolders (GetReplaysPath());
 
 			for (int i = 0; i < replays.Length; i++) {
@@ -48,18 +48,6 @@ namespace EC2018
 			}
 
 			return applicationPath + replaysPath;
-		}
-			
-		private string GetApplicationPath() {
-			var path = Application.dataPath;
-
-			if (Application.platform == RuntimePlatform.WindowsPlayer) {
-				path += Constants.Paths.WindowsPathBackNavigation;
-			} else if (Application.platform == RuntimePlatform.OSXPlayer) {
-				path += Constants.Paths.OSXPathBackNavigation;
-			}
-
-			return path;
 		}
 	}
 }
