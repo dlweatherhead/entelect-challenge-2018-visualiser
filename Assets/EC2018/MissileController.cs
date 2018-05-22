@@ -9,12 +9,30 @@ public class MissileController : MonoBehaviour {
 
 	public float speed = 1f;
 
+	private float nextStatePosition;
+
 	public void Setup(int distance, float rate) {
 		speed = distance / rate;
+		nextStatePosition = transform.position.x + distance;
 	}
 
 	void Update() {
 		transform.Translate (Vector3.right * speed * Time.deltaTime);
+
+		if(speed > 0) {
+			if(transform.position.x > nextStatePosition) {
+				HaltAndSetToNextStatePosition ();
+			}
+		} else {
+			if(transform.position.x < nextStatePosition) {
+				HaltAndSetToNextStatePosition ();
+			}
+		}
+	}
+
+	public void HaltAndSetToNextStatePosition() {
+		Halt ();
+		transform.position = new Vector3 (nextStatePosition, transform.position.y, transform.position.z);
 	}
 
 	public void Halt() {
