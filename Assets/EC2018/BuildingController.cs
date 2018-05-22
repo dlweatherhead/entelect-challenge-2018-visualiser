@@ -24,7 +24,7 @@ public class BuildingController : MonoBehaviour {
 		this.building = building;
 
 		if (building.ConstructionTimeLeft > 0) {
-			GetComponent<Renderer> ().material = constructionMaterial;
+			GetComponentInChildren<Renderer> ().material = constructionMaterial;
 		}
 
 		if(HealthBar != null) {
