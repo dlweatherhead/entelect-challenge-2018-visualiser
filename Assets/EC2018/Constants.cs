@@ -41,7 +41,7 @@ namespace EC2018 {
 			public const string DeployedReplays = "/tower-defence-matches";
 			public const string WindowsPathBackNavigation = "/../";
 			public const string OSXPathBackNavigation = "/../../";
-			public const string LinuxPathBackNavigation = "/../../";
+			public const string LinuxPathBackNavigation = "/../";
 			public const string MapName = "/JsonMap.json";
 			public const string RoundFolderNamePrefix = "Round ";
 			public const string EndGameStateFileName = "endGameState.txt";
