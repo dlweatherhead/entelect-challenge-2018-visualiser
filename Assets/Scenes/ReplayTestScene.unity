@@ -518,23 +518,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5d3a229d6ab5a0489153447f2fded2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPrefab_A: {fileID: 1664847809152274, guid: 0c82ec04c517cd14b8dd3a831eab1469,
+  attackPrefab_A: {fileID: 1395668857576202, guid: 0c82ec04c517cd14b8dd3a831eab1469,
     type: 2}
-  defensePrefab_A: {fileID: 1666187205042982, guid: 85daafdd9c2f40a42bb7b3153efdd089,
+  defensePrefab_A: {fileID: 1191933782783046, guid: 85daafdd9c2f40a42bb7b3153efdd089,
     type: 2}
-  energyPrefab_A: {fileID: 1050877560233996, guid: 0a7d661c87377c64280de395ca78e897,
+  energyPrefab_A: {fileID: 1828081144606008, guid: 0a7d661c87377c64280de395ca78e897,
     type: 2}
   missilePrefab_A: {fileID: 1030580118897254, guid: 8d77554ef9c8d414cbc75fe3290d7682,
     type: 2}
-  attackPrefab_B: {fileID: 1734722856295790, guid: 11ba644aa36ccfd42b935ba972e2bf23,
+  attackPrefab_B: {fileID: 1837510075770986, guid: 11ba644aa36ccfd42b935ba972e2bf23,
     type: 2}
-  defensePrefab_B: {fileID: 1666187205042982, guid: 85daafdd9c2f40a42bb7b3153efdd089,
+  defensePrefab_B: {fileID: 1099221273684254, guid: bf078bb4d462d814dafc60addaf65722,
     type: 2}
-  energyPrefab_B: {fileID: 1718692824427882, guid: 88f7495914b23af49818527d6a24382b,
+  energyPrefab_B: {fileID: 1945206959794758, guid: 88f7495914b23af49818527d6a24382b,
     type: 2}
   missilePrefab_B: {fileID: 1398540826899400, guid: f78e50ed25d8aee44a474e9e92086607,
     type: 2}
-  groundTilePrefab: {fileID: 1193994372565126, guid: 2ddf0c36ece2e0741afd396fc099b1e7,
+  groundTilePrefab: {fileID: 1701745878901352, guid: 51c934a03a88bc847997076006607b5e,
     type: 2}
 --- !u!114 &1202343503
 MonoBehaviour:
