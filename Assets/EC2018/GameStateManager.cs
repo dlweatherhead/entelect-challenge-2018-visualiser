@@ -32,8 +32,6 @@ namespace EC2018 {
 
 			SetReplayPathFromPrefs();
 			SetMaxRounds ();
-
-			Debug.Log ("Max Rounds: " + maxRounds);
 		}
 
 		public string GetFinalRoundPath() {
@@ -68,7 +66,7 @@ namespace EC2018 {
 					//	orientation. We want to orientate horizontally for easier use in Editor.
 					//	inner = x
 					//	outer = y
-					instantiator.InstantiateGroundTile (inner, outer);
+					instantiator.InstantiateGroundTile (inner, outer, cell.CellOwner);
 				}
 			}
 		}

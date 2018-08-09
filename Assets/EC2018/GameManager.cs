@@ -15,7 +15,6 @@ namespace EC2018 {
 	public class GameManager : MonoBehaviour {
 		private const string StartReplayMethod = "StartReplay";
 
-		
 		private Instantiator instantiator;
 		private UIManager uiManager;
 		private GameStateManager gameStateManager;

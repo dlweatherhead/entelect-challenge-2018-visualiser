@@ -6,24 +6,11 @@ using EC2018.Enums;
 
 namespace EC2018
 {
-	[RequireComponent(typeof(PrefabHolder))]
 	public class Instantiator : MonoBehaviour {
 
-		private PrefabHolder prefabHolder;
-
-		private GameObject buildingsParent;
-		private GameObject missilesParent;
-		private GameObject groundTilesParent;
-
-		void Awake() {
-			prefabHolder = GetComponent<PrefabHolder> ();
-		}
-
-		void Start() {
-			buildingsParent = new GameObject (Constants.ParentNames.Buildings);
-			missilesParent = new GameObject (Constants.ParentNames.Missiles);
-			groundTilesParent = new GameObject (Constants.ParentNames.GroundTiles);
-		}
+		public GameObject groundTilePrefabA;
+		public GameObject groundTilePrefabB;
+		public Transform groundTileParent;
 
 		public void ClearScene() {
 			ClearGameObjectsWithTag (Constants.Tags.Missile);
@@ -40,10 +27,12 @@ namespace EC2018
 			}
 		}
 
-		public void InstantiateGroundTile(int x, int y) {
-			GameObject o = Instantiate (prefabHolder.groundTilePrefab);
+		public void InstantiateGroundTile(int x, int y, PlayerType playerType) {
+			GameObject o = playerType == PlayerType.A ?
+				Instantiate (groundTilePrefabA) :
+				Instantiate (groundTilePrefabB);
 			o.transform.position = new Vector3 (x, o.transform.position.y, y);
-			o.transform.SetParent (groundTilesParent.transform);
+			o.transform.SetParent (groundTileParent);
 			o.tag = Constants.Tags.GroundTile;
 		}
 
