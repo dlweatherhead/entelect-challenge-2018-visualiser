@@ -19,13 +19,15 @@ namespace EC2018 {
 		private Instantiator instantiator;
 		private UIManager uiManager;
 		private GameStateManager gameStateManager;
+		private ReplayManager replayManager;
 
 		private bool isPaused;
 
 		void Start () {
 			instantiator = GetComponent<Instantiator> ();
 			uiManager = GameObject.FindGameObjectWithTag (Constants.Tags.UIHolder).GetComponent<UIManager> ();
-			gameStateManager = new GameStateManager (this, uiManager, instantiator);
+			replayManager = GetComponent<ReplayManager> ();
+			gameStateManager = new GameStateManager (this, uiManager, instantiator, replayManager);
 
 			uiManager.SetPlayerNames (gameStateManager.GetPlayerName(PlayerType.A), gameStateManager.GetPlayerName(PlayerType.B));
 
@@ -62,7 +64,10 @@ namespace EC2018 {
 		private void HaltAllGameObects() {
 			var missiles = GameObject.FindGameObjectsWithTag (Constants.Tags.Missile);
 			for (int i = 0; i < missiles.Length; i++) {
-				missiles [i].GetComponent<MissileController> ().Halt ();
+				MissileController mc = missiles [i].GetComponent<MissileController> ();
+				if(mc != null) {
+					mc.Halt ();
+				}
 			}
 		}
 

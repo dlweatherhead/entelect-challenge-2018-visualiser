@@ -39,7 +39,7 @@ namespace EC2018
 
 			GameObject[] taggedGameObjects = GameObject.FindGameObjectsWithTag (tag);
 			for (int i = 0; i < taggedGameObjects.Length; i++) {
-				Destroy (taggedGameObjects[i]);
+				taggedGameObjects[i].SetActive (false);
 			}
 		}
 
@@ -51,11 +51,20 @@ namespace EC2018
 
 		public void InstantiateMissileAtLocation(List<Missile> missiles, int x, int y, float rate) {
 			for (int m = 0; m < missiles.Count; m++) {
-				GameObject missilePrefab = missiles[m].PlayerType == PlayerType.A ? prefabHolder.missilePrefab_A : prefabHolder.missilePrefab_B;
-				GameObject o = Instantiate (missilePrefab);
-				o.transform.position = new Vector3 (x, o.transform.position.y, y);
-				o.transform.SetParent (missilesParent.transform);
-				o.GetComponent<MissileController> ().Setup (missiles[m].PlayerType == PlayerType.A ? 1 : -1, rate);
+				GameObject missile;
+				PlayerType missilePlayerType = missiles [m].PlayerType;
+				int direction = missilePlayerType == PlayerType.A ? 1 : -1;
+
+				if(missilePlayerType == PlayerType.A) {
+					missile = MissileObjectPool.current.GetPlayerAMissile ();
+				} else {
+					missile = MissileObjectPool.current.GetPlayerBMissile ();
+				}
+
+				missile.transform.position = new Vector3 (x, missile.transform.position.y, y);
+				missile.transform.SetParent (missilesParent.transform);
+				missile.SetActive (true);
+				missile.GetComponent<MissileController> ().Setup (direction, rate, missiles[m].Speed);
 			}
 		}
 
@@ -63,9 +72,9 @@ namespace EC2018
 			for (int b = 0; b < buildings.Count; b++) {
 				GameObject o = GetPrefabForBuilding (buildings[b], buildings[b].PlayerType);
 				if (o != null) {
-					o = Instantiate (o);
 					o.transform.position = new Vector3 (x, o.transform.position.y, y);
 					o.transform.SetParent (groundTilesParent.transform);
+					o.SetActive (true);
 					o.tag = GetTagForBuildingType(buildings [b].BuildingType);
 					o.GetComponent<BuildingController> ().Setup (buildings [b]);
 				}
@@ -75,11 +84,17 @@ namespace EC2018
 		private GameObject GetPrefabForBuilding(Building building, PlayerType playerType) {
 			switch (building.BuildingType) {
 				case BuildingType.Attack:
-					return playerType == PlayerType.A ? prefabHolder.attackPrefab_A : prefabHolder.attackPrefab_B;
+					return playerType == PlayerType.A ? 
+						AttackObjectPool.current.GetAttackPlayerA () : 
+						AttackObjectPool.current.GetAttackPlayerB ();
 				case BuildingType.Defense:
-					return playerType != PlayerType.A ? prefabHolder.defensePrefab_B : prefabHolder.defensePrefab_A;
+					return playerType == PlayerType.A ? 
+						DefenseObjectPool.current.GetPlayerADefense () : 
+						DefenseObjectPool.current.GetPlayerBDefense ();
 				case BuildingType.Energy:
-					return playerType != PlayerType.A ? prefabHolder.energyPrefab_B :  prefabHolder.energyPrefab_A;
+					return playerType == PlayerType.A ? 
+						EnergyObjectPool.current.GetEnergyPlayerA () : 
+						EnergyObjectPool.current.GetEnergyPlayerB ();
 				default:
 					return null;
 			}

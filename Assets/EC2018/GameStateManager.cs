@@ -22,14 +22,18 @@ namespace EC2018 {
 		private GameManager gameManager;
 		private UIManager uiManager;
 		private Instantiator instantiator;
+		private ReplayManager replayManager;
 
-		public GameStateManager(GameManager gameManager, UIManager uiManager, Instantiator instantiator) {
+		public GameStateManager(GameManager gameManager, UIManager uiManager, Instantiator instantiator, ReplayManager replayManager) {
 			this.gameManager = gameManager;
 			this.instantiator = instantiator;
 			this.uiManager = uiManager;
+			this.replayManager = replayManager;
 
 			SetReplayPathFromPrefs();
 			SetMaxRounds ();
+
+			Debug.Log ("Max Rounds: " + maxRounds);
 		}
 
 		public string GetFinalRoundPath() {
@@ -70,7 +74,7 @@ namespace EC2018 {
 		}
 
 		public void PlayCurrentState() {
-			LoadJsonMapForPlayerA ("/" + ConvertRoundToFolderName (currentRound));
+			LoadJsonMapForPlayerA (currentRound);
 			uiManager.UpdateUI (gameState.GameDetails, gameState.Players [0], gameState.Players [1]);
 			instantiator.ClearScene ();
 			PopulateSceneFromGameMap ();
@@ -79,7 +83,6 @@ namespace EC2018 {
 			} else if (IsGameFinished()) {
 				gameManager.ReplayFinished ();
 			}
-
 		}
 
 		public string GetPlayerName(PlayerType playerType) {
@@ -90,13 +93,9 @@ namespace EC2018 {
 				return new DirectoryInfo(allPlayers [1]).Name;
 			}
 		}
-
-		// Loading the First Replay Folder we find
-		// TODO - Create Folder selector or load newest
-		private void LoadJsonMapForPlayerA(string roundName) {
-			string[] allPlayersDir = Directory.GetDirectories (replayPath + roundName);
-			string firstState = GetFileContents (allPlayersDir [0] + Constants.Paths.MapName);
-			gameState = JsonConvert.DeserializeObject<GameState>(firstState);
+			
+		private void LoadJsonMapForPlayerA(int round) {
+			gameState = replayManager.GetGameStateForRound (round);
 		}
 
 		private string GetFileContents(string path) {

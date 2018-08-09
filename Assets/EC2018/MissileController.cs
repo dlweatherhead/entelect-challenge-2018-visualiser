@@ -11,9 +11,10 @@ public class MissileController : MonoBehaviour {
 
 	private float nextStatePosition;
 
-	public void Setup(int distance, float rate) {
-		speed = distance / rate;
-		nextStatePosition = transform.position.x + distance;
+	public void Setup(int distance, float rate, int missileSpeed) {
+		transform.GetChild (0).gameObject.SetActive (true);
+		speed = missileSpeed * distance / rate;
+		nextStatePosition = transform.position.x + distance * missileSpeed;
 	}
 
 	void Update() {
