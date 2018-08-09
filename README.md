@@ -8,6 +8,7 @@ You can find out more at [Entelect Challenge Github Repo](https://github.com/Ent
 
 ### How this works
 This visualizer will replay a completed match using the output game states from the game-runner
+Place the visualizer in the starter-pack directory, and have at least 1 replay available in the tower-defence-matches directory to run
 
 ### Development Notes
 This visualizer was built using Unity 2017.1.0f3
