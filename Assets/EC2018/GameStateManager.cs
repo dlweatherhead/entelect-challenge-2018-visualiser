@@ -62,11 +62,9 @@ namespace EC2018 {
 					instantiator.InstantiateBuildingsAtLocation (cell.Buildings, x, y);
 					instantiator.InstantiateMissileAtLocation (cell.Missiles, x, y, 0.5f);
 
-					// Map is orientated vertically, with inner objects having x, y related to that
-					//	orientation. We want to orientate horizontally for easier use in Editor.
-					//	inner = x
-					//	outer = y
-					instantiator.InstantiateGroundTile (inner, outer, cell.CellOwner);
+					if(currentRound == 0) {
+						instantiator.InstantiateGroundTile (inner, outer, cell.CellOwner);
+					}
 				}
 			}
 		}
