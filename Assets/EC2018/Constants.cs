@@ -12,6 +12,7 @@ namespace EC2018 {
 		public static class Tags {
 			public const string Missile = "Missile";
 			public const string Attack = "Attack";
+			public const string Tesla = "Tesla";
 			public const string Defense = "Defense";
 			public const string Energy = "Energy";
 			public const string GroundTile = "GroundTile";

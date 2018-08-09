@@ -13,6 +13,7 @@ TagManager:
   - Player B
   - UI Holder
   - GameManager
+  - Tesla
   layers:
   - Default
   - TransparentFX

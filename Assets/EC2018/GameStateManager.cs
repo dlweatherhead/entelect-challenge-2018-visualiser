@@ -74,7 +74,7 @@ namespace EC2018 {
 		}
 
 		public void PlayCurrentState() {
-			LoadJsonMapForPlayerA (currentRound);
+			gameState = replayManager.GetGameStateForRound (currentRound);
 			uiManager.UpdateUI (gameState.GameDetails, gameState.Players [0], gameState.Players [1]);
 			instantiator.ClearScene ();
 			PopulateSceneFromGameMap ();
@@ -92,10 +92,6 @@ namespace EC2018 {
 			} else {
 				return new DirectoryInfo(allPlayers [1]).Name;
 			}
-		}
-			
-		private void LoadJsonMapForPlayerA(int round) {
-			gameState = replayManager.GetGameStateForRound (round);
 		}
 
 		private string GetFileContents(string path) {

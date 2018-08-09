@@ -27,16 +27,13 @@ namespace EC2018
 
 		public void ClearScene() {
 			ClearGameObjectsWithTag (Constants.Tags.Missile);
-			ClearGameObjectsWithTag (GetTagForBuildingType(BuildingType.Attack));
-			ClearGameObjectsWithTag (GetTagForBuildingType(BuildingType.Defense));
-			ClearGameObjectsWithTag (GetTagForBuildingType(BuildingType.Energy));
+			ClearGameObjectsWithTag (Constants.Tags.Attack);
+			ClearGameObjectsWithTag (Constants.Tags.Defense);
+			ClearGameObjectsWithTag (Constants.Tags.Energy);
+			ClearGameObjectsWithTag (Constants.Tags.Tesla);
 		}
 
 		private void ClearGameObjectsWithTag(string tag) {
-			if (tag == null) {
-				return;
-			}
-
 			GameObject[] taggedGameObjects = GameObject.FindGameObjectsWithTag (tag);
 			for (int i = 0; i < taggedGameObjects.Length; i++) {
 				taggedGameObjects[i].SetActive (false);
@@ -46,37 +43,32 @@ namespace EC2018
 		public void InstantiateGroundTile(int x, int y) {
 			GameObject o = Instantiate (prefabHolder.groundTilePrefab);
 			o.transform.position = new Vector3 (x, o.transform.position.y, y);
-			o.transform.SetParent (buildingsParent.transform);
+			o.transform.SetParent (groundTilesParent.transform);
+			o.tag = Constants.Tags.GroundTile;
 		}
 
 		public void InstantiateMissileAtLocation(List<Missile> missiles, int x, int y, float rate) {
 			for (int m = 0; m < missiles.Count; m++) {
-				GameObject missile;
 				PlayerType missilePlayerType = missiles [m].PlayerType;
 				int direction = missilePlayerType == PlayerType.A ? 1 : -1;
 
-				if(missilePlayerType == PlayerType.A) {
-					missile = MissileObjectPool.current.GetPlayerAMissile ();
-				} else {
-					missile = MissileObjectPool.current.GetPlayerBMissile ();
-				}
+				GameObject missile = missilePlayerType == PlayerType.A ?
+					MissileObjectPool.current.GetForPlayerA () :
+					MissileObjectPool.current.GetForPlayerB ();
 
-				missile.transform.position = new Vector3 (x, missile.transform.position.y, y);
-				missile.transform.SetParent (missilesParent.transform);
 				missile.SetActive (true);
+				missile.transform.position = new Vector3 (x, missile.transform.position.y, y);
 				missile.GetComponent<MissileController> ().Setup (direction, rate, missiles[m].Speed);
 			}
 		}
 
 		public void InstantiateBuildingsAtLocation(List<Building> buildings, int x, int y) {
 			for (int b = 0; b < buildings.Count; b++) {
-				GameObject o = GetPrefabForBuilding (buildings[b], buildings[b].PlayerType);
-				if (o != null) {
-					o.transform.position = new Vector3 (x, o.transform.position.y, y);
-					o.transform.SetParent (groundTilesParent.transform);
-					o.SetActive (true);
-					o.tag = GetTagForBuildingType(buildings [b].BuildingType);
-					o.GetComponent<BuildingController> ().Setup (buildings [b]);
+				GameObject building = GetPrefabForBuilding (buildings[b], buildings[b].PlayerType);
+				if (building != null) {
+					building.SetActive (true);
+					building.transform.position = new Vector3 (x, building.transform.position.y, y);
+					building.GetComponent<BuildingController> ().Setup (buildings [b]);
 				}
 			}
 		}
@@ -85,29 +77,20 @@ namespace EC2018
 			switch (building.BuildingType) {
 				case BuildingType.Attack:
 					return playerType == PlayerType.A ? 
-						AttackObjectPool.current.GetAttackPlayerA () : 
-						AttackObjectPool.current.GetAttackPlayerB ();
+						AttackObjectPool.current.GetForPlayerA () : 
+						AttackObjectPool.current.GetForPlayerB ();
 				case BuildingType.Defense:
 					return playerType == PlayerType.A ? 
-						DefenseObjectPool.current.GetPlayerADefense () : 
-						DefenseObjectPool.current.GetPlayerBDefense ();
+						DefenseObjectPool.current.GetForPlayerA () : 
+						DefenseObjectPool.current.GetForPlayerB ();
 				case BuildingType.Energy:
 					return playerType == PlayerType.A ? 
-						EnergyObjectPool.current.GetEnergyPlayerA () : 
-						EnergyObjectPool.current.GetEnergyPlayerB ();
-				default:
-					return null;
-			}
-		}
-
-		private string GetTagForBuildingType(BuildingType buildingType) {
-			switch (buildingType) {
-				case BuildingType.Attack:
-					return Constants.Tags.Attack;
-				case BuildingType.Defense:
-					return Constants.Tags.Defense;
-				case BuildingType.Energy:
-					return Constants.Tags.Energy;
+						EnergyObjectPool.current.GetForPlayerA () : 
+						EnergyObjectPool.current.GetForPlayerB ();
+				case BuildingType.Tesla:
+					return playerType == PlayerType.A ? 
+						TeslaObjectPool.current.GetForPlayerA () : 
+						TeslaObjectPool.current.GetForPlayerB ();
 				default:
 					return null;
 			}

@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace EC2018 {
-	public class MissileObjectPool : ExpandableObjectPool {
+	public class TeslaObjectPool : ExpandableObjectPool {
 
-		public static MissileObjectPool current;
+		public static TeslaObjectPool current;
 
 		void Awake() {
 			current = this;
 		}
 
 		protected override string GetTag() {
-			return Constants.Tags.Missile;
+			return Constants.Tags.Tesla;
 		}
 	}
+
 }
