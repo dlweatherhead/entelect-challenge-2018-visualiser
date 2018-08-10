@@ -9,8 +9,12 @@ namespace EC2018.Entities
     public class GameDetails
     {
         public int Round { get; set; }
+        public int MaxRounds { get; set; }
         public int MapWidth  { get; set; }
         public int MapHeight  { get; set; }
-        public Dictionary<BuildingType, int> BuildingPrices  { get; set; }  
+        public int RoundIncomeEnergy { get; set; }
+        public Dictionary<BuildingType, int> BuildingPrices  { get; set; }
+        // TODO - Building Stats
+        // TODO - Iron Curtain Stats
     }
 }

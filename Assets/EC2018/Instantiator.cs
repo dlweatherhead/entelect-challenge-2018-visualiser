@@ -12,10 +12,8 @@ namespace EC2018
 		public GameObject groundTilePrefabB;
 		public Transform groundTileParent;
 
-		public GameObject teslaHitA;
-		public GameObject teslaHitB;
-		public GameObject ironCurtainHitA;
-		public GameObject ironCurtainHitB;
+        public GameObject ironCurtainPlayerA;
+        public GameObject ironCurtainPlayerB;
 
 		public void ClearScene() {
 			ClearGameObjectsWithTag (Constants.Tags.Missile);
@@ -90,13 +88,15 @@ namespace EC2018
 			Destroy (lineObject, 1f);
 		}
 
-		public void InstantiateIronCurtainHit(float x, float y, PlayerType playerType) {
-			var pos = new Vector3 (x, 0, y);
-			var obj = playerType == PlayerType.A ? ironCurtainHitA : ironCurtainHitB;
-			if(obj != null) {
-				Instantiate (obj, pos, Quaternion.identity);
-			}
+		public void ActivateIronCurtain(PlayerType playerType) {
+            var obj = playerType == PlayerType.A ? ironCurtainPlayerA : ironCurtainPlayerB;
+            obj.SetActive(true);
 		}
+
+        public void DeactivateIronCurtain(PlayerType playerType) {
+            var obj = playerType == PlayerType.A ? ironCurtainPlayerA : ironCurtainPlayerB;
+            obj.SetActive(false);
+        }
 
 		private GameObject GetPrefabForBuilding(Building building, PlayerType playerType) {
 			switch (building.BuildingType) {

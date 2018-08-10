@@ -81,7 +81,7 @@ namespace EC2018 {
 			if(gameState.TeslaHitList.Count > 0) {
 				ProcessTeslaHitList (gameState.TeslaHitList[0]);
 			}
-			ProcessIronCurtainHitList (gameState.IroncurtainHitList);
+            ProcessIronCurtainHitList (gameState.Players);
 			if (CanIncrementRound()) {
 				currentRound++;
 			} else if (IsGameFinished()) {
@@ -110,13 +110,16 @@ namespace EC2018 {
 			}
 		}
 
-		private void ProcessIronCurtainHitList(List<HitList> hitList) {
-			for(int i=0; i < hitList.Count; i++) {
-				var x = hitList [i].X;
-				var y = hitList [i].Y;
-				var playerType = hitList [i].PlayerType;
-				instantiator.InstantiateIronCurtainHit (x, y, playerType);
-			}
+        private void ProcessIronCurtainHitList(List<Player> players) {
+            for (int i = 0; i < players.Count; i++) {
+                var available = players[i].IronCurtainAvailable;
+                var lifetime = players[i].ActiveIronCurtainLifetime;
+                if(available && lifetime >= -6) {
+                    instantiator.ActivateIronCurtain(players[i].PlayerType);
+                } else {
+                    instantiator.DeactivateIronCurtain(players[i].PlayerType);
+                }
+            }
 		}
 
 		private string GetFileContents(string path) {
