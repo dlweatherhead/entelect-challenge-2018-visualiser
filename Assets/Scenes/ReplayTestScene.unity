@@ -708,13 +708,25 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1034027015214576, guid: e8571cb7294fcbe4db05d14f58f9bf27, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 114304253903977264, guid: e8571cb7294fcbe4db05d14f58f9bf27,
+        type: 2}
+      propertyPath: barrierHealthA
+      value: 
+      objectReference: {fileID: 912874940}
+    - target: {fileID: 114304253903977264, guid: e8571cb7294fcbe4db05d14f58f9bf27,
+        type: 2}
+      propertyPath: barrierHealthB
+      value: 
+      objectReference: {fileID: 1641376618}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e8571cb7294fcbe4db05d14f58f9bf27, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &912874940 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114172217411871982, guid: 565a5e46caf3cf6469c6c1e6955bfa40,
+    type: 2}
+  m_PrefabInternal: {fileID: 1887687665}
+  m_Script: {fileID: 11500000, guid: 04491f80796da4450b6aef1daa28accb, type: 3}
 --- !u!1001 &1030345291
 Prefab:
   m_ObjectHideFlags: 0
@@ -1026,6 +1038,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1641376618 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114012587462257966, guid: ad1f5584e6b4b30498247c54abe20a58,
+    type: 2}
+  m_PrefabInternal: {fileID: 454983415}
+  m_Script: {fileID: 11500000, guid: 04491f80796da4450b6aef1daa28accb, type: 3}
 --- !u!1001 &1887687665
 Prefab:
   m_ObjectHideFlags: 0

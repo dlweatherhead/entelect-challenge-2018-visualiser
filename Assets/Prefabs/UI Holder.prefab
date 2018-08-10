@@ -1371,6 +1371,8 @@ MonoBehaviour:
   EnergyPriceText: {fileID: 114254398710460188}
   FinalGameHolder: {fileID: 1272612867717188}
   FinalGameText: {fileID: 114505384910950480}
+  barrierHealthA: {fileID: 0}
+  barrierHealthB: {fileID: 0}
 --- !u!114 &114304623665171950
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -24,6 +24,9 @@ namespace EC2018
 		public GameObject FinalGameHolder;
 		public Text FinalGameText;
 
+        public BarrierHealth barrierHealthA;
+        public BarrierHealth barrierHealthB;
+
         GameManager gameManager;
 
         void Awake() {
@@ -51,6 +54,9 @@ namespace EC2018
 		}
 
 		public void UpdateUI(GameDetails gameDetails, Player playerA, Player playerB) {
+            barrierHealthA.SetHealth(playerA.Health);
+            barrierHealthB.SetHealth(playerB.Health);
+
 			HealthA.text = GetHealth(playerA);
 			HealthB.text = GetHealth(playerB);
 
