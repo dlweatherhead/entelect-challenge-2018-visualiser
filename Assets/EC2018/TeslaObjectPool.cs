@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿
 namespace EC2018 {
 	public class TeslaObjectPool : ExpandableObjectPool {
 

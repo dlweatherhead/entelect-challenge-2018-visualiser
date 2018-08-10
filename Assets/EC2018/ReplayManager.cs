@@ -8,58 +8,57 @@ using Newtonsoft.Json;
 
 public class ReplayManager : MonoBehaviour {
 
-	private const int RoundNameLength = 3;
-	private const char RoundNamePad = '0';
+    const int RoundNameLength = 3;
+    const char RoundNamePad = '0';
 
-	List<Round> rounds;
+    List<Round> rounds;
 
-	void Start() {
-		rounds = new List<Round> ();
-		LoadAllRounds ();
-	}
+    void Start() {
+        rounds = new List<Round>();
+        LoadAllRounds();
+    }
 
-	public GameState GetGameStateForRound(int round) {
-		return rounds [round].statePlayerA;
-	}
+    public GameState GetGameStateForRound(int round) {
+        return rounds[round].statePlayerA;
+    }
 
-	private void LoadAllRounds() {
-		string replayPath = GetReplayPathFromPrefs ();
-		int numberOfRounds = GetMaxRounds (replayPath);
+    void LoadAllRounds() {
+        var replayPath = GetReplayPathFromPrefs();
+        var numberOfRounds = GetMaxRounds(replayPath);
 
-		for(int roundNumber=0; roundNumber<numberOfRounds; roundNumber++) {
-			string roundName = ConvertRoundToFolderName (roundNumber);
-			GameState statePlayerA = GetGameStateForPlayer (0, replayPath, roundName);
-			GameState statePlayerB = GetGameStateForPlayer (1, replayPath, roundName);
-			Round round = new Round (statePlayerA, statePlayerB);
-			rounds.Add (round);
-		}
-	}
-		
-	// 0 for Player A, 1 for Player B
-	private GameState GetGameStateForPlayer(int player, string replayPath, string roundName) {
-		string[] allPlayersDir = Directory.GetDirectories (replayPath + "/" + roundName);
-		string firstState = GetFileContents (allPlayersDir [0] + Constants.Paths.MapName);
-		return JsonConvert.DeserializeObject<GameState>(firstState);
-	}
+        for (int roundNumber = 0; roundNumber < numberOfRounds; roundNumber++) {
+            var roundName = ConvertRoundToFolderName(roundNumber);
+            var statePlayerA = GetGameStateForPlayer(0, replayPath, roundName);
+            var statePlayerB = GetGameStateForPlayer(1, replayPath, roundName);
+            var round = new Round(statePlayerA, statePlayerB);
+            rounds.Add(round);
+        }
+    }
 
-	private string GetFileContents(string path) {
-		string filePath = path;
-		var streamReader = new StreamReader (filePath);
-		var contents = streamReader.ReadToEnd ();
-		streamReader.Close ();
+    // 0 for Player A, 1 for Player B
+    GameState GetGameStateForPlayer(int player, string replayPath, string roundName) {
+        var allPlayersDir = Directory.GetDirectories(replayPath + "/" + roundName);
+        var firstState = GetFileContents(allPlayersDir[player] + Constants.Paths.MapName);
+        return JsonConvert.DeserializeObject<GameState>(firstState);
+    }
 
-		return contents;
-	}
+    string GetFileContents(string filePath) {
+        var streamReader = new StreamReader(filePath);
+        var contents = streamReader.ReadToEnd();
+        streamReader.Close();
 
-	private string GetReplayPathFromPrefs() {
-		return PlayerPrefs.GetString (Constants.PlayerPrefKeys.SelectedReplay);
-	}
+        return contents;
+    }
 
-	private string ConvertRoundToFolderName(int round) {
-		return Constants.Paths.RoundFolderNamePrefix + round.ToString ().PadLeft (RoundNameLength, RoundNamePad);
-	}
+    string GetReplayPathFromPrefs() {
+        return PlayerPrefs.GetString(Constants.PlayerPrefKeys.SelectedReplay);
+    }
 
-	private int GetMaxRounds(string replayPath) {
-		return Directory.GetDirectories (replayPath).Length;
-	}
+    string ConvertRoundToFolderName(int round) {
+        return Constants.Paths.RoundFolderNamePrefix + round.ToString().PadLeft(RoundNameLength, RoundNamePad);
+    }
+
+    int GetMaxRounds(string replayPath) {
+        return Directory.GetDirectories(replayPath).Length;
+    }
 }

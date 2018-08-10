@@ -1,8 +1,8 @@
 ﻿
-/// <summary>
-/// Static store for Constants.
-/// Tags, etc.
-/// </summary>
+// <summary>
+// Static store for Constants.
+// Tags, etc.
+// </summary>
 using UnityEngine;
 
 
@@ -50,15 +50,16 @@ namespace EC2018 {
 			public const string EndGameStateFileName = "endGameState.txt";
 			public static string ApplicationPath {
 				get {
-					if (Application.platform == RuntimePlatform.WindowsPlayer) {
-						return Application.dataPath + Constants.Paths.WindowsPathBackNavigation;
-					} else if (Application.platform == RuntimePlatform.OSXPlayer) {
-						return Application.dataPath + Constants.Paths.OSXPathBackNavigation;
-					} else if (Application.platform == RuntimePlatform.LinuxPlayer) {
-						return Application.dataPath + Constants.Paths.LinuxPathBackNavigation;
-					} else {
-						return Application.dataPath;
-					}
+                    switch (Application.platform) {
+                        case RuntimePlatform.WindowsPlayer:
+                            return Application.dataPath + Constants.Paths.WindowsPathBackNavigation;
+                        case RuntimePlatform.OSXPlayer:
+                            return Application.dataPath + Constants.Paths.OSXPathBackNavigation;
+                        case RuntimePlatform.LinuxPlayer:
+                            return Application.dataPath + Constants.Paths.LinuxPathBackNavigation;
+                        default:
+                            return Application.dataPath;
+                    }
 				}
 			}
 		}

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using EC2018.Entities;
 using EC2018.Enums;
@@ -26,14 +24,14 @@ namespace EC2018
 		public GameObject FinalGameHolder;
 		public Text FinalGameText;
 
-		private GameManager gameManager;
+        GameManager gameManager;
 
-		void Awake() {
+        void Awake() {
 			gameManager = GameObject.FindGameObjectWithTag (Constants.Tags.GameManager).GetComponent<GameManager> ();
 		}
 
 		public void OnPausePlayClick(Button button) {
-			Text text = button.GetComponentInChildren<Text> ();
+			var text = button.GetComponentInChildren<Text> ();
 			if (text.text == Constants.UI.Pause) {
 				text.text = Constants.UI.Play;
 			} else {
@@ -77,28 +75,28 @@ namespace EC2018
 			FinalGameText.text = message;
 		}
 
-		private string GetPlayerType(Player player) {
-			return player.PlayerType.ToString ();
-		}
+        string GetPlayerType(Player player) {
+            return player.PlayerType.ToString();
+        }
 
-		private string GetHealth(Player player) {
-			return player.Health.ToString ();
-		}
+        string GetHealth(Player player) {
+            return player.Health.ToString();
+        }
 
-		private string GetEnergy(Player player) {
-			return player.Energy.ToString ();
-		}
+        string GetEnergy(Player player) {
+            return player.Energy.ToString();
+        }
 
-		private string GetScore(Player player) {
-			return player.Score.ToString ();
-		}
+        string GetScore(Player player) {
+            return player.Score.ToString();
+        }
 
-		private string GetHits(Player player) {
-			return player.HitsTaken.ToString ();
-		}
+        string GetHits(Player player) {
+            return player.HitsTaken.ToString();
+        }
 
-		private string GetPrice(GameDetails gameDetails, BuildingType buildingType) {
-			return gameDetails.BuildingPrices[buildingType].ToString();
-		}
-	}
+        string GetPrice(GameDetails gameDetails, BuildingType buildingType) {
+            return gameDetails.BuildingPrices[buildingType].ToString();
+        }
+    }
 }

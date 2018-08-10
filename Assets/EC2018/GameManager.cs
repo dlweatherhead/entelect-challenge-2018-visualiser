@@ -13,16 +13,16 @@ namespace EC2018 {
 
 	[RequireComponent(typeof(Instantiator))]
 	public class GameManager : MonoBehaviour {
-		private const string StartReplayMethod = "StartReplay";
+        const string StartReplayMethod = "StartReplay";
 
-		private Instantiator instantiator;
-		private UIManager uiManager;
-		private GameStateManager gameStateManager;
-		private ReplayManager replayManager;
+        Instantiator instantiator;
+        UIManager uiManager;
+        GameStateManager gameStateManager;
+        ReplayManager replayManager;
 
-		private bool isPaused;
+        bool isPaused;
 
-		public int startRound;
+        public int startRound;
 
 		void Start () {
 			instantiator = GetComponent<Instantiator> ();
@@ -50,43 +50,41 @@ namespace EC2018 {
 
 		public void ReplayFinished() {
 			uiManager.DisplayFinalGameMessage (LoadFinalGameResults());
-
 			HaltAllGameObects ();
 		}
 
-		private string LoadFinalGameResults() {
-			var streamReader = new StreamReader (gameStateManager.GetFinalRoundPath () + "/" + Constants.Paths.EndGameStateFileName);
-			var endGameMessage = streamReader.ReadToEnd ();
-			streamReader.Close ();
+        string LoadFinalGameResults() {
+            var streamReader = new StreamReader(gameStateManager.GetFinalRoundPath() + "/" + Constants.Paths.EndGameStateFileName);
+            var endGameMessage = streamReader.ReadToEnd();
+            streamReader.Close();
+            return endGameMessage;
+        }
 
-			return endGameMessage;
-		}
+        void HaltAllGameObects() {
+            var missiles = GameObject.FindGameObjectsWithTag(Constants.Tags.Missile);
+            for (int i = 0; i < missiles.Length; i++) {
+                var mc = missiles[i].GetComponent<MissileController>();
+                if (mc != null) {
+                    mc.Halt();
+                }
+            }
+        }
 
-		private void HaltAllGameObects() {
-			var missiles = GameObject.FindGameObjectsWithTag (Constants.Tags.Missile);
-			for (int i = 0; i < missiles.Length; i++) {
-				MissileController mc = missiles [i].GetComponent<MissileController> ();
-				if(mc != null) {
-					mc.Halt ();
-				}
-			}
-		}
+        void AttemptToStartReplay() {
+            if (gameStateManager.CanIncrementRound()) {
+                InvokeRepeating(StartReplayMethod, 0.5f, 0.5f);
+            } else if (gameStateManager.IsGameFinished()) {
+                StopReplay();
+                ReplayFinished();
+            }
+        }
 
-		private void AttemptToStartReplay() {
-			if(gameStateManager.CanIncrementRound()) {
-				InvokeRepeating (StartReplayMethod, 0.5f, 0.5f);
-			} else if(gameStateManager.IsGameFinished()) {
-				StopReplay ();
-				ReplayFinished ();
-			}
-		}
+        void StartReplay() {
+            gameStateManager.PlayCurrentState();
+        }
 
-		private void StartReplay() {
-			gameStateManager.PlayCurrentState ();
-		}
-
-		private void StopReplay() {
-			CancelInvoke (StartReplayMethod);
-		}
-	}
+        void StopReplay() {
+            CancelInvoke(StartReplayMethod);
+        }
+    }
 }

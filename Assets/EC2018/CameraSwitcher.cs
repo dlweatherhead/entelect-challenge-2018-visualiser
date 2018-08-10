@@ -9,9 +9,9 @@ namespace EC2018 {
 		public GameObject SideViewCamera;
 		public GameObject TopViewCamera;
 
-		private GameObject activeCamera;
+        GameObject activeCamera;
 
-		void Start() {
+        void Start() {
 			SideViewCamera.SetActive(true);
 			TopViewCamera.SetActive(false);
 			activeCamera = SideViewCamera;

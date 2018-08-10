@@ -33,28 +33,28 @@ namespace EC2018 {
 
 		protected abstract string GetTag ();
 
-		private void InitialisePool (List<GameObject> pool, GameObject poolObject) {
-			for(int i=0; i < poolSize; i++) {
-				GameObject obj = (GameObject)Instantiate (poolObject);
-				obj.transform.SetParent (parent);
-				obj.tag = pooledObjectsTag;
-				obj.SetActive (false);
-				pool.Add (obj);
-			}
-		}
+        void InitialisePool(List<GameObject> pool, GameObject poolObject) {
+            for (int i = 0; i < poolSize; i++) {
+                var obj = Instantiate(poolObject);
+                obj.transform.SetParent(parent);
+                obj.tag = pooledObjectsTag;
+                obj.SetActive(false);
+                pool.Add(obj);
+            }
+        }
 
-		private GameObject GetPoolObject (List<GameObject> pool, GameObject poolObject) {
-			for(int i=0; i < pool.Count; i++) {
-				if(!pool[i].activeInHierarchy) {
-					return pool [i];
-				}
-			}
+        GameObject GetPoolObject(List<GameObject> pool, GameObject poolObject) {
+            for (int i = 0; i < pool.Count; i++) {
+                if (!pool[i].activeInHierarchy) {
+                    return pool[i];
+                }
+            }
 
-			GameObject obj = (GameObject)Instantiate (poolObject);
-			obj.transform.SetParent (parent);
-			obj.tag = pooledObjectsTag;
-			pool.Add (obj);
-			return obj;
-		}
-	}
+            var obj = Instantiate(poolObject);
+            obj.transform.SetParent(parent);
+            obj.tag = pooledObjectsTag;
+            pool.Add(obj);
+            return obj;
+        }
+    }
 }

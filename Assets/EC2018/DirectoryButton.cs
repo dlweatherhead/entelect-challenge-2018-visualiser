@@ -10,11 +10,11 @@ namespace EC2018
 
 		public Button ButtonComponent;
 		public Text Title;
-		private string fullPath;
+        string fullPath;
 
-		private DirectorySelector directorySelector;
+        DirectorySelector directorySelector;
 
-		void Start() {
+        void Start() {
 			ButtonComponent.onClick.AddListener (HandleClick);
 		}
 

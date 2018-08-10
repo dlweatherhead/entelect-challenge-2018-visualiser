@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System.IO;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 namespace EC2018
@@ -12,18 +9,18 @@ namespace EC2018
 		public GameObject ContentListParent;
 		public GameObject DirectoryButton;
 
-		private string applicationPath;
+        string applicationPath;
 
-		void Start () {
+        void Start () {
 			applicationPath = Constants.Paths.ApplicationPath;
 			var replays = GetSubFolders (GetReplaysPath());
 
 			for (int i = 0; i < replays.Length; i++) {
-				string fullPath = replays [i];
-				string name = GetFolderName (fullPath);
+				var fullPath = replays [i];
+                var folderName = GetFolderName (fullPath);
 				var b = Instantiate (DirectoryButton);
 				b.transform.SetParent (ContentListParent.transform);
-				b.GetComponentInChildren<DirectoryButton> ().Setup (name, fullPath, this);
+				b.GetComponentInChildren<DirectoryButton> ().Setup (folderName, fullPath, this);
 			}
 		}
 
@@ -32,22 +29,22 @@ namespace EC2018
 			SceneManager.LoadScene (1, LoadSceneMode.Single);
 		}
 
-		private string GetFolderName(string path) {
-			return new DirectoryInfo (path).Name;
-		}
+        string GetFolderName(string path) {
+            return new DirectoryInfo(path).Name;
+        }
 
-		private string[] GetSubFolders(string path) {
-			return Directory.GetDirectories (path);
-		}
+        string[] GetSubFolders(string path) {
+            return Directory.GetDirectories(path);
+        }
 
-		private string GetReplaysPath() {
-			var replaysPath = Constants.Paths.DeployedReplays;
+        string GetReplaysPath() {
+            var replaysPath = Constants.Paths.DeployedReplays;
 
-			if (Application.isEditor) {
-				replaysPath = Constants.Paths.ExampleReplays;
-			}
+            if (Application.isEditor) {
+                replaysPath = Constants.Paths.ExampleReplays;
+            }
 
-			return applicationPath + replaysPath;
-		}
-	}
+            return applicationPath + replaysPath;
+        }
+    }
 }

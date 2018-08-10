@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using EC2018.Entities;
 using EC2018.Enums;
@@ -23,15 +22,15 @@ namespace EC2018
 			ClearGameObjectsWithTag (Constants.Tags.Tesla);
 		}
 
-		private void ClearGameObjectsWithTag(string tag) {
-			GameObject[] taggedGameObjects = GameObject.FindGameObjectsWithTag (tag);
-			for (int i = 0; i < taggedGameObjects.Length; i++) {
-				taggedGameObjects[i].SetActive (false);
-			}
-		}
+        void ClearGameObjectsWithTag(string objectTag) {
+            var taggedGameObjects = GameObject.FindGameObjectsWithTag(objectTag);
+            for (int i = 0; i < taggedGameObjects.Length; i++) {
+                taggedGameObjects[i].SetActive(false);
+            }
+        }
 
-		public void InstantiateGroundTile(int x, int y, PlayerType playerType) {
-			GameObject o = playerType == PlayerType.A ?
+        public void InstantiateGroundTile(int x, int y, PlayerType playerType) {
+			var o = playerType == PlayerType.A ?
 				Instantiate (groundTilePrefabA) :
 				Instantiate (groundTilePrefabB);
 			o.transform.position = new Vector3 (x, o.transform.position.y, y);
@@ -44,7 +43,7 @@ namespace EC2018
 				PlayerType missilePlayerType = missiles [m].PlayerType;
 				int direction = missilePlayerType == PlayerType.A ? 1 : -1;
 
-				GameObject missile = missilePlayerType == PlayerType.A ?
+				var missile = missilePlayerType == PlayerType.A ?
 					MissileObjectPool.current.GetForPlayerA () :
 					MissileObjectPool.current.GetForPlayerB ();
 
@@ -58,7 +57,7 @@ namespace EC2018
 
 		public void InstantiateBuildingsAtLocation(List<Building> buildings, int x, int y) {
 			for (int b = 0; b < buildings.Count; b++) {
-				GameObject building = GetPrefabForBuilding (buildings[b], buildings[b].PlayerType);
+				var building = GetPrefabForBuilding (buildings[b], buildings[b].PlayerType);
 				if (building != null) {
 					building.SetActive (true);
 					building.transform.position = new Vector3 (x, building.transform.position.y, y);
@@ -71,8 +70,8 @@ namespace EC2018
 
 			var color = playerType == PlayerType.A ? Color.red : Color.blue;
 
-			GameObject lineObject = new GameObject ();
-			LineRenderer lineRenderer = lineObject.AddComponent<LineRenderer> ();
+			var lineObject = new GameObject ();
+			var lineRenderer = lineObject.AddComponent<LineRenderer> ();
 			lineObject.transform.position = new Vector3 (teslaX, 0.5f, teslaY);
 			lineRenderer.startColor = color;
 			lineRenderer.endColor = color;
@@ -98,27 +97,27 @@ namespace EC2018
             obj.SetActive(false);
         }
 
-		private GameObject GetPrefabForBuilding(Building building, PlayerType playerType) {
-			switch (building.BuildingType) {
-				case BuildingType.Attack:
-					return playerType == PlayerType.A ? 
-						AttackObjectPool.current.GetForPlayerA () : 
-						AttackObjectPool.current.GetForPlayerB ();
-				case BuildingType.Defense:
-					return playerType == PlayerType.A ? 
-						DefenseObjectPool.current.GetForPlayerA () : 
-						DefenseObjectPool.current.GetForPlayerB ();
-				case BuildingType.Energy:
-					return playerType == PlayerType.A ? 
-						EnergyObjectPool.current.GetForPlayerA () : 
-						EnergyObjectPool.current.GetForPlayerB ();
-				case BuildingType.Tesla:
-					return playerType == PlayerType.A ? 
-						TeslaObjectPool.current.GetForPlayerA () : 
-						TeslaObjectPool.current.GetForPlayerB ();
-				default:
-					return null;
-			}
-		}
-	}
+        GameObject GetPrefabForBuilding(Building building, PlayerType playerType) {
+            switch (building.BuildingType) {
+                case BuildingType.Attack:
+                    return playerType == PlayerType.A ?
+                        AttackObjectPool.current.GetForPlayerA() :
+                        AttackObjectPool.current.GetForPlayerB();
+                case BuildingType.Defense:
+                    return playerType == PlayerType.A ?
+                        DefenseObjectPool.current.GetForPlayerA() :
+                        DefenseObjectPool.current.GetForPlayerB();
+                case BuildingType.Energy:
+                    return playerType == PlayerType.A ?
+                        EnergyObjectPool.current.GetForPlayerA() :
+                        EnergyObjectPool.current.GetForPlayerB();
+                case BuildingType.Tesla:
+                    return playerType == PlayerType.A ?
+                        TeslaObjectPool.current.GetForPlayerA() :
+                        TeslaObjectPool.current.GetForPlayerB();
+                default:
+                    return null;
+            }
+        }
+    }
 }
