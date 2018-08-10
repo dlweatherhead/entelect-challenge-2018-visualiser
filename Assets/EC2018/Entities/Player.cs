@@ -12,5 +12,7 @@ namespace EC2018.Entities
         public int Health { get; set; }
         public int HitsTaken { get; set; }
         public int Score { get; set; }
+		public bool IronCurtainAvailable { get; set; }
+		public int ActiveIronCurtainLifetime { get; set; }
     }
 }

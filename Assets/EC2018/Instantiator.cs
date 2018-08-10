@@ -12,6 +12,11 @@ namespace EC2018
 		public GameObject groundTilePrefabB;
 		public Transform groundTileParent;
 
+		public GameObject teslaHitA;
+		public GameObject teslaHitB;
+		public GameObject ironCurtainHitA;
+		public GameObject ironCurtainHitB;
+
 		public void ClearScene() {
 			ClearGameObjectsWithTag (Constants.Tags.Missile);
 			ClearGameObjectsWithTag (Constants.Tags.Attack);
@@ -61,6 +66,35 @@ namespace EC2018
 					building.transform.position = new Vector3 (x, building.transform.position.y, y);
 					building.GetComponent<BuildingController> ().Setup (buildings [b]);
 				}
+			}
+		}
+
+		public void InstantiateTeslaHit(float targetX, float targetY, PlayerType playerType, float teslaX, float teslaY) {
+
+			var color = playerType == PlayerType.A ? Color.red : Color.blue;
+
+			GameObject lineObject = new GameObject ();
+			LineRenderer lineRenderer = lineObject.AddComponent<LineRenderer> ();
+			lineObject.transform.position = new Vector3 (teslaX, 0.5f, teslaY);
+			lineRenderer.startColor = color;
+			lineRenderer.endColor = color;
+			lineRenderer.startWidth = 0.2f;
+			lineRenderer.endWidth = 0.3f;
+
+			var positions = new Vector3[2];
+			positions[0] = new Vector3 (teslaX, 0.5f, teslaY);
+			positions [1] = new Vector3 (targetX, 0.5f, targetY);
+
+			lineRenderer.SetPositions (positions);
+
+			Destroy (lineObject, 1f);
+		}
+
+		public void InstantiateIronCurtainHit(float x, float y, PlayerType playerType) {
+			var pos = new Vector3 (x, 0, y);
+			var obj = playerType == PlayerType.A ? ironCurtainHitA : ironCurtainHitB;
+			if(obj != null) {
+				Instantiate (obj, pos, Quaternion.identity);
 			}
 		}
 

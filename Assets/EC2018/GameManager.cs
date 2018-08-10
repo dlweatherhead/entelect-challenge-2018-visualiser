@@ -22,11 +22,13 @@ namespace EC2018 {
 
 		private bool isPaused;
 
+		public int startRound;
+
 		void Start () {
 			instantiator = GetComponent<Instantiator> ();
 			uiManager = GameObject.FindGameObjectWithTag (Constants.Tags.UIHolder).GetComponent<UIManager> ();
 			replayManager = GetComponent<ReplayManager> ();
-			gameStateManager = new GameStateManager (this, uiManager, instantiator, replayManager);
+			gameStateManager = new GameStateManager (startRound, this, uiManager, instantiator, replayManager);
 
 			uiManager.SetPlayerNames (gameStateManager.GetPlayerName(PlayerType.A), gameStateManager.GetPlayerName(PlayerType.B));
 

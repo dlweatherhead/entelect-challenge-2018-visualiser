@@ -711,6 +711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb1d8483dcce6547a006561e3bb79ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startRound: 54
 --- !u!4 &1202343501
 Transform:
   m_ObjectHideFlags: 0
@@ -740,6 +741,11 @@ MonoBehaviour:
   groundTilePrefabB: {fileID: 1701745878901352, guid: 51c934a03a88bc847997076006607b5e,
     type: 2}
   groundTileParent: {fileID: 2121879297}
+  teslaHitA: {fileID: 0}
+  teslaHitB: {fileID: 0}
+  ironCurtainHitA: {fileID: 1781529571154798, guid: ee49617798a0cec4bbc6c308ff4f5d27,
+    type: 2}
+  ironCurtainHitB: {fileID: 0}
 --- !u!114 &1202343504
 MonoBehaviour:
   m_ObjectHideFlags: 0

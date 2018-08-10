@@ -24,11 +24,6 @@ public class BuildingController : MonoBehaviour {
 		}
 	}
 
-	void Start() {
-		model.SetActive (false);
-		constructionModel.SetActive (true);
-	}
-
 	public void Setup (Building building) {
 		this.building = building;
 

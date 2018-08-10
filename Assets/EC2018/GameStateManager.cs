@@ -3,6 +3,7 @@ using EC2018.Entities;
 using UnityEngine;
 using Newtonsoft.Json;
 using EC2018.Enums;
+using System.Collections.Generic;
 
 namespace EC2018 {
 	public class GameStateManager {
@@ -15,6 +16,7 @@ namespace EC2018 {
 
 		public int maxRounds = 1;
 
+		private int startRound;
 		private int currentRound;
 		private string replayPath;
 
@@ -24,7 +26,9 @@ namespace EC2018 {
 		private Instantiator instantiator;
 		private ReplayManager replayManager;
 
-		public GameStateManager(GameManager gameManager, UIManager uiManager, Instantiator instantiator, ReplayManager replayManager) {
+		public GameStateManager(int startRound, GameManager gameManager, UIManager uiManager, Instantiator instantiator, ReplayManager replayManager) {
+			this.currentRound = startRound;
+			this.startRound = startRound;
 			this.gameManager = gameManager;
 			this.instantiator = instantiator;
 			this.uiManager = uiManager;
@@ -62,7 +66,7 @@ namespace EC2018 {
 					instantiator.InstantiateBuildingsAtLocation (cell.Buildings, x, y);
 					instantiator.InstantiateMissileAtLocation (cell.Missiles, x, y, 0.5f);
 
-					if(currentRound == 0) {
+					if(currentRound == startRound) {
 						instantiator.InstantiateGroundTile (inner, outer, cell.CellOwner);
 					}
 				}
@@ -74,6 +78,10 @@ namespace EC2018 {
 			uiManager.UpdateUI (gameState.GameDetails, gameState.Players [0], gameState.Players [1]);
 			instantiator.ClearScene ();
 			PopulateSceneFromGameMap ();
+			if(gameState.TeslaHitList.Count > 0) {
+				ProcessTeslaHitList (gameState.TeslaHitList[0]);
+			}
+			ProcessIronCurtainHitList (gameState.IroncurtainHitList);
 			if (CanIncrementRound()) {
 				currentRound++;
 			} else if (IsGameFinished()) {
@@ -87,6 +95,27 @@ namespace EC2018 {
 				return new DirectoryInfo(allPlayers [0]).Name;
 			} else {
 				return new DirectoryInfo(allPlayers [1]).Name;
+			}
+		}
+
+		private void ProcessTeslaHitList(List<HitList> hitList) {
+
+			var teslaLocation = hitList [hitList.Count - 1];
+
+			for(int i=0; i < hitList.Count - 1; i++) {
+				var x = hitList [i].X;
+				var y = hitList [i].Y;
+				var playerType = hitList [i].PlayerType;
+				instantiator.InstantiateTeslaHit (x, y, teslaLocation.PlayerType, teslaLocation.X, teslaLocation.Y);
+			}
+		}
+
+		private void ProcessIronCurtainHitList(List<HitList> hitList) {
+			for(int i=0; i < hitList.Count; i++) {
+				var x = hitList [i].X;
+				var y = hitList [i].Y;
+				var playerType = hitList [i].PlayerType;
+				instantiator.InstantiateIronCurtainHit (x, y, playerType);
 			}
 		}
 

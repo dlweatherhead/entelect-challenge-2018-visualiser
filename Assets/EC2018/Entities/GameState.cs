@@ -10,5 +10,7 @@ namespace EC2018.Entities
         public List<Player> Players { get; set; }
         public CellStateContainer[][] GameMap { get; set; }
         public GameDetails GameDetails { get; set; }
+		public List<List<HitList>> TeslaHitList {get; set; }
+		public List<HitList> IroncurtainHitList { get; set; }
     }
 }
