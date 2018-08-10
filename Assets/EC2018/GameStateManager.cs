@@ -11,7 +11,6 @@ namespace EC2018 {
 		private const int RoundNameLength = 3;
 		private const char RoundNamePad = '0';
 
-		private Bot bot;
 		private GameState gameState;
 
 		public int maxRounds = 1;
@@ -20,7 +19,6 @@ namespace EC2018 {
 		private int currentRound;
 		private string replayPath;
 
-		// TODO - Separate To Interfaces
 		private GameManager gameManager;
 		private UIManager uiManager;
 		private Instantiator instantiator;
@@ -34,9 +32,14 @@ namespace EC2018 {
 			this.uiManager = uiManager;
 			this.replayManager = replayManager;
 
-			SetReplayPathFromPrefs();
-			SetMaxRounds ();
+            Initialise();
 		}
+
+        private void Initialise() {
+            SetReplayPathFromPrefs();
+            SetMaxRounds();
+
+        }
 
 		public string GetFinalRoundPath() {
 			return replayPath + "/" + ConvertRoundToFolderName (currentRound);
