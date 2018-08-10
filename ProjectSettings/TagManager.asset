@@ -14,6 +14,8 @@ TagManager:
   - UI Holder
   - GameManager
   - Tesla
+  - Barrier
+  - MissileCollider
   layers:
   - Default
   - TransparentFX

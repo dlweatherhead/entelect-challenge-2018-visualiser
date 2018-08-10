@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 114128435584320840}
   m_Layer: 0
   m_Name: Defense Building A
-  m_TagString: Untagged
+  m_TagString: Defense
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69,9 +69,10 @@ GameObject:
   - component: {fileID: 33779912456996656}
   - component: {fileID: 23885913724465340}
   - component: {fileID: 64298096325233210}
+  - component: {fileID: 65163522498218836}
   m_Layer: 0
   m_Name: Model
-  m_TagString: Untagged
+  m_TagString: MissileCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -239,6 +240,18 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 07e9d7d5142459d478bdd3cdc3c6611d, type: 3}
+--- !u!65 &65163522498218836
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1254879912445342}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.2109237, y: 4, z: 0.7763878}
+  m_Center: {x: 0.094507, y: 2, z: -0.0010450187}
 --- !u!114 &114030127858256164
 MonoBehaviour:
   m_ObjectHideFlags: 1

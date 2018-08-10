@@ -39,9 +39,10 @@ GameObject:
   - component: {fileID: 33246851337678674}
   - component: {fileID: 23404049445475470}
   - component: {fileID: 64803798254269904}
+  - component: {fileID: 65855351800291768}
   m_Layer: 0
-  m_Name: Model A
-  m_TagString: Untagged
+  m_Name: Model
+  m_TagString: MissileCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,7 +58,7 @@ GameObject:
   - component: {fileID: 114171811415290612}
   m_Layer: 0
   m_Name: Attack Building A
-  m_TagString: Untagged
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -239,6 +240,18 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: da9960e07a86049449c64c9dcce2f6ca, type: 3}
+--- !u!65 &65855351800291768
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1386587881642528}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.3016863, y: 4, z: 2}
+  m_Center: {x: 2.5958031e-14, y: 2, z: 1}
 --- !u!114 &114171811415290612
 MonoBehaviour:
   m_ObjectHideFlags: 1

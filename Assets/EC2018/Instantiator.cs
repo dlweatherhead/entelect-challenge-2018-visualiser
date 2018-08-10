@@ -46,8 +46,10 @@ namespace EC2018
 					MissileObjectPool.current.GetForPlayerB ();
 
 				missile.SetActive (true);
-				missile.transform.position = new Vector3 (x, missile.transform.position.y, y);
-				missile.GetComponent<MissileController> ().Setup (direction, rate, missiles[m].Speed);
+
+				var z = m < missiles.Count / 2 ? y + m / 10 : y - m / 10;
+				missile.transform.position = new Vector3 (x, missile.transform.position.y, z);
+				missile.GetComponent<MissileController> ().Setup (missiles[m], direction, rate);
 			}
 		}
 

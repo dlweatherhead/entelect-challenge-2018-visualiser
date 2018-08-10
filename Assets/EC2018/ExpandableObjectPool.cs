@@ -13,10 +13,10 @@ namespace EC2018 {
 		List<GameObject> poolA;
 		List<GameObject> poolB;
 
-		string tag;
+		string pooledObjectsTag;
 
 		void Start() {
-			tag = GetTag ();
+			pooledObjectsTag = GetTag ();
 			poolA = new List<GameObject> ();
 			poolB = new List<GameObject> ();
 			InitialisePool (poolA, poolObjectA);
@@ -37,7 +37,7 @@ namespace EC2018 {
 			for(int i=0; i < poolSize; i++) {
 				GameObject obj = (GameObject)Instantiate (poolObject);
 				obj.transform.SetParent (parent);
-				obj.tag = tag;
+				obj.tag = pooledObjectsTag;
 				obj.SetActive (false);
 				pool.Add (obj);
 			}
@@ -52,7 +52,7 @@ namespace EC2018 {
 
 			GameObject obj = (GameObject)Instantiate (poolObject);
 			obj.transform.SetParent (parent);
-			obj.tag = tag;
+			obj.tag = pooledObjectsTag;
 			pool.Add (obj);
 			return obj;
 		}

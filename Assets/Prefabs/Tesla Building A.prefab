@@ -22,9 +22,10 @@ GameObject:
   - component: {fileID: 33982042886751782}
   - component: {fileID: 23963799135816336}
   - component: {fileID: 64128218218701104}
+  - component: {fileID: 65176820383659910}
   m_Layer: 0
   m_Name: Model
-  m_TagString: Untagged
+  m_TagString: MissileCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40,7 +41,7 @@ GameObject:
   - component: {fileID: 114114822195325726}
   m_Layer: 0
   m_Name: Tesla Building A
-  m_TagString: Untagged
+  m_TagString: Tesla
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -239,6 +240,18 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: e1e2d1c10bcbf8a408d1b0c6175d89c3, type: 3}
+--- !u!65 &65176820383659910
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1424587701100266}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8.025798, y: 5, z: 2}
+  m_Center: {x: -3.0805192, y: 2, z: 0}
 --- !u!114 &114045433259120004
 MonoBehaviour:
   m_ObjectHideFlags: 1

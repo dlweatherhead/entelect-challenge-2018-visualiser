@@ -12,7 +12,10 @@ public class BuildingController : MonoBehaviour {
 
 	public HealthBar HealthBar;
 
-	private Building building;
+	public Building building {
+		get;
+		set;
+	}
 
 	void Awake() {
 		if(HealthBar != null) {
@@ -23,9 +26,9 @@ public class BuildingController : MonoBehaviour {
 	public void Setup (Building building) {
 		this.building = building;
 
-		if (building.ConstructionTimeLeft > 0) {
-			GetComponentInChildren<Renderer> ().material = constructionMaterial;
-		}
+//		if (building.ConstructionTimeLeft > 0) {
+//			GetComponentInChildren<Renderer> ().material = constructionMaterial;
+//		}
 
 		if(HealthBar != null) {
 			HealthBar.SetHealth (building.Health);	

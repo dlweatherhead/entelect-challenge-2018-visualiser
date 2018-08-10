@@ -121,9 +121,10 @@ GameObject:
   - component: {fileID: 33490448612785216}
   - component: {fileID: 23423423281581826}
   - component: {fileID: 64356053848507308}
+  - component: {fileID: 65785588648875562}
   m_Layer: 0
   m_Name: Model
-  m_TagString: Untagged
+  m_TagString: MissileCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,7 +140,7 @@ GameObject:
   - component: {fileID: 114733268841200932}
   m_Layer: 0
   m_Name: Energy Building B
-  m_TagString: Untagged
+  m_TagString: Energy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -239,6 +240,18 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: b96fdd08b68da1f4097cd162dcf60045, type: 3}
+--- !u!65 &65785588648875562
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1810996396901208}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 22.193178, y: 14, z: 14.014297}
+  m_Center: {x: -0.76635617, y: 7, z: -0.2146831}
 --- !u!114 &114091743594772282
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -16,6 +16,8 @@ namespace EC2018 {
 			public const string Defense = "Defense";
 			public const string Energy = "Energy";
 			public const string GroundTile = "GroundTile";
+			public const string Barrier = "Barrier";
+			public const string MissileCollider = "MissileCollider";
 			public const string PlayerA = "Player A";
 			public const string PlayerB = "Player B";
 			public const string UIHolder = "UI Holder";

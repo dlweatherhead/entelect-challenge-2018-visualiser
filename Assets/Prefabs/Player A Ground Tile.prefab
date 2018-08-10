@@ -36,7 +36,7 @@ GameObject:
   - component: {fileID: 4249910826248910}
   m_Layer: 0
   m_Name: Player A Ground Tile
-  m_TagString: Untagged
+  m_TagString: GroundTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
