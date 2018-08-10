@@ -8,7 +8,8 @@ public class BuildingController : MonoBehaviour {
 
 	public int MaxHealth;
 
-	public Material constructionMaterial;
+	public GameObject model;
+	public GameObject constructionModel;
 
 	public HealthBar HealthBar;
 
@@ -23,12 +24,21 @@ public class BuildingController : MonoBehaviour {
 		}
 	}
 
+	void Start() {
+		model.SetActive (false);
+		constructionModel.SetActive (true);
+	}
+
 	public void Setup (Building building) {
 		this.building = building;
 
-//		if (building.ConstructionTimeLeft > 0) {
-//			GetComponentInChildren<Renderer> ().material = constructionMaterial;
-//		}
+		if (building.ConstructionTimeLeft > 0) {
+			model.SetActive (false);
+			constructionModel.SetActive (true);
+		} else {
+			model.SetActive (true);
+			constructionModel.SetActive (false);
+		}
 
 		if(HealthBar != null) {
 			HealthBar.SetHealth (building.Health);	
