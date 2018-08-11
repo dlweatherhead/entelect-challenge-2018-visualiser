@@ -104,8 +104,8 @@ MonoBehaviour:
   EndObject: {fileID: 171180}
   EndPosition: {x: 0, y: 0, z: 0}
   Generations: 6
-  Duration: 0.03
-  ChaosFactor: 0.05
+  Duration: 0.01
+  ChaosFactor: 0.15
   ManualMode: 0
   Rows: 1
   Columns: 1
