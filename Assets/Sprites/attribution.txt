@@ -1,0 +1,10 @@
+Attributions for Sprite images
+- Missile Launcher icon by Delapouite under CC 3.0
+LICENSE: https://creativecommons.org/licenses/by/3.0/legalcode
+https://game-icons.net/delapouite/originals/missile-launcher.html
+
+- Tesla icon, Shield reflect icon, power lightning icon by Lorc under CC 3.0
+LICENSE: https://creativecommons.org/licenses/by/3.0/legalcode
+https://game-icons.net/lorc/originals/tesla-coil.html
+https://game-icons.net/lorc/originals/shield-reflect.html
+https://game-icons.net/lorc/originals/power-lightning.html

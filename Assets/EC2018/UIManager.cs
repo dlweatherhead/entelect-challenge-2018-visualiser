@@ -20,6 +20,7 @@ namespace EC2018
 		public Text AttackPriceText;
 		public Text DefensePriceText;
 		public Text EnergyPriceText;
+        public Text TeslaPriceText;
 
 		public GameObject FinalGameHolder;
 		public Text FinalGameText;
@@ -72,6 +73,7 @@ namespace EC2018
 			AttackPriceText.text = GetPrice (gameDetails, BuildingType.Attack);
 			DefensePriceText.text = GetPrice (gameDetails, BuildingType.Defense);
 			EnergyPriceText.text = GetPrice (gameDetails, BuildingType.Energy);
+            TeslaPriceText.text = GetPrice(gameDetails, BuildingType.Tesla);
 
 			RoundText.text = gameDetails.Round.ToString();
 		}
