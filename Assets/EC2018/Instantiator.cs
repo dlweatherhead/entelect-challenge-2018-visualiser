@@ -2,6 +2,7 @@
 using UnityEngine;
 using EC2018.Entities;
 using EC2018.Enums;
+using DigitalRuby.LightningBolt;
 
 namespace EC2018
 {
@@ -13,6 +14,8 @@ namespace EC2018
 
         public GameObject ironCurtainPlayerA;
         public GameObject ironCurtainPlayerB;
+
+        public GameObject lightningBolt;
 
 		public void ClearScene() {
 			ClearGameObjectsWithTag (Constants.Tags.Missile);
@@ -67,24 +70,26 @@ namespace EC2018
 		}
 
 		public void InstantiateTeslaHit(float targetX, float targetY, PlayerType playerType, float teslaX, float teslaY) {
+            var color = playerType == PlayerType.A ? Color.red : Color.blue;
 
-			var color = playerType == PlayerType.A ? Color.red : Color.blue;
+            var start = new GameObject();
+            var end = new GameObject();
+            start.transform.position = new Vector3(teslaX, 0.5f, teslaY);
+            end.transform.position = new Vector3(targetX, 0.5f, targetY);
 
-			var lineObject = new GameObject ();
-			var lineRenderer = lineObject.AddComponent<LineRenderer> ();
-			lineObject.transform.position = new Vector3 (teslaX, 0.5f, teslaY);
-			lineRenderer.startColor = color;
-			lineRenderer.endColor = color;
-			lineRenderer.startWidth = 0.2f;
-			lineRenderer.endWidth = 0.3f;
+            var lightningBoltObj = Instantiate(lightningBolt);
+            var lightningBoltScript = lightningBoltObj.GetComponent<LightningBoltScript>();
+            var lightningBoltLineRenderer = lightningBoltObj.GetComponent<LineRenderer>();
 
-			var positions = new Vector3[2];
-			positions[0] = new Vector3 (teslaX, 0.5f, teslaY);
-			positions [1] = new Vector3 (targetX, 0.5f, targetY);
+            lightningBoltLineRenderer.startColor = color;
+            lightningBoltLineRenderer.endColor = color;
+            lightningBoltLineRenderer.startWidth = 0.2f;
+            lightningBoltLineRenderer.endWidth = 0.2f;
 
-			lineRenderer.SetPositions (positions);
+            lightningBoltScript.StartObject = start;
+            lightningBoltScript.EndObject = end;
 
-			Destroy (lineObject, 1f);
+            Destroy (lightningBoltObj, 0.5f);
 		}
 
 		public void ActivateIronCurtain(PlayerType playerType) {

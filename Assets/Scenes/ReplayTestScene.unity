@@ -502,7 +502,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.8
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -693,7 +693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb1d8483dcce6547a006561e3bb79ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startRound: 45
+  startRound: 44
 --- !u!4 &1202343501
 Transform:
   m_ObjectHideFlags: 0
@@ -725,6 +725,7 @@ MonoBehaviour:
   groundTileParent: {fileID: 2121879297}
   ironCurtainPlayerA: {fileID: 203708676}
   ironCurtainPlayerB: {fileID: 1933055285}
+  lightningBolt: {fileID: 106988, guid: 15dec7b07032b2f4aa6f855bfbe120f7, type: 2}
 --- !u!114 &1202343504
 MonoBehaviour:
   m_ObjectHideFlags: 0
