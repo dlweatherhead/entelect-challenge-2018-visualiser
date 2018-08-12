@@ -17,6 +17,9 @@ namespace EC2018
 
         public GameObject lightningBolt;
 
+        public GameObject playerADestructionAnimation;
+        public GameObject playerBDestructionAnimation;
+
 		public void ClearScene() {
 			ClearGameObjectsWithTag (Constants.Tags.Missile);
 			ClearGameObjectsWithTag (Constants.Tags.Attack);
@@ -100,6 +103,15 @@ namespace EC2018
         public void DeactivateIronCurtain(PlayerType playerType) {
             var obj = playerType == PlayerType.A ? ironCurtainPlayerA : ironCurtainPlayerB;
             obj.SetActive(false);
+        }
+
+        public void InstantiateEndGameAnimations(PlayerType playerType) {
+            if(playerType == PlayerType.A) {
+                playerADestructionAnimation.SetActive(true);
+            } else {
+                playerBDestructionAnimation.SetActive(true);
+            }
+            
         }
 
         GameObject GetPrefabForBuilding(Building building, PlayerType playerType) {

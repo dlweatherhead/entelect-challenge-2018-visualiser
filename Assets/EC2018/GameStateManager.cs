@@ -52,8 +52,12 @@ namespace EC2018 {
             return currentRound < maxRounds;
         }
 
-        public bool IsGameFinished() {
-            return currentRound >= maxRounds;
+        public void EndGame() {
+            if(gameState.Players[0].Health < gameState.Players[1].Health) {
+                instantiator.InstantiateEndGameAnimations(PlayerType.A);
+            } else if(gameState.Players[0].Health > gameState.Players[1].Health) {
+                instantiator.InstantiateEndGameAnimations(PlayerType.B);
+            }
         }
 
         void PopulateSceneFromGameMap() {
@@ -86,7 +90,7 @@ namespace EC2018 {
             ProcessIronCurtainHitList(gameState.Players);
             if (CanIncrementRound()) {
                 currentRound++;
-            } else if (IsGameFinished()) {
+            } else {
                 gameManager.ReplayFinished();
             }
         }

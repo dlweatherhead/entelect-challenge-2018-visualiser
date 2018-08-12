@@ -24,6 +24,8 @@ namespace EC2018 {
 
         public int startRound;
 
+        private bool gameFinished;
+
 		void Start () {
 			instantiator = GetComponent<Instantiator> ();
 			uiManager = GameObject.FindGameObjectWithTag (Constants.Tags.UIHolder).GetComponent<UIManager> ();
@@ -50,7 +52,9 @@ namespace EC2018 {
 
 		public void ReplayFinished() {
 			uiManager.DisplayFinalGameMessage (LoadFinalGameResults());
-			HaltAllGameObects ();
+            HaltAllGameObects();
+            gameStateManager.EndGame();
+            gameFinished = true;
 		}
 
         string LoadFinalGameResults() {
@@ -71,11 +75,8 @@ namespace EC2018 {
         }
 
         void AttemptToStartReplay() {
-            if (gameStateManager.CanIncrementRound()) {
+            if(!gameFinished) {
                 InvokeRepeating(StartReplayMethod, 0.5f, 0.5f);
-            } else if (gameStateManager.IsGameFinished()) {
-                StopReplay();
-                ReplayFinished();
             }
         }
 

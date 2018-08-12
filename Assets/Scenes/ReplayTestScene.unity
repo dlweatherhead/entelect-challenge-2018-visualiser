@@ -366,6 +366,51 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0466c3544f4f05e458e3677bad652eff, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &33721456
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 33721458}
+  - component: {fileID: 33721457}
+  m_Layer: 0
+  m_Name: Explosion Spawner Player A
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &33721457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 33721456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 894dc7feccef84df4a968218f78b65ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 1141769461783814, guid: 5ae46f704888f49d585302a1673307e9, type: 2}
+  width: -12
+  height: 8
+  rate: 0.2
+  amount: 0
+--- !u!4 &33721458
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 33721456}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &34309650
 Prefab:
   m_ObjectHideFlags: 0
@@ -3684,6 +3729,51 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04472915dfab25b4786b9e2b6aa55b70, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &273008632
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 273008634}
+  - component: {fileID: 273008633}
+  m_Layer: 0
+  m_Name: Explosion Spawner Player B
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &273008633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 273008632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 894dc7feccef84df4a968218f78b65ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 1141769461783814, guid: 5ae46f704888f49d585302a1673307e9, type: 2}
+  width: 12
+  height: 8
+  rate: 0.2
+  amount: 0
+--- !u!4 &273008634
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 273008632}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &274072817
 Prefab:
   m_ObjectHideFlags: 0
@@ -5586,6 +5676,14 @@ Prefab:
     - target: {fileID: 4507256618962190, guid: ad1f5584e6b4b30498247c54abe20a58, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736459838213400, guid: ad1f5584e6b4b30498247c54abe20a58, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848618475219574, guid: ad1f5584e6b4b30498247c54abe20a58, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ad1f5584e6b4b30498247c54abe20a58, type: 2}
@@ -13651,6 +13749,8 @@ MonoBehaviour:
   ironCurtainPlayerA: {fileID: 203708676}
   ironCurtainPlayerB: {fileID: 1933055285}
   lightningBolt: {fileID: 106988, guid: 15dec7b07032b2f4aa6f855bfbe120f7, type: 2}
+  playerADestructionAnimation: {fileID: 33721456}
+  playerBDestructionAnimation: {fileID: 273008632}
 --- !u!114 &1202343504
 MonoBehaviour:
   m_ObjectHideFlags: 0
