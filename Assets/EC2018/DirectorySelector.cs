@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.IO;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 namespace EC2018
 {
@@ -8,6 +9,10 @@ namespace EC2018
 
 		public GameObject ContentListParent;
 		public GameObject DirectoryButton;
+
+        public MusicFadeOut musicFadeOut;
+
+        public GameObject loadingImage;
 
         string applicationPath;
 
@@ -26,8 +31,16 @@ namespace EC2018
 
 		public void OnDirectoryButtonClicked (string title) {
 			PlayerPrefs.SetString (Constants.PlayerPrefKeys.SelectedReplay, title);
-			SceneManager.LoadScene (1, LoadSceneMode.Single);
+            musicFadeOut.StartFadeOut();
+            loadingImage.SetActive(true);
+
+            StartCoroutine(LoadReplayScene(musicFadeOut.FadeTime));
 		}
+
+        IEnumerator LoadReplayScene(float waitTime) {
+            yield return new WaitForSeconds(waitTime);
+            SceneManager.LoadScene(1, LoadSceneMode.Single);
+        }
 
         string GetFolderName(string path) {
             return new DirectoryInfo(path).Name;

@@ -20,6 +20,8 @@ namespace EC2018 {
         GameStateManager gameStateManager;
         ReplayManager replayManager;
 
+        public MusicFadeOut musicFadeOut;
+
         bool isPaused;
 
         public int startRound;
@@ -51,10 +53,11 @@ namespace EC2018 {
 		}
 
 		public void ReplayFinished() {
+            gameFinished = true;
+            musicFadeOut.StartFadeOut();
 			uiManager.DisplayFinalGameMessage (LoadFinalGameResults());
             HaltAllGameObects();
             gameStateManager.EndGame();
-            gameFinished = true;
 		}
 
         string LoadFinalGameResults() {
