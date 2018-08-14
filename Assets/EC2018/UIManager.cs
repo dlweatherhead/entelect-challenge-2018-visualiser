@@ -17,10 +17,6 @@ namespace EC2018
 		public Text HitsA;
 		public Text HitsB;
 		public Text RoundText;
-		public Text AttackPriceText;
-		public Text DefensePriceText;
-		public Text EnergyPriceText;
-        public Text TeslaPriceText;
 
 		public GameObject FinalGameHolder;
 		public Text FinalGameText;
@@ -69,11 +65,6 @@ namespace EC2018
 
 			HitsA.text = GetHits(playerA);
 			HitsB.text = GetHits(playerB);
-
-			AttackPriceText.text = GetPrice (gameDetails, BuildingType.Attack);
-			DefensePriceText.text = GetPrice (gameDetails, BuildingType.Defense);
-			EnergyPriceText.text = GetPrice (gameDetails, BuildingType.Energy);
-            TeslaPriceText.text = GetPrice(gameDetails, BuildingType.Tesla);
 
 			RoundText.text = gameDetails.Round.ToString();
 		}
