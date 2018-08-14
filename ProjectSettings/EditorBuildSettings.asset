@@ -6,8 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/DirectorySelectorTestScene.unity
+    path: Assets/Scenes/DirectorySelectorScene.unity
     guid: ba9cc9feb62687b41b846f4aaab36faf
   - enabled: 1
-    path: Assets/Scenes/ReplayTestScene.unity
+    path: Assets/Scenes/CountInScene.unity
+    guid: aa3254c2e1046f54cadf056b8b0e5d71
+  - enabled: 1
+    path: Assets/Scenes/ReplayScene.unity
     guid: 8382235f1d905fb469f57e88ca115ba0

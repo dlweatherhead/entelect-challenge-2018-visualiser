@@ -9,10 +9,9 @@ namespace EC2018
 
 		public GameObject ContentListParent;
 		public GameObject DirectoryButton;
-
         public MusicFadeOut musicFadeOut;
-
         public GameObject loadingImage;
+		public string destinationScene;
 
         string applicationPath;
 
@@ -39,7 +38,7 @@ namespace EC2018
 
         IEnumerator LoadReplayScene(float waitTime) {
             yield return new WaitForSeconds(waitTime);
-            SceneManager.LoadScene(1, LoadSceneMode.Single);
+            SceneManager.LoadScene(destinationScene, LoadSceneMode.Single);
         }
 
         string GetFolderName(string path) {
