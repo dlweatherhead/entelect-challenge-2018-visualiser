@@ -92,7 +92,7 @@ namespace EC2018
             lightningBoltScript.StartObject = start;
             lightningBoltScript.EndObject = end;
 
-            Destroy (lightningBoltObj, 0.5f);
+			Destroy (lightningBoltObj, CommandLineUtil.GetRoundStep ());
 		}
 
 		public void ActivateIronCurtain(PlayerType playerType) {

@@ -23,13 +23,17 @@ namespace EC2018 {
         Instantiator instantiator;
         ReplayManager replayManager;
 
+		float rate;
+
         public GameStateManager(int startRound, GameManager gameManager, UIManager uiManager, Instantiator instantiator, ReplayManager replayManager) {
-            currentRound = startRound;
             this.startRound = startRound;
             this.gameManager = gameManager;
             this.instantiator = instantiator;
             this.uiManager = uiManager;
             this.replayManager = replayManager;
+
+			currentRound = startRound;
+			rate = CommandLineUtil.GetRoundStep ();
 
             Initialise();
         }
@@ -70,7 +74,7 @@ namespace EC2018 {
                     var y = cell.Y;
 
                     instantiator.InstantiateBuildingsAtLocation(cell.Buildings, x, y);
-                    instantiator.InstantiateMissileAtLocation(cell.Missiles, x, y, 0.5f);
+                    instantiator.InstantiateMissileAtLocation(cell.Missiles, x, y, rate);
 
                     if (currentRound == startRound) {
                         instantiator.InstantiateGroundTile(inner, outer, cell.CellOwner);

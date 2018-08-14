@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using EC2018;
 using System;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace EC2018 {
 
@@ -15,20 +16,21 @@ namespace EC2018 {
 	public class GameManager : MonoBehaviour {
         const string StartReplayMethod = "StartReplay";
 
-        Instantiator instantiator;
-        UIManager uiManager;
-        GameStateManager gameStateManager;
-        ReplayManager replayManager;
 
         public MusicFadeOut musicFadeOut;
-
-        bool isPaused;
-
         public int startRound;
+		public float roundStepTime = 0.7f;
 
-        private bool gameFinished;
+		Instantiator instantiator;
+		UIManager uiManager;
+		GameStateManager gameStateManager;
+		ReplayManager replayManager;
+		bool isPaused;
+        bool gameFinished;
 
 		void Start () {
+			roundStepTime = CommandLineUtil.GetRoundStep ();
+
 			instantiator = GetComponent<Instantiator> ();
 			uiManager = GameObject.FindGameObjectWithTag (Constants.Tags.UIHolder).GetComponent<UIManager> ();
 			replayManager = GetComponent<ReplayManager> ();
@@ -79,7 +81,7 @@ namespace EC2018 {
 
         void AttemptToStartReplay() {
             if(!gameFinished) {
-                InvokeRepeating(StartReplayMethod, 0.5f, 0.5f);
+				InvokeRepeating(StartReplayMethod, 0.5f, roundStepTime);
             }
         }
 
