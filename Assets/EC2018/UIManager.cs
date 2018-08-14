@@ -14,8 +14,6 @@ namespace EC2018
 		public Text EnergyB;
 		public Text ScoreA;
 		public Text ScoreB;
-		public Text HitsA;
-		public Text HitsB;
 		public Text RoundText;
 
 		public GameObject FinalGameHolder;
@@ -63,9 +61,6 @@ namespace EC2018
 			ScoreA.text = GetScore (playerA);
 			ScoreB.text = GetScore (playerB);
 
-			HitsA.text = GetHits(playerA);
-			HitsB.text = GetHits(playerB);
-
 			RoundText.text = gameDetails.Round.ToString();
 		}
 
@@ -88,10 +83,6 @@ namespace EC2018
 
         string GetScore(Player player) {
             return player.Score.ToString();
-        }
-
-        string GetHits(Player player) {
-            return player.HitsTaken.ToString();
         }
 
         string GetPrice(GameDetails gameDetails, BuildingType buildingType) {
