@@ -72,27 +72,31 @@ namespace EC2018
 			}
 		}
 
-		public void InstantiateTeslaHit(float targetX, float targetY, PlayerType playerType, float teslaX, float teslaY) {
-            var color = playerType == PlayerType.A ? Color.red : Color.blue;
+		public void InstantiateTeslaHit(List<HitList> hitList) {
+			for(int i=0; i < hitList.Count-1; i++) {
+				var origin = hitList [i];
+				var target = hitList [i + 1];
 
-            var start = new GameObject();
-            var end = new GameObject();
-            start.transform.position = new Vector3(teslaX, 0.5f, teslaY);
-            end.transform.position = new Vector3(targetX, 0.5f, targetY);
+				Debug.Log ("Start: " + origin);
+				Debug.Log ("End: " + target);
 
-            var lightningBoltObj = Instantiate(lightningBolt);
-            var lightningBoltScript = lightningBoltObj.GetComponent<LightningBoltScript>();
-            var lightningBoltLineRenderer = lightningBoltObj.GetComponent<LineRenderer>();
+				var start = new GameObject();
+				var end = new GameObject();
+				start.transform.position = new Vector3(origin.X, 0.5f, origin.Y);
+				end.transform.position = new Vector3(target.X, 0.5f, target.Y);
 
-            lightningBoltLineRenderer.startColor = color;
-            lightningBoltLineRenderer.endColor = color;
-            lightningBoltLineRenderer.startWidth = 0.2f;
-            lightningBoltLineRenderer.endWidth = 0.2f;
+				var lightningBoltObj = Instantiate(lightningBolt);
+				var lightningBoltScript = lightningBoltObj.GetComponent<LightningBoltScript>();
+				var lightningBoltLineRenderer = lightningBoltObj.GetComponent<LineRenderer>();
 
-            lightningBoltScript.StartObject = start;
-            lightningBoltScript.EndObject = end;
+				lightningBoltLineRenderer.startWidth = 0.2f;
+				lightningBoltLineRenderer.endWidth = 0.2f;
 
-			Destroy (lightningBoltObj, CommandLineUtil.GetRoundStep ());
+				lightningBoltScript.StartObject = start;
+				lightningBoltScript.EndObject = end;
+
+				Destroy (lightningBoltObj, CommandLineUtil.GetRoundStep ());
+			}
 		}
 
 		public void ActivateIronCurtain(PlayerType playerType) {

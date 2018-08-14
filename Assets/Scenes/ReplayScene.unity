@@ -15155,7 +15155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicFadeOut: {fileID: 45007662}
-  startRound: 0
+  startRound: 30
   roundStepTime: 0.7
 --- !u!4 &1202343501
 Transform:

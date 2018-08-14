@@ -89,7 +89,7 @@ namespace EC2018 {
             instantiator.ClearScene();
             PopulateSceneFromGameMap();
             if (gameState.TeslaHitList.Count > 0) {
-                ProcessTeslaHitList(gameState.TeslaHitList[0]);
+                ProcessTeslaHitList(gameState.TeslaHitList);
             }
             ProcessIronCurtainHitList(gameState.Players);
             if (CanIncrementRound()) {
@@ -107,15 +107,13 @@ namespace EC2018 {
             return new DirectoryInfo(allPlayers[1]).Name;
         }
 
-        void ProcessTeslaHitList(List<HitList> hitList) {
+        void ProcessTeslaHitList(List<List<HitList>> hitLists) {
 
-            var teslaLocation = hitList[hitList.Count - 1];
+			Debug.Log ("Processing Tesla Hits - " + hitLists.Count);
 
-            for (int i = 0; i < hitList.Count - 1; i++) {
-                var x = hitList[i].X;
-                var y = hitList[i].Y;
-                var playerType = hitList[i].PlayerType;
-                instantiator.InstantiateTeslaHit(x, y, teslaLocation.PlayerType, teslaLocation.X, teslaLocation.Y);
+            for (int i = 0; i < hitLists.Count; i++) {
+				Debug.Log ("Processing " + i + " Tesla Hits - " + hitLists [i].Count);
+				instantiator.InstantiateTeslaHit(hitLists[i]);
             }
         }
 
