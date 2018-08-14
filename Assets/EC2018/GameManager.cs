@@ -59,6 +59,7 @@ namespace EC2018 {
             musicFadeOut.StartFadeOut();
 			uiManager.DisplayFinalGameMessage (LoadFinalGameResults());
             HaltAllGameObects();
+			OnPauseInteraction ();
             gameStateManager.EndGame();
 		}
 

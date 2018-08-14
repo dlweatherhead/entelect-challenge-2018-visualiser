@@ -28,19 +28,16 @@ namespace EC2018
 			gameManager = GameObject.FindGameObjectWithTag (Constants.Tags.GameManager).GetComponent<GameManager> ();
 		}
 
-		public void OnPausePlayClick(Button button) {
-			var text = button.GetComponentInChildren<Text> ();
-			if (text.text == Constants.UI.Pause) {
-				text.text = Constants.UI.Play;
-			} else {
-				text.text = Constants.UI.Pause;
+		void Update() {
+			if(Input.GetKey (KeyCode.Space)) {
+				gameManager.OnPauseInteraction ();
 			}
-
-			gameManager.OnPauseInteraction ();
-		}
-
-		public void OnReplayMenuButtonClick() {
-			gameManager.NavigateToReplayMenu ();
+			if(Input.GetKey (KeyCode.R)) {
+				gameManager.NavigateToReplayMenu ();
+			}
+			if(Input.GetKey (KeyCode.Q)) {
+				Application.Quit ();
+			}
 		}
 
 		public void SetPlayerNames(string playerAName, string playerBName) {
