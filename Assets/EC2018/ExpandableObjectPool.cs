@@ -8,7 +8,7 @@ namespace EC2018 {
 		public GameObject poolObjectA;
 		public GameObject poolObjectB;
 		public Transform parent;
-		public int poolSize = 5;
+		public int poolSize;
 
 		List<GameObject> poolA;
 		List<GameObject> poolB;
@@ -19,8 +19,8 @@ namespace EC2018 {
 			pooledObjectsTag = GetTag ();
 			poolA = new List<GameObject> ();
 			poolB = new List<GameObject> ();
-			InitialisePool (poolA, poolObjectA);
-			InitialisePool (poolB, poolObjectB);
+//			InitialisePool (poolA, poolObjectA);
+//			InitialisePool (poolB, poolObjectB);
 		}
 
 		public GameObject GetForPlayerA() {
@@ -44,11 +44,11 @@ namespace EC2018 {
         }
 
         GameObject GetPoolObject(List<GameObject> pool, GameObject poolObject) {
-            for (int i = 0; i < pool.Count; i++) {
-                if (!pool[i].activeInHierarchy) {
-                    return pool[i];
-                }
-            }
+//            for (int i = 0; i < pool.Count; i++) {
+//                if (!pool[i].activeInHierarchy) {
+//                    return pool[i];
+//                }
+//            }
 
             var obj = Instantiate(poolObject);
             obj.transform.SetParent(parent);

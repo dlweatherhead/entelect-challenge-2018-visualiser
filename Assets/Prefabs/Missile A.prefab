@@ -153,4 +153,4 @@ MonoBehaviour:
   StartX: 0
   TargetX: 0
   speed: -2
-  explosion: {fileID: 1056857939800912, guid: 26febee717b91e945b5cc1a9059dfc8b, type: 2}
+  explosion: {fileID: 1678945473515680, guid: 9fcf12af5842a8c4ab6f1e17eb1cda37, type: 2}

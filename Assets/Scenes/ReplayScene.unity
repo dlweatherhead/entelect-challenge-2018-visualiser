@@ -646,14 +646,14 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &45007659
 AudioSource:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 45007658}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5593bb1037f614b1d8a8d7ca93d24642, type: 3}
@@ -15155,8 +15155,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicFadeOut: {fileID: 45007662}
-  startRound: 30
-  roundStepTime: 0.7
+  startRound: 0
+  roundStepTime: 1
 --- !u!4 &1202343501
 Transform:
   m_ObjectHideFlags: 0
@@ -15225,7 +15225,7 @@ MonoBehaviour:
   poolObjectB: {fileID: 1945206959794758, guid: 88f7495914b23af49818527d6a24382b,
     type: 2}
   parent: {fileID: 253685028}
-  poolSize: 5
+  poolSize: 0
 --- !u!114 &1202343506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15242,7 +15242,7 @@ MonoBehaviour:
   poolObjectB: {fileID: 1099221273684254, guid: bf078bb4d462d814dafc60addaf65722,
     type: 2}
   parent: {fileID: 1909145200}
-  poolSize: 5
+  poolSize: 0
 --- !u!114 &1202343507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15259,7 +15259,7 @@ MonoBehaviour:
   poolObjectB: {fileID: 1837510075770986, guid: 11ba644aa36ccfd42b935ba972e2bf23,
     type: 2}
   parent: {fileID: 1895289447}
-  poolSize: 5
+  poolSize: 0
 --- !u!114 &1202343508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15287,7 +15287,7 @@ MonoBehaviour:
   poolObjectB: {fileID: 1301298850715716, guid: daf9b762dfa0ae2489dabd6676be2dac,
     type: 2}
   parent: {fileID: 263864195}
-  poolSize: 5
+  poolSize: 0
 --- !u!1001 &1206724526
 Prefab:
   m_ObjectHideFlags: 0

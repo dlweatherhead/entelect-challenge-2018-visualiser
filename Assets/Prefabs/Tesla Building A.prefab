@@ -378,6 +378,8 @@ MonoBehaviour:
   model: {fileID: 1575617388760844}
   constructionModel: {fileID: 1424587701100266}
   HealthBar: {fileID: 114045433259120004}
+  constructionAnimation: {fileID: 1930438911805690, guid: bd53f04aff03303439dc5e5a9387d182,
+    type: 2}
 --- !u!114 &114165884127375398
 MonoBehaviour:
   m_ObjectHideFlags: 1

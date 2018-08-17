@@ -108,11 +108,7 @@ namespace EC2018 {
         }
 
         void ProcessTeslaHitList(List<List<HitList>> hitLists) {
-
-			Debug.Log ("Processing Tesla Hits - " + hitLists.Count);
-
             for (int i = 0; i < hitLists.Count; i++) {
-				Debug.Log ("Processing " + i + " Tesla Hits - " + hitLists [i].Count);
 				instantiator.InstantiateTeslaHit(hitLists[i]);
             }
         }

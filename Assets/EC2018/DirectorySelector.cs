@@ -30,10 +30,8 @@ namespace EC2018
 
 		public void OnDirectoryButtonClicked (string title) {
 			PlayerPrefs.SetString (Constants.PlayerPrefKeys.SelectedReplay, title);
-            musicFadeOut.StartFadeOut();
             loadingImage.SetActive(true);
-
-            StartCoroutine(LoadReplayScene(musicFadeOut.FadeTime));
+            StartCoroutine(LoadReplayScene(1f));
 		}
 
         IEnumerator LoadReplayScene(float waitTime) {

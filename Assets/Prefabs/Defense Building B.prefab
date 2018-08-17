@@ -365,6 +365,8 @@ MonoBehaviour:
   model: {fileID: 1666189195425338}
   constructionModel: {fileID: 1717538776533750}
   HealthBar: {fileID: 114522063965510012}
+  constructionAnimation: {fileID: 1930438911805690, guid: bd53f04aff03303439dc5e5a9387d182,
+    type: 2}
 --- !u!114 &114047027114232038
 MonoBehaviour:
   m_ObjectHideFlags: 1

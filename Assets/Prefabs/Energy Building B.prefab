@@ -517,6 +517,8 @@ MonoBehaviour:
   model: {fileID: 1926151035565124}
   constructionModel: {fileID: 1810996396901208}
   HealthBar: {fileID: 114469765311489794}
+  constructionAnimation: {fileID: 1930438911805690, guid: bd53f04aff03303439dc5e5a9387d182,
+    type: 2}
 --- !u!222 &222011901130398638
 CanvasRenderer:
   m_ObjectHideFlags: 1

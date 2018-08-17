@@ -31,7 +31,8 @@ namespace EC2018
         void ClearGameObjectsWithTag(string objectTag) {
             var taggedGameObjects = GameObject.FindGameObjectsWithTag(objectTag);
             for (int i = 0; i < taggedGameObjects.Length; i++) {
-                taggedGameObjects[i].SetActive(false);
+//                taggedGameObjects[i].SetActive(false);
+				Destroy (taggedGameObjects[i]);
             }
         }
 
@@ -76,9 +77,6 @@ namespace EC2018
 			for(int i=0; i < hitList.Count-1; i++) {
 				var origin = hitList [i];
 				var target = hitList [i + 1];
-
-				Debug.Log ("Start: " + origin);
-				Debug.Log ("End: " + target);
 
 				var start = new GameObject();
 				var end = new GameObject();
