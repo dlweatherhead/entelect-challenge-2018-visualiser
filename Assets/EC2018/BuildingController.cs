@@ -17,6 +17,8 @@ namespace EC2018 {
         public HealthBar HealthBar;
 
 		public GameObject constructionAnimation;
+
+		public bool isUnderConstruction;
         
 		float lerpTime;
 
@@ -62,41 +64,56 @@ namespace EC2018 {
 			int timeLeft = building.ConstructionTimeLeft;
 
 			if (timeLeft >= 0) {
+				isUnderConstruction = true;
 				if(building.BuildingType == BuildingType.Tesla) {
-					startScale = (10f - timeLeft - 1f) / 10f;
+					startScale = (9f - timeLeft) /10f;
 					endScale = (10f - timeLeft) / 10f;
-					transform.localScale = new Vector3(startScale, startScale, startScale);
-					Color c = model.GetComponent<MeshRenderer> ().material.color;
-					Color nc = new Color (startScale/2f, startScale/2f, startScale/2f);
-					model.GetComponent<MeshRenderer> ().material.color = nc;
+				} else if(building.BuildingType == BuildingType.Defense) {
+					startScale = (2f - timeLeft) / 3f;
+					endScale = (3f - timeLeft) / 3f;
 				} else {
-					startScale = 0f;
-					endScale = gameSpeed;
-					transform.localScale = Vector3.zero;
+					startScale = (0f - timeLeft) / 1f;
+					endScale = (1f - timeLeft) / 1f;
 				}
-            }
+				SetConstructionParameters (startScale);
+			}
 
+			if(timeLeft <= 0) {
+				isUnderConstruction = false;
+			}
 
 			if(building.BuildingType == BuildingType.Tesla) {
-				if(timeLeft + 1 == 10) {
+				if(timeLeft == 9) {
 					GameObject obj = Instantiate (constructionAnimation);
 					obj.transform.position = transform.position + obj.transform.position;
 					Destroy (obj, 10f * gameSpeed);
 				}
+			} else if (building.BuildingType == BuildingType.Defense) {
+				if(timeLeft == 2) {
+					GameObject obj = Instantiate (constructionAnimation);
+					obj.transform.position = transform.position + obj.transform.position;
+					Destroy (obj, 3f * gameSpeed);
+				}
 			} else {
 				if(timeLeft == 0) {
-					GameObject obj = Instantiate (constructionAnimation, transform);
+					GameObject obj = Instantiate (constructionAnimation);
+					obj.transform.position = transform.position + obj.transform.position;
 					Destroy (obj, gameSpeed);
 				}
 			}
-
-
-            
+				
             if(HealthBar != null) {
                 HealthBar.SetHealth (building.Health);  
             }
             
         }
+
+		private void SetConstructionParameters(float start) {
+			transform.localScale = new Vector3(start, start, start);
+			Color c = model.GetComponent<MeshRenderer> ().material.color;
+			Color nc = new Color (start/2f, start/2f, start/2f);
+			model.GetComponent<MeshRenderer> ().material.color = nc;
+		}
     }
     
 }

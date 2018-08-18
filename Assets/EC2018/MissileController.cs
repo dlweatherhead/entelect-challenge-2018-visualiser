@@ -46,10 +46,12 @@ public class MissileController : MonoBehaviour {
         switch (other.tag) {
             case Constants.Tags.MissileCollider:
                 var buildingCtrl = other.gameObject.GetComponentInParent<BuildingController>();
-                if (missile.PlayerType != buildingCtrl.building.PlayerType) {
-                    Instantiate(explosion, transform.position, Quaternion.identity);
-                    gameObject.SetActive(false);
-                }
+				if (!buildingCtrl.isUnderConstruction) {
+					if (missile.PlayerType != buildingCtrl.building.PlayerType) {
+						Instantiate(explosion, transform.position, Quaternion.identity);
+						gameObject.SetActive(false);
+					}
+				}
                 break;
             case Constants.Tags.Barrier:
                 Instantiate(explosion, transform.position, Quaternion.identity);

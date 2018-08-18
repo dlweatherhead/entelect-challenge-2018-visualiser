@@ -16,7 +16,7 @@ public class MusicFadeOut : MonoBehaviour {
 	}
 
     public void StartFadeOut() {
-        StartCoroutine("FadeOut");
+//        StartCoroutine("FadeOut");
     }
 
     IEnumerator FadeOut() {
