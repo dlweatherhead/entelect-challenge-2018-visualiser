@@ -60,11 +60,11 @@ namespace EC2018
                 }
 
                 float x_offset = x;
-                if(missiles[m].PlayerType == PlayerType.A) {
-                    x_offset -= timeStep;
-                } else {
-                    x_offset += timeStep;
-                }
+                //if(missiles[m].PlayerType == PlayerType.A) {
+                //    x_offset -= timeStep;
+                //} else {
+                //    x_offset += timeStep;
+                //}
 
 				PlayerType missilePlayerType = missiles [m].PlayerType;
 				int direction = missilePlayerType == PlayerType.A ? 1 : -1;

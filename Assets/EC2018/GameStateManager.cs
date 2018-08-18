@@ -117,7 +117,7 @@ namespace EC2018 {
             for (int i = 0; i < players.Count; i++) {
                 var available = players[i].IronCurtainAvailable;
                 var lifetime = players[i].ActiveIronCurtainLifetime;
-                if (available && lifetime >= -6) {
+                if (available && lifetime <= 0 && lifetime > -6) {
                     instantiator.ActivateIronCurtain(players[i].PlayerType);
                 } else {
                     instantiator.DeactivateIronCurtain(players[i].PlayerType);
