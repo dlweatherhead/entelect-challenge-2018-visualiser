@@ -16,6 +16,9 @@ namespace EC2018
 		public Text ScoreB;
 		public Text RoundText;
 
+		public RectTransform healthBarA;
+		public RectTransform healthBarB;
+
 		public GameObject FinalGameHolder;
 		public Text FinalGameText;
 
@@ -51,6 +54,12 @@ namespace EC2018
 
 			HealthA.text = GetHealth(playerA);
 			HealthB.text = GetHealth(playerB);
+
+			float hNormA = playerA.Health / 100f;
+			float hNormB = playerB.Health / 100f;
+
+			healthBarA.localScale = new Vector3 (hNormA, 1f, 1f);
+			healthBarB.localScale = new Vector3 (hNormB, 1f, 1f);
 
 			EnergyA.text = GetEnergy (playerA);
 			EnergyB.text = GetEnergy (playerB);
