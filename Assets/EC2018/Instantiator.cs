@@ -46,7 +46,26 @@ namespace EC2018
 		}
 
 		public void InstantiateMissileAtLocation(List<Missile> missiles, int x, int y, float rate) {
+            float interval = 0.15f;
+
+            float timeStep = CommandLineUtil.GetRoundStep();
+
 			for (int m = 0; m < missiles.Count; m++) {
+
+                float z = y;
+                if(m > 0 && m % 2 == 0) {
+                    z += m * interval;
+                } else {
+                    z += m * interval;
+                }
+
+                float x_offset = x;
+                if(missiles[m].PlayerType == PlayerType.A) {
+                    x_offset -= timeStep;
+                } else {
+                    x_offset += timeStep;
+                }
+
 				PlayerType missilePlayerType = missiles [m].PlayerType;
 				int direction = missilePlayerType == PlayerType.A ? 1 : -1;
 
@@ -55,9 +74,7 @@ namespace EC2018
 					MissileObjectPool.current.GetForPlayerB ();
 
 				missile.SetActive (true);
-
-				var z = m < missiles.Count / 2 ? y + m / 10 : y - m / 10;
-				missile.transform.position = new Vector3 (x, missile.transform.position.y, z);
+				missile.transform.position = new Vector3 (x_offset, missile.transform.position.y, z);
 				missile.GetComponent<MissileController> ().Setup (missiles[m], direction, rate);
 			}
 		}

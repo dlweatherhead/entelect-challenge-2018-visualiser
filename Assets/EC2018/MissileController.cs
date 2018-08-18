@@ -16,7 +16,7 @@ public class MissileController : MonoBehaviour {
         this.missile = missile;
         transform.GetChild(0).gameObject.SetActive(true);
         speed = missile.Speed * distance / rate;
-        nextStatePosition = transform.position.x + distance * missile.Speed;
+        nextStatePosition = transform.position.x + speed;
     }
 
     void Update() {
@@ -48,7 +48,7 @@ public class MissileController : MonoBehaviour {
                 var buildingCtrl = other.gameObject.GetComponentInParent<BuildingController>();
 				if (!buildingCtrl.isUnderConstruction) {
 					if (missile.PlayerType != buildingCtrl.building.PlayerType) {
-						Instantiate(explosion, transform.position, Quaternion.identity);
+                        Instantiate(explosion, other.gameObject.transform.position, Quaternion.identity);
 						gameObject.SetActive(false);
 					}
 				}
