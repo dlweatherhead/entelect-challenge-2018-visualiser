@@ -14,13 +14,19 @@ public class Countdown : MonoBehaviour {
 	}
 	
 	IEnumerator StartReplayScene() {
-		yield return new WaitForSeconds (0.5f);
-		countdownText.text = "3...";
+		yield return new WaitForSeconds (0.75f);
+		countdownText.fontSize = 50;
+		countdownText.text = "3";
 		yield return new WaitForSeconds (1f);
-		countdownText.text = "2...";
+		countdownText.fontSize = 80;
+		countdownText.text = "2";
 		yield return new WaitForSeconds (1f);
-		countdownText.text = "1...";
+		countdownText.fontSize = 110;
+		countdownText.text = "1";
 		yield return new WaitForSeconds (1f);
+		countdownText.fontSize = 150;
+		countdownText.text = "FIGHT!";
+		yield return new WaitForSeconds (0.75f);
 		SceneManager.LoadScene(destinationScene, LoadSceneMode.Single);
 	}
 }

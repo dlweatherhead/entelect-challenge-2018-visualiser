@@ -9,6 +9,8 @@ public class TextMover : MonoBehaviour {
 	RectTransform rectTransform;
 	Vector3 targetPos;
 
+	float lerpTime;
+
 	void Start () {
 		rectTransform = GetComponent<RectTransform> ();
 
@@ -17,7 +19,9 @@ public class TextMover : MonoBehaviour {
 	}
 
 	void Update () {
-		var lerp = Vector3.Lerp (rectTransform.position, targetPos, 0.5f);
-		rectTransform.position = lerp;
+		if(lerpTime < 2.5f) {
+			lerpTime += lerpTime + Time.deltaTime;
+			rectTransform.position = Vector3.Lerp (rectTransform.position, targetPos, lerpTime);
+		}
 	}
 }
