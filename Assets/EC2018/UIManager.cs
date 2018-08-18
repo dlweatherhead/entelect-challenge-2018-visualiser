@@ -16,6 +16,9 @@ namespace EC2018
 		public Text ScoreB;
 		public Text RoundText;
 
+        public Image ironCurtainPlayerA;
+        public Image ironCurtainPlayerB;
+
 		public RectTransform healthBarA;
 		public RectTransform healthBarB;
 
@@ -66,6 +69,18 @@ namespace EC2018
 
 			ScoreA.text = GetScore (playerA);
 			ScoreB.text = GetScore (playerB);
+
+            if (playerA.IronCurtainAvailable) {
+                ironCurtainPlayerA.color = Color.red;
+            } else {
+                ironCurtainPlayerA.color = Color.gray;
+            }
+
+            if (playerB.IronCurtainAvailable) {
+                ironCurtainPlayerB.color = Color.blue;
+            } else {
+                ironCurtainPlayerB.color = Color.gray;
+            }
 
 			RoundText.text = gameDetails.Round.ToString();
 		}
