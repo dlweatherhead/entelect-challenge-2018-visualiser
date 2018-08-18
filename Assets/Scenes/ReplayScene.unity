@@ -23715,7 +23715,7 @@ Prefab:
     - target: {fileID: 224183405574648080, guid: 034973ba6c018bb4e8971e2908b833d9,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -90
+      value: -85
       objectReference: {fileID: 0}
     - target: {fileID: 114242838585924636, guid: 034973ba6c018bb4e8971e2908b833d9,
         type: 2}
@@ -23777,6 +23777,42 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.x
       value: 111
+      objectReference: {fileID: 0}
+    - target: {fileID: 114851918122531668, guid: 034973ba6c018bb4e8971e2908b833d9,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: f79c0638c9ad24986acd8d34c0e20256,
+        type: 3}
+    - target: {fileID: 114851918122531668, guid: 034973ba6c018bb4e8971e2908b833d9,
+        type: 2}
+      propertyPath: m_FontData.m_Alignment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114851918122531668, guid: 034973ba6c018bb4e8971e2908b833d9,
+        type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 224183405574648080, guid: 034973ba6c018bb4e8971e2908b833d9,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 114851918122531668, guid: 034973ba6c018bb4e8971e2908b833d9,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.8078432
+      objectReference: {fileID: 0}
+    - target: {fileID: 114851918122531668, guid: 034973ba6c018bb4e8971e2908b833d9,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0.8196079
+      objectReference: {fileID: 0}
+    - target: {fileID: 114851918122531668, guid: 034973ba6c018bb4e8971e2908b833d9,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.9843138
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 034973ba6c018bb4e8971e2908b833d9, type: 2}
