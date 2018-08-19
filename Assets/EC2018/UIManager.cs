@@ -44,6 +44,8 @@ namespace EC2018
 			if(Input.GetKey (KeyCode.Q)) {
 				Application.Quit ();
 			}
+
+            // Animate Flashing Iron Curtain
 		}
 
 		public void SetPlayerNames(string playerAName, string playerBName) {
@@ -71,15 +73,15 @@ namespace EC2018
 			ScoreB.text = GetScore (playerB);
 
             if (playerA.IronCurtainAvailable) {
-                ironCurtainPlayerA.color = Color.red;
+                ironCurtainPlayerA.color = ColorUtil.playerA;
             } else {
-                ironCurtainPlayerA.color = Color.gray;
+                ironCurtainPlayerA.color = ColorUtil.lightGrey;
             }
 
             if (playerB.IronCurtainAvailable) {
-                ironCurtainPlayerB.color = Color.blue;
+                ironCurtainPlayerB.color = ColorUtil.playerB;
             } else {
-                ironCurtainPlayerB.color = Color.gray;
+                ironCurtainPlayerB.color = ColorUtil.lightGrey;
             }
 
 			RoundText.text = gameDetails.Round.ToString();
