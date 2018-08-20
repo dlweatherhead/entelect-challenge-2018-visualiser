@@ -11,4 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 12323, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: Entelect
   m_EditorClassIdentifier: 
-  m_Presets: []
+  m_Presets:
+  - m_Name: Player A
+    m_Color: {r: 0.95686275, g: 0.2627451, b: 0.21176471, a: 1}
+  - m_Name: Player B
+    m_Color: {r: 0.12941177, g: 0.5882353, b: 0.9529412, a: 1}
+  - m_Name: Accent 1
+    m_Color: {r: 0.99607843, g: 0.8980392, b: 0.05490196, a: 1}
+  - m_Name: Accent 2
+    m_Color: {r: 1, g: 0.59607846, b: 0, a: 1}

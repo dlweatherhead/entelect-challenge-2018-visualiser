@@ -30,6 +30,9 @@ namespace EC2018
 
         GameManager gameManager;
 
+		bool pulseIronCurtainPlayerA;
+		bool pulseIronCurtainPlayerB;
+
         void Awake() {
 			gameManager = GameObject.FindGameObjectWithTag (Constants.Tags.GameManager).GetComponent<GameManager> ();
 		}
@@ -45,7 +48,13 @@ namespace EC2018
 				Application.Quit ();
 			}
 
-            // Animate Flashing Iron Curtain
+			if(pulseIronCurtainPlayerA) {
+				ironCurtainPlayerA.color = Color.Lerp (ColorUtil.playerA, ColorUtil.white, Mathf.PingPong (Time.time, 1f));
+			}
+
+			if(pulseIronCurtainPlayerB) {
+				ironCurtainPlayerB.color = Color.Lerp (ColorUtil.playerB, ColorUtil.white, Mathf.PingPong (Time.time, 1f));
+			}
 		}
 
 		public void SetPlayerNames(string playerAName, string playerBName) {
@@ -72,17 +81,19 @@ namespace EC2018
 			ScoreA.text = GetScore (playerA);
 			ScoreB.text = GetScore (playerB);
 
-            if (playerA.IronCurtainAvailable) {
-                ironCurtainPlayerA.color = ColorUtil.playerA;
-            } else {
-                ironCurtainPlayerA.color = ColorUtil.lightGrey;
-            }
+			if(playerA.IronCurtainAvailable) {
+				pulseIronCurtainPlayerA = true;
+			} else {
+				pulseIronCurtainPlayerA = false;
+				ironCurtainPlayerA.color = ColorUtil.lightGrey;
+			}
 
-            if (playerB.IronCurtainAvailable) {
-                ironCurtainPlayerB.color = ColorUtil.playerB;
-            } else {
-                ironCurtainPlayerB.color = ColorUtil.lightGrey;
-            }
+			if(playerB.IronCurtainAvailable) {
+				pulseIronCurtainPlayerB = true;
+			} else {
+				pulseIronCurtainPlayerB = false;
+				ironCurtainPlayerB.color = ColorUtil.lightGrey;
+			}
 
 			RoundText.text = gameDetails.Round.ToString();
 		}
@@ -113,3 +124,4 @@ namespace EC2018
         }
     }
 }
+
