@@ -1,4 +1,0 @@
-The winner is: A - Brendan
-
-A - Brendan- score:5394 health:100
-B - Brendan- score:489 health:0
