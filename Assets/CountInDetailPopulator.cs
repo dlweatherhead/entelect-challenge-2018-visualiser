@@ -1,19 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System.IO;
 using EC2018.Enums;
-using UnityEngine.UI;
 using EC2018;
+using TMPro;
 
 public class CountInDetailPopulator : MonoBehaviour {
 
-	public Text namePlayerA;
-	public Text namePlayerB;
+    public TextMeshProUGUI tmpPlayerA;
+    public TextMeshProUGUI tmpPlayerB;
 
 	void Start () {
-		namePlayerA.text = GetPlayerName (PlayerType.A);
-		namePlayerB.text = GetPlayerName (PlayerType.B);
+        tmpPlayerA.text = GetPlayerName (PlayerType.A);
+        tmpPlayerB.text = GetPlayerName (PlayerType.B);
 	}
 
 	public string GetPlayerName(PlayerType playerType) {

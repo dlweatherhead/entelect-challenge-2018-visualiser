@@ -369,7 +369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa2ea8523c6a58f4b9490ae92a2a2ae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPos: {x: -2500, y: 200, z: 0}
+  startPos: {x: 1500, y: 100, z: 0}
   startDelay: 0.5
   moveTime: 1
 --- !u!1 &334941507
@@ -761,7 +761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa2ea8523c6a58f4b9490ae92a2a2ae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPos: {x: 200, y: -1000, z: 0}
+  startPos: {x: 150, y: -500, z: 0}
   startDelay: 1
   moveTime: 1
 --- !u!1 &743639707
@@ -948,8 +948,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78f9ad30d87d94c4a9949f69ac9d575f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  namePlayerA: {fileID: 1867683493}
-  namePlayerB: {fileID: 66487344}
+  tmpPlayerA: {fileID: 300225247}
+  tmpPlayerB: {fileID: 1831951726}
 --- !u!1 &1116120781
 GameObject:
   m_ObjectHideFlags: 0
@@ -1500,7 +1500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa2ea8523c6a58f4b9490ae92a2a2ae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPos: {x: 2500, y: 200, z: 0}
+  startPos: {x: -1500, y: 100, z: 0}
   startDelay: 1.5
   moveTime: 1
 --- !u!1 &1867683491
