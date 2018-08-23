@@ -23,6 +23,8 @@ namespace EC2018
 		public RectTransform healthBarB;
 
 		public GameObject FinalGameHolder;
+        public GameObject playerAWinHolder;
+        public GameObject playerBWinHolder;
 		public Text FinalGameText;
 
         public BarrierHealth barrierHealthA;
@@ -32,6 +34,8 @@ namespace EC2018
 
 		bool pulseIronCurtainPlayerA;
 		bool pulseIronCurtainPlayerB;
+
+        PlayerType winningPlayer;
 
         void Awake() {
 			gameManager = GameObject.FindGameObjectWithTag (Constants.Tags.GameManager).GetComponent<GameManager> ();
@@ -96,10 +100,24 @@ namespace EC2018
 			}
 
 			RoundText.text = gameDetails.Round.ToString();
+
+            if(playerA.Health > playerB.Health) {
+                winningPlayer = PlayerType.A;
+            } else {
+                winningPlayer = PlayerType.B;
+            }
 		}
 
 		public void DisplayFinalGameMessage(string message) {
-			FinalGameHolder.SetActive (true);
+
+            FinalGameHolder.SetActive(true);
+
+            if(winningPlayer == PlayerType.A) {
+                playerAWinHolder.SetActive(true);
+            } else {
+                playerBWinHolder.SetActive(true);
+            }
+
 			FinalGameText.text = message;
 		}
 
