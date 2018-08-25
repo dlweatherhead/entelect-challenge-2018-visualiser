@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using EC2018.Entities;
 using EC2018.Enums;
+using TMPro;
 
 namespace EC2018
 {
@@ -25,7 +26,10 @@ namespace EC2018
 		public GameObject FinalGameHolder;
         public GameObject playerAWinHolder;
         public GameObject playerBWinHolder;
-		public Text FinalGameText;
+
+        public TextMeshProUGUI winningPlayerText;
+        public TextMeshProUGUI winningPlayerStatsText;
+        public TextMeshProUGUI losingPlayerStatsText;
 
         public BarrierHealth barrierHealthA;
         public BarrierHealth barrierHealthB;
@@ -108,17 +112,15 @@ namespace EC2018
             }
 		}
 
-		public void DisplayFinalGameMessage(string message) {
-
+        public void DisplayFinalGameMessage(GameState finalState, string namePlayerA, string namePlayerB) {
             FinalGameHolder.SetActive(true);
-
             if(winningPlayer == PlayerType.A) {
                 playerAWinHolder.SetActive(true);
+                winningPlayerText.text = namePlayerA + " Wins!";
             } else {
                 playerBWinHolder.SetActive(true);
+                winningPlayerText.text = namePlayerB + " Wins!";
             }
-
-			FinalGameText.text = message;
 		}
 
         string GetPlayerType(Player player) {

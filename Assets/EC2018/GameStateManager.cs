@@ -39,11 +39,9 @@ namespace EC2018 {
         }
 
         void Initialise() {
-            uiManager.SetPlayerNames(GetPlayerName(PlayerType.A), GetPlayerName(PlayerType.B));
-
             SetReplayPathFromPrefs();
             SetMaxRounds();
-
+            uiManager.SetPlayerNames(GetPlayerName(PlayerType.A), GetPlayerName(PlayerType.B));
         }
 
         public string GetFinalRoundPath() {
@@ -60,7 +58,7 @@ namespace EC2018 {
 
         public void EndGame() {
 
-            uiManager.DisplayFinalGameMessage(LoadFinalGameResults());
+            uiManager.DisplayFinalGameMessage(gameState, GetPlayerName(PlayerType.A), GetPlayerName(PlayerType.B));
 
             if(gameState.Players[0].Health < gameState.Players[1].Health) {
                 instantiator.InstantiateEndGameAnimations(PlayerType.A);
