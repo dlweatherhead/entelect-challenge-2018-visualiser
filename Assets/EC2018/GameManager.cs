@@ -16,27 +16,21 @@ namespace EC2018 {
 	public class GameManager : MonoBehaviour {
         const string StartReplayMethod = "StartReplay";
 
-
         public MusicFadeOut musicFadeOut;
         public int startRound;
 		public float roundStepTime = 0.7f;
 
-		Instantiator instantiator;
-		UIManager uiManager;
 		GameStateManager gameStateManager;
-		ReplayManager replayManager;
 		bool isPaused;
         bool gameFinished;
 
 		void Start () {
 			roundStepTime = CommandLineUtil.GetRoundStep ();
 
-			instantiator = GetComponent<Instantiator> ();
-			uiManager = GameObject.FindGameObjectWithTag (Constants.Tags.UIHolder).GetComponent<UIManager> ();
-			replayManager = GetComponent<ReplayManager> ();
-			gameStateManager = new GameStateManager (startRound, this, uiManager, instantiator, replayManager);
-
-			uiManager.SetPlayerNames (gameStateManager.GetPlayerName(PlayerType.A), gameStateManager.GetPlayerName(PlayerType.B));
+            Instantiator instantiator = GetComponent<Instantiator> ();
+            UIManager uiManager = GameObject.FindGameObjectWithTag (Constants.Tags.UIHolder).GetComponent<UIManager> ();
+            ReplayManager replayManager = GetComponent<ReplayManager> ();
+            gameStateManager = new GameStateManager(startRound, this, uiManager, instantiator, replayManager);
 
 			AttemptToStartReplay ();
 		}
@@ -57,18 +51,10 @@ namespace EC2018 {
 		public void ReplayFinished() {
             gameFinished = true;
             musicFadeOut.StartFadeOut();
-			uiManager.DisplayFinalGameMessage (LoadFinalGameResults());
             HaltAllGameObects();
 			OnPauseInteraction ();
             gameStateManager.EndGame();
 		}
-
-        string LoadFinalGameResults() {
-            var streamReader = new StreamReader(gameStateManager.GetFinalRoundPath() + "/" + Constants.Paths.EndGameStateFileName);
-            var endGameMessage = streamReader.ReadToEnd();
-            streamReader.Close();
-            return endGameMessage;
-        }
 
         void HaltAllGameObects() {
             var missiles = GameObject.FindGameObjectsWithTag(Constants.Tags.Missile);

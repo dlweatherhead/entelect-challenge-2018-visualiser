@@ -39,6 +39,8 @@ namespace EC2018 {
         }
 
         void Initialise() {
+            uiManager.SetPlayerNames(GetPlayerName(PlayerType.A), GetPlayerName(PlayerType.B));
+
             SetReplayPathFromPrefs();
             SetMaxRounds();
 
@@ -57,11 +59,21 @@ namespace EC2018 {
         }
 
         public void EndGame() {
+
+            uiManager.DisplayFinalGameMessage(LoadFinalGameResults());
+
             if(gameState.Players[0].Health < gameState.Players[1].Health) {
                 instantiator.InstantiateEndGameAnimations(PlayerType.A);
             } else if(gameState.Players[0].Health > gameState.Players[1].Health) {
                 instantiator.InstantiateEndGameAnimations(PlayerType.B);
             }
+        }
+
+        string LoadFinalGameResults() {
+            var streamReader = new StreamReader(GetFinalRoundPath() + "/" + Constants.Paths.EndGameStateFileName);
+            var endGameMessage = streamReader.ReadToEnd();
+            streamReader.Close();
+            return endGameMessage;
         }
 
         void PopulateSceneFromGameMap() {
