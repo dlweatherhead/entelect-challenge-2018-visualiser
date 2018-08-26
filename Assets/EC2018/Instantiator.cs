@@ -112,6 +112,58 @@ namespace EC2018
 
 				Destroy (lightningBoltObj, CommandLineUtil.GetRoundStep ());
 			}
+
+            if(hitList[0].EnemyBaseHit) {
+                var origin = hitList[0];
+                var target = new HitList {
+                    X = origin.PlayerType == PlayerType.A ? -1 : 16,
+                    Y = origin.Y,
+                    PlayerType = origin.PlayerType
+                };
+
+                var start = new GameObject();
+                var end = new GameObject();
+                start.transform.position = new Vector3(origin.X, 0.5f, origin.Y);
+                end.transform.position = new Vector3(target.X, 0.5f, target.Y);
+
+                var lightningBoltObj = Instantiate(lightningBolt);
+                var lightningBoltScript = lightningBoltObj.GetComponent<LightningBoltScript>();
+                var lightningBoltLineRenderer = lightningBoltObj.GetComponent<LineRenderer>();
+
+                lightningBoltLineRenderer.startWidth = 0.2f;
+                lightningBoltLineRenderer.endWidth = 0.2f;
+
+                lightningBoltScript.StartObject = start;
+                lightningBoltScript.EndObject = end;
+
+                Destroy(lightningBoltObj, CommandLineUtil.GetRoundStep());
+            }
+
+            if (hitList[0].enemyIronCurtainHit) {
+                var origin = hitList[0];
+                var target = new HitList {
+                    X = origin.X,
+                    Y = origin.Y,
+                    PlayerType = origin.PlayerType
+                };
+
+                var start = new GameObject();
+                var end = new GameObject();
+                start.transform.position = new Vector3(origin.X, 0.5f, origin.Y);
+                end.transform.position = new Vector3(7.5f, 0.5f, target.Y);
+
+                var lightningBoltObj = Instantiate(lightningBolt);
+                var lightningBoltScript = lightningBoltObj.GetComponent<LightningBoltScript>();
+                var lightningBoltLineRenderer = lightningBoltObj.GetComponent<LineRenderer>();
+
+                lightningBoltLineRenderer.startWidth = 0.2f;
+                lightningBoltLineRenderer.endWidth = 0.2f;
+
+                lightningBoltScript.StartObject = start;
+                lightningBoltScript.EndObject = end;
+
+                Destroy(lightningBoltObj, CommandLineUtil.GetRoundStep());
+            }
 		}
 
 		public void ActivateIronCurtain(PlayerType playerType) {
