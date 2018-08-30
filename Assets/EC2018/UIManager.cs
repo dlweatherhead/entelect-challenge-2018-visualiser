@@ -57,11 +57,11 @@ namespace EC2018
 			}
 
 			if(pulseIronCurtainPlayerA) {
-				ironCurtainPlayerA.color = Color.Lerp (ColorUtil.playerA, ColorUtil.white, Mathf.PingPong (Time.time, 1f));
+                ironCurtainPlayerA.color = Color.Lerp (ColorUtil.playerA, ColorUtil.lightGrey, Mathf.PingPong (Time.time, 1f));
 			}
 
 			if(pulseIronCurtainPlayerB) {
-				ironCurtainPlayerB.color = Color.Lerp (ColorUtil.playerB, ColorUtil.white, Mathf.PingPong (Time.time, 1f));
+                ironCurtainPlayerB.color = Color.Lerp (ColorUtil.playerB, ColorUtil.lightGrey, Mathf.PingPong (Time.time, 1f));
 			}
 		}
 
@@ -90,14 +90,24 @@ namespace EC2018
 			ScoreB.text = GetScore (playerB);
 
 			if(playerA.IronCurtainAvailable) {
-				pulseIronCurtainPlayerA = true;
+                if (playerA.ActiveIronCurtainLifetime <= 0) {
+                    pulseIronCurtainPlayerA = true;
+                } else {
+                    pulseIronCurtainPlayerA = false;
+                    ironCurtainPlayerA.color = ColorUtil.playerA;
+                }
 			} else {
 				pulseIronCurtainPlayerA = false;
 				ironCurtainPlayerA.color = ColorUtil.lightGrey;
 			}
 
 			if(playerB.IronCurtainAvailable) {
-				pulseIronCurtainPlayerB = true;
+                if (playerB.ActiveIronCurtainLifetime <= 0) {
+                    pulseIronCurtainPlayerB = true;
+                } else {
+                    pulseIronCurtainPlayerB = false;
+                    ironCurtainPlayerB.color = ColorUtil.playerB;
+                }
 			} else {
 				pulseIronCurtainPlayerB = false;
 				ironCurtainPlayerB.color = ColorUtil.lightGrey;
