@@ -116,11 +116,18 @@ namespace EC2018
             FinalGameHolder.SetActive(true);
             if(winningPlayer == PlayerType.A) {
                 playerAWinHolder.SetActive(true);
-                winningPlayerText.text = namePlayerA + " Wins!";
+                winningPlayerText.text = namePlayerA + "\nWins!";
             } else {
                 playerBWinHolder.SetActive(true);
-                winningPlayerText.text = namePlayerB + " Wins!";
+                winningPlayerText.text = namePlayerB + "\nWins!";
             }
+
+            winningPlayerStatsText.text =   "Score: " + finalState.Players[0].Score + "\n" +
+                                            "Hits taken: " + finalState.Players[0].HitsTaken;
+
+            losingPlayerStatsText.text = "Player: " + namePlayerB + "\n" +
+                                            "Score: " + finalState.Players[1].Score + "\n" +
+                                            "Hits taken: " + finalState.Players[1].HitsTaken;
 		}
 
         string GetPlayerType(Player player) {
