@@ -20,7 +20,13 @@ namespace EC2018
         public GameObject playerADestructionAnimation;
         public GameObject playerBDestructionAnimation;
 
-		public void ClearScene() {
+        float timeStep;
+
+        void Awake() {
+            timeStep = CommandLineUtil.GetRoundStep();
+        }
+
+        public void ClearScene() {
 			ClearGameObjectsWithTag (Constants.Tags.Missile);
 			ClearGameObjectsWithTag (Constants.Tags.Attack);
 			ClearGameObjectsWithTag (Constants.Tags.Defense);
@@ -48,8 +54,6 @@ namespace EC2018
 		public void InstantiateMissileAtLocation(List<Missile> missiles, int x, int y, float rate) {
             float interval = 0.15f;
 
-            float timeStep = CommandLineUtil.GetRoundStep();
-
 			for (int m = 0; m < missiles.Count; m++) {
 
                 float z = y;
@@ -60,11 +64,11 @@ namespace EC2018
                 }
 
                 float x_offset = x;
-                //if(missiles[m].PlayerType == PlayerType.A) {
-                //    x_offset -= timeStep;
-                //} else {
-                //    x_offset += timeStep;
-                //}
+                if(missiles[m].PlayerType == PlayerType.A) {
+                    x_offset -= timeStep;
+                } else {
+                    x_offset += timeStep;
+                }
 
 				PlayerType missilePlayerType = missiles [m].PlayerType;
 				int direction = missilePlayerType == PlayerType.A ? 1 : -1;
