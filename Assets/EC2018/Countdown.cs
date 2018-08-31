@@ -18,16 +18,16 @@ public class Countdown : MonoBehaviour {
 	
 	IEnumerator StartReplayScene() {
         yield return new WaitForSeconds (startDelay);
-		countdownText.fontSize = 50;
+		countdownText.fontSize = 40;
 		countdownText.text = "3";
         yield return new WaitForSeconds (counterTime);
-		countdownText.fontSize = 70;
+		countdownText.fontSize = 60;
 		countdownText.text = "2";
         yield return new WaitForSeconds (counterTime);
-		countdownText.fontSize = 100;
+		countdownText.fontSize = 80;
 		countdownText.text = "1";
         yield return new WaitForSeconds (counterTime);
-		countdownText.fontSize = 120;
+		countdownText.fontSize = 100;
 
         int i = Random.Range(0, kickOffPhrases.Length);
 

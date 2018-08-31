@@ -950,6 +950,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tmpPlayerA: {fileID: 300225247}
   tmpPlayerB: {fileID: 1831951726}
+  MaxLength: 20
 --- !u!1 &1116120781
 GameObject:
   m_ObjectHideFlags: 0
@@ -1330,9 +1331,9 @@ MonoBehaviour:
   kickOffPhrases:
   - Let the battle begin!
   - Bots starting up...
-  - Two enter, one leaves!
+  - 2 enter, 1 leaves!
   - Are ya ready kids?
-  - War. War never changes
+  - War never changes!
 --- !u!1 &1831951724
 GameObject:
   m_ObjectHideFlags: 0

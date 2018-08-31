@@ -34,6 +34,8 @@ namespace EC2018
         public BarrierHealth barrierHealthA;
         public BarrierHealth barrierHealthB;
 
+        public int MaxLength = 20;
+
         GameManager gameManager;
 
 		bool pulseIronCurtainPlayerA;
@@ -66,8 +68,12 @@ namespace EC2018
 		}
 
 		public void SetPlayerNames(string playerAName, string playerBName) {
-			PlayerAName.text = playerAName;
-			PlayerBName.text = playerBName;
+            PlayerAName.text = playerAName.Length > MaxLength ? 
+                                playerAName.Substring(0, MaxLength) + "..." : 
+                                playerAName;
+            PlayerBName.text = playerBName.Length > MaxLength ? 
+                                playerBName.Substring(0, MaxLength) + "..." : 
+                                playerBName;
 		}
 
 		public void UpdateUI(GameDetails gameDetails, Player playerA, Player playerB) {
@@ -123,21 +129,44 @@ namespace EC2018
 		}
 
         public void DisplayFinalGameMessage(GameState finalState, string namePlayerA, string namePlayerB) {
+
+            string nameA = namePlayerA.Length > MaxLength ?
+                                      namePlayerA.Substring(0, MaxLength) + "..." :
+                                      namePlayerA;
+            string nameB = namePlayerB.Length > MaxLength ?
+                                      namePlayerB.Substring(0, MaxLength) + "..." :
+                                      namePlayerB;
+            
             FinalGameHolder.SetActive(true);
+
+            string winnerStatsText = "";
+            string loserStatsText = "";
+
             if(winningPlayer == PlayerType.A) {
                 playerAWinHolder.SetActive(true);
-                winningPlayerText.text = namePlayerA + "\nWins!";
+                winningPlayerText.text = nameA + "\nWins!";
+
+                winnerStatsText = "Score: " + finalState.Players[0].Score + "\n" +
+                                  "Hits taken: " + finalState.Players[0].HitsTaken;
+
+                loserStatsText = "Player: " + nameB + "\n" +
+                                 "Score: " + finalState.Players[1].Score + "\n" +
+                                 "Hits taken: " + finalState.Players[1].HitsTaken;
             } else {
                 playerBWinHolder.SetActive(true);
-                winningPlayerText.text = namePlayerB + "\nWins!";
+                winningPlayerText.text = nameB + "\nWins!";
+
+                winnerStatsText = "Score: " + finalState.Players[1].Score + "\n" +
+                                  "Hits taken: " + finalState.Players[1].HitsTaken;
+
+                loserStatsText = "Player: " + nameA + "\n" +
+                                 "Score: " + finalState.Players[0].Score + "\n" +
+                                 "Hits taken: " + finalState.Players[0].HitsTaken;
             }
 
-            winningPlayerStatsText.text =   "Score: " + finalState.Players[0].Score + "\n" +
-                                            "Hits taken: " + finalState.Players[0].HitsTaken;
+            winningPlayerStatsText.text = winnerStatsText;
 
-            losingPlayerStatsText.text = "Player: " + namePlayerB + "\n" +
-                                            "Score: " + finalState.Players[1].Score + "\n" +
-                                            "Hits taken: " + finalState.Players[1].HitsTaken;
+            losingPlayerStatsText.text = loserStatsText;
 		}
 
         string GetPlayerType(Player player) {

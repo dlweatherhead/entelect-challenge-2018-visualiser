@@ -8,6 +8,7 @@ public class CountInDetailPopulator : MonoBehaviour {
 
     public TextMeshProUGUI tmpPlayerA;
     public TextMeshProUGUI tmpPlayerB;
+    public int MaxLength = 20;
 
 	void Start () {
         tmpPlayerA.text = GetPlayerName (PlayerType.A);
@@ -16,10 +17,17 @@ public class CountInDetailPopulator : MonoBehaviour {
 
 	public string GetPlayerName(PlayerType playerType) {
 		var allPlayers = Directory.GetDirectories(GetReplayPathFromPrefs() + "/Round 000");
+        string playerName;
 		if (playerType == PlayerType.A) {
-			return new DirectoryInfo(allPlayers[0]).Name;
+			playerName = new DirectoryInfo(allPlayers[0]).Name;
 		}
-		return new DirectoryInfo(allPlayers[1]).Name;
+		playerName = new DirectoryInfo(allPlayers[1]).Name;
+
+        if(playerName.Length > MaxLength) {
+            playerName = playerName.Substring(0, MaxLength) + "...";
+        }
+
+        return playerName;
 	}
 
 	string GetReplayPathFromPrefs() {
