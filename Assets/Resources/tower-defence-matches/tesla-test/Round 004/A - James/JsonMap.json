@@ -1059,22 +1059,24 @@
     ],
     "teslaHitList": [[
         {
+            "x":0,
+            "y":0,
+            "playerType":"B"
+        },
+        {
             "x":12,
             "y":2,
-            "playerType":"B",
-            "enemyBaseHit":"true"
+            "playerType":"B"
         },
         {
             "x":10,
             "y":1,
-            "playerType":"B",
-            "enemyBaseHit":"true"
+            "playerType":"B"
         },
         {
             "x":7,
             "y":0,
-            "playerType":"A",
-            "enemyBaseHit":"true"
+            "playerType":"A"
         }
     ]],
     "ironCurtainHitList": []

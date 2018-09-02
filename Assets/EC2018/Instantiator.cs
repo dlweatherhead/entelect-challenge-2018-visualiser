@@ -6,6 +6,7 @@ using DigitalRuby.LightningBolt;
 
 namespace EC2018
 {
+    [RequireComponent(typeof(AudioSource))]
 	public class Instantiator : MonoBehaviour {
 
 		public GameObject groundTilePrefabA;
@@ -20,9 +21,14 @@ namespace EC2018
         public GameObject playerADestructionAnimation;
         public GameObject playerBDestructionAnimation;
 
+        public AudioClip teslaSound;
+        AudioSource audioSource;
+
         float timeStep;
 
         void Awake() {
+            audioSource = GetComponent<AudioSource>();
+            audioSource.loop = false;
             timeStep = CommandLineUtil.GetRoundStep();
         }
 
@@ -94,8 +100,73 @@ namespace EC2018
 			}
 		}
 
-		public void InstantiateTeslaHit(List<HitList> hitList) {
-			for(int i=0; i < hitList.Count-1; i++) {
+        private void InstantiateLightningHit(GameObject start, GameObject end) {
+            var lightningBoltObj = Instantiate(lightningBolt);
+            var lightningBoltScript = lightningBoltObj.GetComponent<LightningBoltScript>();
+            var lightningBoltLineRenderer = lightningBoltObj.GetComponent<LineRenderer>();
+
+            lightningBoltLineRenderer.startWidth = 0.15f;
+            lightningBoltLineRenderer.endWidth = 0.15f;
+
+            lightningBoltScript.StartObject = start;
+            lightningBoltScript.EndObject = end;
+
+            Destroy(lightningBoltObj, CommandLineUtil.GetRoundStep());
+        }
+
+        public void InstantiateTeslaHit(List<HitList> hitList, Player playerA, Player playerB) {
+            
+            // if list is empty
+            if (hitList.Count < 1) return;
+
+            audioSource.clip = teslaSound;
+            audioSource.Play();
+
+            var originIndex = hitList.Count - 1;
+            var originTower = hitList[originIndex];
+
+            // IRON CURTAIN HIT
+            bool isIronCurtainHit = false;
+            if(originTower.PlayerType == PlayerType.A) {
+                isIronCurtainHit |= playerB.ActiveIronCurtainLifetime >= 0;
+            } else {
+                isIronCurtainHit |= playerA.ActiveIronCurtainLifetime >= 0;
+            }
+            if (isIronCurtainHit) {
+                var start = new GameObject();
+                var end = new GameObject();
+                start.transform.position = new Vector3(originTower.X, 0.5f, originTower.Y);
+                end.transform.position = new Vector3(7.5f, 0.5f, originTower.Y);
+                InstantiateLightningHit(start, end);
+                return;
+            }
+
+            // if only 1 hit in list (i.e. iron curtain hit)
+            if (hitList.Count < 2) return;
+
+            // FINAL CELL/BASE HIT
+            var lastHit = hitList[0];
+            var loopIndex = 0;
+
+            if (lastHit.X == 0 && lastHit.Y == 0) {
+                var lastTower = hitList[1];
+                var targetX = originTower.PlayerType == PlayerType.A ? 16 : -1;
+
+                var start = new GameObject();
+                var end = new GameObject();
+                start.transform.position = new Vector3(lastTower.X, 0.5f, lastTower.Y);
+                end.transform.position = new Vector3(targetX, 0.5f, lastTower.Y);
+
+                InstantiateLightningHit(start, end);
+
+                loopIndex = 1;
+            }
+
+            // If only 2 in list (enemy base hit and origin
+            if (loopIndex == 1 && hitList.Count < 3) return;
+
+            // HIT CHAIN TILL FINAL
+            for(int i=loopIndex; i < hitList.Count-1; i++) {
 				var origin = hitList [i];
 				var target = hitList [i + 1];
 
@@ -104,70 +175,8 @@ namespace EC2018
 				start.transform.position = new Vector3(origin.X, 0.5f, origin.Y);
 				end.transform.position = new Vector3(target.X, 0.5f, target.Y);
 
-				var lightningBoltObj = Instantiate(lightningBolt);
-				var lightningBoltScript = lightningBoltObj.GetComponent<LightningBoltScript>();
-				var lightningBoltLineRenderer = lightningBoltObj.GetComponent<LineRenderer>();
-
-				lightningBoltLineRenderer.startWidth = 0.2f;
-				lightningBoltLineRenderer.endWidth = 0.2f;
-
-				lightningBoltScript.StartObject = start;
-				lightningBoltScript.EndObject = end;
-
-				Destroy (lightningBoltObj, CommandLineUtil.GetRoundStep ());
+                InstantiateLightningHit(start, end);
 			}
-
-            if(hitList[0].EnemyBaseHit) {
-                var origin = hitList[0];
-                var target = new HitList {
-                    X = origin.PlayerType == PlayerType.A ? -1 : 16,
-                    Y = origin.Y,
-                    PlayerType = origin.PlayerType
-                };
-
-                var start = new GameObject();
-                var end = new GameObject();
-                start.transform.position = new Vector3(origin.X, 0.5f, origin.Y);
-                end.transform.position = new Vector3(target.X, 0.5f, target.Y);
-
-                var lightningBoltObj = Instantiate(lightningBolt);
-                var lightningBoltScript = lightningBoltObj.GetComponent<LightningBoltScript>();
-                var lightningBoltLineRenderer = lightningBoltObj.GetComponent<LineRenderer>();
-
-                lightningBoltLineRenderer.startWidth = 0.2f;
-                lightningBoltLineRenderer.endWidth = 0.2f;
-
-                lightningBoltScript.StartObject = start;
-                lightningBoltScript.EndObject = end;
-
-                Destroy(lightningBoltObj, CommandLineUtil.GetRoundStep());
-            }
-
-            if (hitList[0].enemyIronCurtainHit) {
-                var origin = hitList[0];
-                var target = new HitList {
-                    X = origin.X,
-                    Y = origin.Y,
-                    PlayerType = origin.PlayerType
-                };
-
-                var start = new GameObject();
-                var end = new GameObject();
-                start.transform.position = new Vector3(origin.X, 0.5f, origin.Y);
-                end.transform.position = new Vector3(7.5f, 0.5f, target.Y);
-
-                var lightningBoltObj = Instantiate(lightningBolt);
-                var lightningBoltScript = lightningBoltObj.GetComponent<LightningBoltScript>();
-                var lightningBoltLineRenderer = lightningBoltObj.GetComponent<LineRenderer>();
-
-                lightningBoltLineRenderer.startWidth = 0.2f;
-                lightningBoltLineRenderer.endWidth = 0.2f;
-
-                lightningBoltScript.StartObject = start;
-                lightningBoltScript.EndObject = end;
-
-                Destroy(lightningBoltObj, CommandLineUtil.GetRoundStep());
-            }
 		}
 
 		public void ActivateIronCurtain(PlayerType playerType) {

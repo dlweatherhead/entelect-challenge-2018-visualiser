@@ -119,7 +119,7 @@ namespace EC2018 {
 
         void ProcessTeslaHitList(List<List<HitList>> hitLists) {
             for (int i = 0; i < hitLists.Count; i++) {
-				instantiator.InstantiateTeslaHit(hitLists[i]);
+                instantiator.InstantiateTeslaHit(hitLists[i], gameState.Players[0], gameState.Players[1]);
             }
         }
 

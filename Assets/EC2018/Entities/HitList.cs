@@ -8,8 +8,6 @@ namespace EC2018.Entities
 		public int X { get; set; }
 		public int Y { get; set; }
 		public PlayerType PlayerType { get; set; }
-        public bool EnemyBaseHit { get; set; }
-        public bool enemyIronCurtainHit { get; set; }
 	}
 }
 
