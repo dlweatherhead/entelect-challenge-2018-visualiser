@@ -22,14 +22,12 @@ namespace EC2018
         public GameObject playerADestructionAnimation;
         public GameObject playerBDestructionAnimation;
 
-        public AudioClip teslaSound;
-        AudioSource audioSource;
+        public AudioSource audioSourceA;
+        public AudioSource audioSourceB;
 
         float timeStep;
 
         void Awake() {
-            audioSource = GetComponent<AudioSource>();
-            audioSource.loop = false;
             timeStep = CommandLineUtil.GetRoundStep();
         }
 
@@ -122,12 +120,15 @@ namespace EC2018
             // if list is empty
             if (hitList.Count < 1) return;
 
-            audioSource.clip = teslaSound;
-            audioSource.Play();
-
             var originIndex = hitList.Count - 1;
             var originTower = hitList[originIndex];
             var originPlayer = originTower.PlayerType;
+
+            if(originPlayer == PlayerType.A) {
+                audioSourceA.Play();
+            } else {
+                audioSourceB.Play();
+            }
 
             // IRON CURTAIN HIT
             bool isIronCurtainHit = false;
