@@ -68,22 +68,15 @@ namespace EC2018
                     z += m * interval;
                 }
 
-                float x_offset = x;
-                if(missiles[m].PlayerType == PlayerType.A) {
-                    x_offset -= timeStep;
-                } else {
-                    x_offset += timeStep;
-                }
-
 				PlayerType missilePlayerType = missiles [m].PlayerType;
 				int direction = missilePlayerType == PlayerType.A ? 1 : -1;
 
 				var missile = missilePlayerType == PlayerType.A ?
 					MissileObjectPool.current.GetForPlayerA () :
 					MissileObjectPool.current.GetForPlayerB ();
-
+                
 				missile.SetActive (true);
-				missile.transform.position = new Vector3 (x_offset, missile.transform.position.y, z);
+				missile.transform.position = new Vector3 (x, missile.transform.position.y, z);
 				missile.GetComponent<MissileController> ().Setup (missiles[m], direction, rate);
 			}
 		}
