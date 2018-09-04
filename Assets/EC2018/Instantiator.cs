@@ -16,7 +16,8 @@ namespace EC2018
         public GameObject ironCurtainPlayerA;
         public GameObject ironCurtainPlayerB;
 
-        public GameObject lightningBolt;
+        public GameObject lightningBoltA;
+        public GameObject lightningBoltB;
 
         public GameObject playerADestructionAnimation;
         public GameObject playerBDestructionAnimation;
@@ -100,8 +101,10 @@ namespace EC2018
 			}
 		}
 
-        private void InstantiateLightningHit(GameObject start, GameObject end) {
-            var lightningBoltObj = Instantiate(lightningBolt);
+        private void InstantiateLightningHit(PlayerType originPlayer, GameObject start, GameObject end) {
+            var lightningToInstantiate = originPlayer == PlayerType.A ? lightningBoltA : lightningBoltB;
+            
+            var lightningBoltObj = Instantiate(lightningToInstantiate);
             var lightningBoltScript = lightningBoltObj.GetComponent<LightningBoltScript>();
             var lightningBoltLineRenderer = lightningBoltObj.GetComponent<LineRenderer>();
 
@@ -124,6 +127,7 @@ namespace EC2018
 
             var originIndex = hitList.Count - 1;
             var originTower = hitList[originIndex];
+            var originPlayer = originTower.PlayerType;
 
             // IRON CURTAIN HIT
             bool isIronCurtainHit = false;
@@ -137,7 +141,7 @@ namespace EC2018
                 var end = new GameObject();
                 start.transform.position = new Vector3(originTower.X, 0.5f, originTower.Y);
                 end.transform.position = new Vector3(7.5f, 0.5f, originTower.Y);
-                InstantiateLightningHit(start, end);
+                InstantiateLightningHit(originPlayer, start, end);
                 return;
             }
 
@@ -157,7 +161,7 @@ namespace EC2018
                 start.transform.position = new Vector3(lastTower.X, 0.5f, lastTower.Y);
                 end.transform.position = new Vector3(targetX, 0.5f, lastTower.Y);
 
-                InstantiateLightningHit(start, end);
+                InstantiateLightningHit(originPlayer, start, end);
 
                 loopIndex = 1;
             }
@@ -175,7 +179,7 @@ namespace EC2018
 				start.transform.position = new Vector3(origin.X, 0.5f, origin.Y);
 				end.transform.position = new Vector3(target.X, 0.5f, target.Y);
 
-                InstantiateLightningHit(start, end);
+                InstantiateLightningHit(originPlayer, start, end);
 			}
 		}
 
