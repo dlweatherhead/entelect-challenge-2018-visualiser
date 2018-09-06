@@ -6,7 +6,8 @@ using EC2018;
 using EC2018.Enums;
 
 namespace EC2018 {
-    
+
+    [RequireComponent(typeof(AudioSource))]
     public class BuildingController : MonoBehaviour {
         
         public int MaxHealth;
@@ -19,7 +20,12 @@ namespace EC2018 {
 		public GameObject constructionAnimation;
 
 		public bool isUnderConstruction;
-        
+
+        public AudioClip otherConstruction;
+        public AudioClip defenseConstruction;
+        public AudioClip teslaConstruction;
+        AudioSource audioSource;
+
 		float lerpTime;
 
 		float startScale;
@@ -33,6 +39,7 @@ namespace EC2018 {
         }
         
         void Awake() {
+            audioSource = GetComponent<AudioSource> ();
 
 			gameSpeed = CommandLineUtil.GetRoundStep ();
 
@@ -87,18 +94,27 @@ namespace EC2018 {
 					GameObject obj = Instantiate (constructionAnimation);
 					obj.transform.position = transform.position + obj.transform.position;
 					Destroy (obj, 10f * gameSpeed);
+
+                    audioSource.clip = teslaConstruction;
+                    audioSource.Play();
 				}
 			} else if (building.BuildingType == BuildingType.Defense) {
 				if(timeLeft == 2) {
 					GameObject obj = Instantiate (constructionAnimation);
 					obj.transform.position = transform.position + obj.transform.position;
 					Destroy (obj, 3f * gameSpeed);
+
+                    audioSource.clip = defenseConstruction;
+                    audioSource.Play();
 				}
 			} else {
 				if(timeLeft == 0) {
 					GameObject obj = Instantiate (constructionAnimation);
 					obj.transform.position = transform.position + obj.transform.position;
 					Destroy (obj, gameSpeed);
+
+                    audioSource.clip = otherConstruction;
+                    audioSource.Play();
 				}
 			}
 				

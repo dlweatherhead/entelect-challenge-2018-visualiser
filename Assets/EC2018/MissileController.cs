@@ -56,6 +56,18 @@ public class MissileController : MonoBehaviour {
             case Constants.Tags.Barrier:
                 Instantiate(explosion, transform.position, Quaternion.identity);
                 gameObject.SetActive(false);
+                break; 
+            case Constants.Tags.IronCurtainA:
+                if(missile.PlayerType == EC2018.Enums.PlayerType.B) {
+                    Instantiate(explosion, transform.position, Quaternion.identity);
+                    gameObject.SetActive(false);
+                }
+                break;   
+            case Constants.Tags.IronCurtainB:
+                if (missile.PlayerType == EC2018.Enums.PlayerType.A) {
+                    Instantiate(explosion, transform.position, Quaternion.identity);
+                    gameObject.SetActive(false);
+                }
                 break;
         }
     }

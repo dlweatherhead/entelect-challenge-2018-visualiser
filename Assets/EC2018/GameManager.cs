@@ -16,7 +16,7 @@ namespace EC2018 {
 	public class GameManager : MonoBehaviour {
         const string StartReplayMethod = "StartReplay";
 
-        public MusicFadeOut musicFadeOut;
+        public GameObject backgroundMusic;
         public int startRound;
 		public float roundStepTime = 0.7f;
 
@@ -50,7 +50,7 @@ namespace EC2018 {
 
 		public void ReplayFinished() {
             gameFinished = true;
-            musicFadeOut.StartFadeOut();
+            backgroundMusic.SetActive(false);
             HaltAllGameObects();
 			OnPauseInteraction ();
             gameStateManager.EndGame();

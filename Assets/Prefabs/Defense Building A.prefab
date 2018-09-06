@@ -70,6 +70,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4724430624512030}
   - component: {fileID: 114128435584320840}
+  - component: {fileID: 82753686518765458}
   m_Layer: 0
   m_Name: Defense Building A
   m_TagString: Defense
@@ -354,6 +355,86 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.2109237, y: 4, z: 4}
   m_Center: {x: 0.094507, y: 2, z: -0.0010450187}
+--- !u!82 &82753686518765458
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1191933782783046}
+  m_Enabled: 0
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
+  m_Pitch: 0.81
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114030127858256164
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -436,6 +517,9 @@ MonoBehaviour:
   constructionAnimation: {fileID: 1930438911805690, guid: bd53f04aff03303439dc5e5a9387d182,
     type: 2}
   isUnderConstruction: 0
+  otherConstruction: {fileID: 8300000, guid: 9709184a814296f4b9cfd8f09bd42eae, type: 3}
+  defenseConstruction: {fileID: 8300000, guid: 1d18c24212d7dd1469e18a9abc6b39e2, type: 3}
+  teslaConstruction: {fileID: 8300000, guid: 9709184a814296f4b9cfd8f09bd42eae, type: 3}
 --- !u!114 &114326162410342506
 MonoBehaviour:
   m_ObjectHideFlags: 1

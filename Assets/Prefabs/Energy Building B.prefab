@@ -157,6 +157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4106391992146322}
   - component: {fileID: 114733268841200932}
+  - component: {fileID: 82163685655068370}
   m_Layer: 0
   m_Name: Energy Building B
   m_TagString: Energy
@@ -354,6 +355,86 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 22.193178, y: 14, z: 18}
   m_Center: {x: -0.76635617, y: 7, z: -0.2146831}
+--- !u!82 &82163685655068370
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1945206959794758}
+  m_Enabled: 0
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
+  m_Pitch: 0.81
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114091743594772282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -524,6 +605,9 @@ MonoBehaviour:
   constructionAnimation: {fileID: 1930438911805690, guid: bd53f04aff03303439dc5e5a9387d182,
     type: 2}
   isUnderConstruction: 0
+  otherConstruction: {fileID: 8300000, guid: 9709184a814296f4b9cfd8f09bd42eae, type: 3}
+  defenseConstruction: {fileID: 8300000, guid: 1d18c24212d7dd1469e18a9abc6b39e2, type: 3}
+  teslaConstruction: {fileID: 8300000, guid: 9709184a814296f4b9cfd8f09bd42eae, type: 3}
 --- !u!222 &222011901130398638
 CanvasRenderer:
   m_ObjectHideFlags: 1

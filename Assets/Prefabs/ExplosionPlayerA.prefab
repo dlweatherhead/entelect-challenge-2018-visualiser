@@ -266,12 +266,12 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1678945473515680}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a76f5ea86056e4ace82ec4b3d3154e5e, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -352,12 +352,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - {fileID: 8300000, guid: 576ed71fb49ba4b3190eed0d89f53a51, type: 3}
-  - {fileID: 8300000, guid: 04440989f61a64687873b8b9678748f3, type: 3}
-  - {fileID: 8300000, guid: 5950ca9ada84d4749be5615b7b61acdb, type: 3}
-  - {fileID: 8300000, guid: 593e15665ed584cdb96f0f54ba5ffca1, type: 3}
-  - {fileID: 8300000, guid: f6320e898573d485a95cdf071997a2e3, type: 3}
-  - {fileID: 8300000, guid: f27d17d2476774e1187cfa2fc55c1723, type: 3}
+  - {fileID: 8300000, guid: 6001454828765e0488f0ad9bea27e671, type: 3}
+  - {fileID: 8300000, guid: 4ca6345de3ce3c147a33d2d860240df0, type: 3}
+  - {fileID: 8300000, guid: 3956580c455fb4d42ac51a2a0229d157, type: 3}
+  - {fileID: 8300000, guid: 7f9aeb16a2617284b9ed47bcbb0d9dc4, type: 3}
+  - {fileID: 8300000, guid: 0a38258f7549c4d498538d09c24d800a, type: 3}
   audioSource: {fileID: 82285955190493366}
 --- !u!198 &198050351577226062
 ParticleSystem:

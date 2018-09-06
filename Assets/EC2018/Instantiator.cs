@@ -22,8 +22,8 @@ namespace EC2018
         public GameObject playerADestructionAnimation;
         public GameObject playerBDestructionAnimation;
 
-        public AudioSource audioSourceA;
-        public AudioSource audioSourceB;
+        public AudioSource teslaFiringSourceA;
+        public AudioSource teslaFiringSourceB;
 
         float timeStep;
 
@@ -118,9 +118,9 @@ namespace EC2018
             var originPlayer = originTower.PlayerType;
 
             if(originPlayer == PlayerType.A) {
-                audioSourceA.Play();
+                teslaFiringSourceA.Play();
             } else {
-                audioSourceB.Play();
+                teslaFiringSourceB.Play();
             }
 
             // IRON CURTAIN HIT
