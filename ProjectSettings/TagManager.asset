@@ -16,6 +16,8 @@ TagManager:
   - Tesla
   - Barrier
   - MissileCollider
+  - IronCurtainA
+  - IronCurtainB
   layers:
   - Default
   - TransparentFX
