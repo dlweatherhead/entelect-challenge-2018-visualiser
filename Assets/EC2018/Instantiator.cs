@@ -19,11 +19,23 @@ namespace EC2018
         public GameObject lightningBoltA;
         public GameObject lightningBoltB;
 
+        public GameObject explosionA;
+        public GameObject explosionB;
+
         public GameObject playerADestructionAnimation;
         public GameObject playerBDestructionAnimation;
 
         public AudioSource teslaFiringSourceA;
         public AudioSource teslaFiringSourceB;
+
+        public AudioClip[] firingSoundsPlayerA;
+        public AudioClip[] firingSoundsPlayerB;
+
+        List<string> previousMissiles;
+
+        void Start() {
+            previousMissiles = new List<string>();
+        }
 
         public void ClearScene() {
 			ClearGameObjectsWithTag (Constants.Tags.Missile);
@@ -54,7 +66,7 @@ namespace EC2018
             float interval = 0.15f;
 
 			for (int m = 0; m < missiles.Count; m++) {
-
+                
                 float z = y;
                 if(m > 0 && m % 2 == 0) {
                     z += m * interval;
@@ -71,9 +83,32 @@ namespace EC2018
                 
 				missile.SetActive (true);
 				missile.transform.position = new Vector3 (x, missile.transform.position.y, z);
-				missile.GetComponent<MissileController> ().Setup (missiles[m], direction, rate);
+                MissileController missileCtrl = missile.GetComponent<MissileController>();
+                missileCtrl.Setup (missiles[m], direction, rate);
+
+                if (IsNewMissile(missileCtrl.missile)) {
+
+                    AudioClip clip;
+
+                    if(missileCtrl.missile.PlayerType == PlayerType.A) {
+                        clip = firingSoundsPlayerA[Random.Range(0, firingSoundsPlayerA.Length)];
+                    } else {
+                        clip = firingSoundsPlayerB[Random.Range(0, firingSoundsPlayerB.Length)];
+                    }
+
+                    missileCtrl.PlaySound(clip);
+                }
 			}
 		}
+
+        bool IsNewMissile(Missile missile) {
+            if (previousMissiles.Contains(missile.Id)) {
+                return false;
+            } else {
+                previousMissiles.Add(missile.Id);
+                return true;
+            }
+        }
 
 		public void InstantiateBuildingsAtLocation(List<Building> buildings, int x, int y) {
 			for (int b = 0; b < buildings.Count; b++) {
@@ -100,6 +135,9 @@ namespace EC2018
             lightningBoltScript.EndObject = end;
 
             Destroy(lightningBoltObj, CommandLineUtil.GetRoundStep());
+
+            var explosionToInstantiate = originPlayer == PlayerType.B ? explosionA : explosionB;
+            Instantiate(explosionToInstantiate, start.transform.position, Quaternion.identity);
         }
 
         public void InstantiateTeslaHit(List<HitList> hitList, Player playerA, Player playerB) {

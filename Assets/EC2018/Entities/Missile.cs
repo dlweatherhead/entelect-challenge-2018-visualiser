@@ -7,6 +7,7 @@ namespace EC2018.Entities
 {
     public class Missile
     {
+        public string Id { get; set; }
         public int Damage { get; set; }
         public int Speed { get; set; }
 		public PlayerType PlayerType { get; set; }

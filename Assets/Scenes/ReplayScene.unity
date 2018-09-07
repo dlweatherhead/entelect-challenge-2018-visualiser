@@ -15800,7 +15800,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundMusic: {fileID: 2093990187}
   startRound: 0
-  roundStepTime: 1
+  roundStepTime: 2
 --- !u!4 &1202343501
 Transform:
   m_ObjectHideFlags: 0
@@ -15914,10 +15914,26 @@ MonoBehaviour:
   ironCurtainPlayerB: {fileID: 203708676}
   lightningBoltA: {fileID: 106988, guid: 878c6f1f2323f45f09423a41c6d2f147, type: 2}
   lightningBoltB: {fileID: 106988, guid: 98860860d24d848aebfcf7b934972503, type: 2}
+  explosionA: {fileID: 1678945473515680, guid: 9fcf12af5842a8c4ab6f1e17eb1cda37, type: 2}
+  explosionB: {fileID: 1785147345062870, guid: ee49617798a0cec4bbc6c308ff4f5d27, type: 2}
   playerADestructionAnimation: {fileID: 33721456}
   playerBDestructionAnimation: {fileID: 273008632}
   teslaFiringSourceA: {fileID: 1202343502}
   teslaFiringSourceB: {fileID: 1202343510}
+  firingSoundsPlayerA:
+  - {fileID: 8300000, guid: 367ac67727efb954da0c446ecf39e5f3, type: 3}
+  - {fileID: 8300000, guid: e8102165e75a8b247a7f07ff249e0a56, type: 3}
+  - {fileID: 8300000, guid: 6c9bc27621c411e45bfd451d8a705d5c, type: 3}
+  - {fileID: 8300000, guid: 207f8628e7feda945a27f999707275b9, type: 3}
+  - {fileID: 8300000, guid: 3156a80e098ad974a9265169a8dcc1bc, type: 3}
+  - {fileID: 8300000, guid: 225e918db5b28d345acb9aa18cc89e12, type: 3}
+  firingSoundsPlayerB:
+  - {fileID: 8300000, guid: ddd33189d9e04264e9c3da2f6c003ee8, type: 3}
+  - {fileID: 8300000, guid: 98a09594958b067478e481b443a85b2d, type: 3}
+  - {fileID: 8300000, guid: 5bac176f30d0b8c4fa7e61abd61f47e7, type: 3}
+  - {fileID: 8300000, guid: 207f8628e7feda945a27f999707275b9, type: 3}
+  - {fileID: 8300000, guid: 3156a80e098ad974a9265169a8dcc1bc, type: 3}
+  - {fileID: 8300000, guid: 225e918db5b28d345acb9aa18cc89e12, type: 3}
 --- !u!114 &1202343504
 MonoBehaviour:
   m_ObjectHideFlags: 0

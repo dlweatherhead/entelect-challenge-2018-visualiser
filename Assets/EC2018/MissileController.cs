@@ -2,6 +2,7 @@
 using EC2018;
 using EC2018.Entities;
 
+[RequireComponent(typeof(AudioSource))]
 public class MissileController : MonoBehaviour {
 
     public int StartX;
@@ -9,14 +10,16 @@ public class MissileController : MonoBehaviour {
     public float speed = 1f;
     public GameObject explosion;
 
-    Missile missile;
+    public Missile missile;
     float nextStatePosition;
 
-    public void Setup(Missile missile, int distance, float rate) {
+    public AudioSource audioSource;
+
+    public void Setup(Missile missile, int direction, float rate) {
         this.missile = missile;
         transform.GetChild(0).gameObject.SetActive(true);
-        speed = missile.Speed * distance / rate;
-        nextStatePosition = transform.position.x + speed;
+        speed = missile.Speed * direction / rate;
+        nextStatePosition = transform.position.x + missile.Speed * direction;
     }
 
     void Update() {
@@ -31,6 +34,12 @@ public class MissileController : MonoBehaviour {
                 HaltAndSetToNextStatePosition();
             }
         }
+    }
+
+    public void PlaySound(AudioClip clip) {
+        audioSource.clip = clip;
+        audioSource.pitch = Random.Range(0.7f, 1.3f);
+        audioSource.Play();
     }
 
     public void HaltAndSetToNextStatePosition() {
