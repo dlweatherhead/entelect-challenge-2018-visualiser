@@ -31,7 +31,7 @@ namespace EC2018
 		public void OnDirectoryButtonClicked (string title) {
 			PlayerPrefs.SetString (Constants.PlayerPrefKeys.SelectedReplay, title);
             loadingImage.SetActive(true);
-            StartCoroutine(LoadReplayScene(1f));
+            StartCoroutine(LoadReplayScene(2f));
 		}
 
         IEnumerator LoadReplayScene(float waitTime) {

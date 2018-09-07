@@ -25,12 +25,6 @@ namespace EC2018
         public AudioSource teslaFiringSourceA;
         public AudioSource teslaFiringSourceB;
 
-        float timeStep;
-
-        void Awake() {
-            timeStep = CommandLineUtil.GetRoundStep();
-        }
-
         public void ClearScene() {
 			ClearGameObjectsWithTag (Constants.Tags.Missile);
 			ClearGameObjectsWithTag (Constants.Tags.Attack);

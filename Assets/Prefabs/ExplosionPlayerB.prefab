@@ -259,11 +259,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - {fileID: 8300000, guid: 7001436653595a247b62886590000196, type: 3}
-  - {fileID: 8300000, guid: 42ec5c4658461c94fb4e81ff9743426c, type: 3}
-  - {fileID: 8300000, guid: 8353cc4d091be4347a6083f78f328146, type: 3}
-  - {fileID: 8300000, guid: eeb0df9d163741844983ecce858491c4, type: 3}
-  - {fileID: 8300000, guid: 25158bc9838f09741a2bab00f4668a12, type: 3}
+  - {fileID: 8300000, guid: dc049164b10bb4e3eb30013fad06e96d, type: 3}
+  - {fileID: 8300000, guid: 90ec7b7bfda9a43129e5cab55b50232c, type: 3}
+  - {fileID: 8300000, guid: f6320e898573d485a95cdf071997a2e3, type: 3}
+  - {fileID: 8300000, guid: 576ed71fb49ba4b3190eed0d89f53a51, type: 3}
   audioSource: {fileID: 82397928334896812}
 --- !u!198 &198251792869139824
 ParticleSystem:

@@ -11,6 +11,7 @@ public class RandomSoundEmitter : MonoBehaviour {
 	void Start () {
         var index = Random.Range(0, sounds.Length);
         audioSource.clip = sounds[index];
+        audioSource.pitch = Random.Range(0.8f, 1.2f);
         audioSource.Play();
 	}
 	

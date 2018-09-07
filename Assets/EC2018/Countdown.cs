@@ -46,7 +46,7 @@ public class Countdown : MonoBehaviour {
         announcerAudioSource.Play();
 
         countdownText.text = kickOffPhrases[i];
-        yield return new WaitForSeconds (counterTime);
+        yield return null;
 		SceneManager.LoadScene(destinationScene, LoadSceneMode.Single);
 	}
 }

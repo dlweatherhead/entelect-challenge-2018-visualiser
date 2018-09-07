@@ -361,13 +361,13 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1191933782783046}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
-  m_Pitch: 0.81
+  m_Volume: 0.4
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -517,9 +517,10 @@ MonoBehaviour:
   constructionAnimation: {fileID: 1930438911805690, guid: bd53f04aff03303439dc5e5a9387d182,
     type: 2}
   isUnderConstruction: 0
-  otherConstruction: {fileID: 8300000, guid: 9709184a814296f4b9cfd8f09bd42eae, type: 3}
-  defenseConstruction: {fileID: 8300000, guid: 1d18c24212d7dd1469e18a9abc6b39e2, type: 3}
-  teslaConstruction: {fileID: 8300000, guid: 9709184a814296f4b9cfd8f09bd42eae, type: 3}
+  attackConstruction: {fileID: 0}
+  energyConstruction: {fileID: 0}
+  defenseConstruction: {fileID: 8300000, guid: d3ba244a64316954ba05288a888e1c08, type: 3}
+  teslaConstruction: {fileID: 0}
 --- !u!114 &114326162410342506
 MonoBehaviour:
   m_ObjectHideFlags: 1

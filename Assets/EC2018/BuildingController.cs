@@ -21,7 +21,8 @@ namespace EC2018 {
 
 		public bool isUnderConstruction;
 
-        public AudioClip otherConstruction;
+        public AudioClip attackConstruction;
+        public AudioClip energyConstruction;
         public AudioClip defenseConstruction;
         public AudioClip teslaConstruction;
         AudioSource audioSource;
@@ -96,6 +97,7 @@ namespace EC2018 {
 					Destroy (obj, 10f * gameSpeed);
 
                     audioSource.clip = teslaConstruction;
+                    audioSource.pitch = Random.Range(0.7f, 1.3f);
                     audioSource.Play();
 				}
 			} else if (building.BuildingType == BuildingType.Defense) {
@@ -105,6 +107,7 @@ namespace EC2018 {
 					Destroy (obj, 3f * gameSpeed);
 
                     audioSource.clip = defenseConstruction;
+                    audioSource.pitch = Random.Range(0.7f, 1.3f);
                     audioSource.Play();
 				}
 			} else {
@@ -113,7 +116,13 @@ namespace EC2018 {
 					obj.transform.position = transform.position + obj.transform.position;
 					Destroy (obj, gameSpeed);
 
-                    audioSource.clip = otherConstruction;
+                    if(building.BuildingType == BuildingType.Attack) {
+                        audioSource.clip = attackConstruction;
+                    } else {
+                        audioSource.clip = energyConstruction;
+                        audioSource.volume = 0.3f;
+                    }
+                    audioSource.pitch = Random.Range(0.7f, 1.3f);
                     audioSource.Play();
 				}
 			}
