@@ -22,6 +22,9 @@ namespace EC2018
         public GameObject explosionA;
         public GameObject explosionB;
 
+        public GameObject muzzleFlashPlayerA;
+        public GameObject muzzleFlashPlayerB;
+
         public GameObject playerADestructionAnimation;
         public GameObject playerBDestructionAnimation;
 
@@ -87,6 +90,17 @@ namespace EC2018
                 missileCtrl.Setup (missiles[m], direction, rate);
 
                 if (IsNewMissile(missileCtrl.missile)) {
+
+                    // Play muzzleflash effect
+                    var pos = missile.transform.position;
+
+                    var offset = missileCtrl.missile.PlayerType == PlayerType.A ? -0.5f : 0.5f;
+                    var muzzleFlash = missileCtrl.missile.PlayerType == PlayerType.A ? muzzleFlashPlayerA : muzzleFlashPlayerB;
+
+                    pos.x -= direction * missileCtrl.missile.Speed + offset;
+                    pos.y = 0.5f;
+                    var muzzleFlashObj = Instantiate(muzzleFlash, pos, Quaternion.identity);
+                    Destroy(muzzleFlashObj, CommandLineUtil.GetRoundStep());
 
                     AudioClip clip;
 

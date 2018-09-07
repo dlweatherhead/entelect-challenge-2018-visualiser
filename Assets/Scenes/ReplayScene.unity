@@ -15916,6 +15916,10 @@ MonoBehaviour:
   lightningBoltB: {fileID: 106988, guid: 98860860d24d848aebfcf7b934972503, type: 2}
   explosionA: {fileID: 1678945473515680, guid: 9fcf12af5842a8c4ab6f1e17eb1cda37, type: 2}
   explosionB: {fileID: 1785147345062870, guid: ee49617798a0cec4bbc6c308ff4f5d27, type: 2}
+  muzzleFlashPlayerA: {fileID: 1183528615326158, guid: 68c266a52ed864f6e97b6f12f8333f12,
+    type: 2}
+  muzzleFlashPlayerB: {fileID: 1024923451837968, guid: 9f3fb808348414327b0eb5566e410204,
+    type: 2}
   playerADestructionAnimation: {fileID: 33721456}
   playerBDestructionAnimation: {fileID: 273008632}
   teslaFiringSourceA: {fileID: 1202343502}

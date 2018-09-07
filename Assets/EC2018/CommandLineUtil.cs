@@ -6,7 +6,7 @@ namespace EC2018
 	{
 		const string RoundStep = "-round-step";
 
-		const float defaultRoundStep = 2f;
+		const float defaultRoundStep = 1f;
 
 		public static float GetRoundStep() {
 			var args = System.Environment.GetCommandLineArgs ();
