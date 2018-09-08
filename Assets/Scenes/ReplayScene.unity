@@ -6282,7 +6282,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 454251809}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
@@ -14403,6 +14403,16 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 23470942340968920, guid: 1b47827edc0f0d84590bc33777a7ac8d,
+        type: 2}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 23470942340968920, guid: 1b47827edc0f0d84590bc33777a7ac8d,
+        type: 2}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1b47827edc0f0d84590bc33777a7ac8d, type: 2}
   m_IsPrefabParent: 0
@@ -15800,7 +15810,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundMusic: {fileID: 2093990187}
   startRound: 0
-  roundStepTime: 2
 --- !u!4 &1202343501
 Transform:
   m_ObjectHideFlags: 0

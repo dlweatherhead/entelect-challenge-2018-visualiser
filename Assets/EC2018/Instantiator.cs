@@ -94,7 +94,7 @@ namespace EC2018
                     // Play muzzleflash effect
                     var pos = missile.transform.position;
 
-                    var offset = missileCtrl.missile.PlayerType == PlayerType.A ? -0.5f : 0.5f;
+                    var offset = missileCtrl.missile.PlayerType == PlayerType.A ? -0.5f : 0.25f;
                     var muzzleFlash = missileCtrl.missile.PlayerType == PlayerType.A ? muzzleFlashPlayerA : muzzleFlashPlayerB;
 
                     pos.x -= direction * missileCtrl.missile.Speed + offset;

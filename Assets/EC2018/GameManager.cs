@@ -18,7 +18,7 @@ namespace EC2018 {
 
         public GameObject backgroundMusic;
         public int startRound;
-		public float roundStepTime = 0.7f;
+		float roundStepTime;
 
 		GameStateManager gameStateManager;
 		bool isPaused;

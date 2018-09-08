@@ -35,7 +35,9 @@ public class TextMover : MonoBehaviour {
 
         if(Vector3.Distance(rectTransform.position, targetPos) < 50) {
             if(!stopped) {
-                onStopSound.Play();
+                if(onStopSound.isActiveAndEnabled) {
+                    onStopSound.Play();
+                }
                 stopped = true;
             }
         }

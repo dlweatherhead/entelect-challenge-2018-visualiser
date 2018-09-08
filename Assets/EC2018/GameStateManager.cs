@@ -23,6 +23,8 @@ namespace EC2018 {
         Instantiator instantiator;
         ReplayManager replayManager;
 
+        List<string> previousMissiles;
+
 		float rate;
 
         public GameStateManager(int startRound, GameManager gameManager, UIManager uiManager, Instantiator instantiator, ReplayManager replayManager) {
@@ -34,6 +36,8 @@ namespace EC2018 {
 
 			currentRound = startRound;
 			rate = CommandLineUtil.GetRoundStep ();
+
+            previousMissiles = new List<string>();
 
             Initialise();
         }
@@ -93,14 +97,61 @@ namespace EC2018 {
             }
         }
 
+        void InstantiateNextRoundNewMissiles() {
+            if (CanIncrementRound()) {
+                // Get the next state
+                var nextRound = currentRound + 1;
+                var nextGameState = replayManager.GetGameStateForRound(nextRound);
+                var nextGameMap = nextGameState.GameMap;
+
+                // Loop through gamemap, inspecting all missiles
+                for (int outer = 0; outer < nextGameMap.Length; outer++) {
+                    for (int inner = 0; inner < nextGameMap[outer].Length; inner++) {
+                        var cell = nextGameMap[outer][inner];
+                        var x = cell.X;
+                        var y = cell.Y;
+                        var missiles = cell.Missiles;
+
+                        if (missiles.Count > 0) {
+                            for (int m = 0; m < missiles.Count; m++) {
+                                var missile = missiles[m];
+                                if (!previousMissiles.Contains(missile.Id)) {
+
+                                    // Set coordinates to match destination, shifted by speed for player
+                                    var m_x = missile.PlayerType == PlayerType.A ? x - missile.Speed : x + missile.Speed;
+
+                                    // Instantiate missile at location
+                                    var singleMissileList = new List<Missile> { missile };
+                                    instantiator.InstantiateMissileAtLocation(singleMissileList, m_x, y, rate);
+
+                                    //  add new id to previous id list
+                                    previousMissiles.Add(missile.Id);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         public void PlayCurrentState() {
             gameState = replayManager.GetGameStateForRound(currentRound);
             uiManager.UpdateUI(gameState.GameDetails, gameState.Players[0], gameState.Players[1]);
             instantiator.ClearScene();
+
+            //InstantiateNextRoundNewMissiles();
+
             PopulateSceneFromGameMap();
-            if (gameState.TeslaHitList.Count > 0) {
-                ProcessTeslaHitList(gameState.TeslaHitList);
+
+            // Process Tesla hits one round ahead
+            if (CanIncrementRound()) {
+                var nextRound = currentRound + 1;
+                var nextGameState = replayManager.GetGameStateForRound(nextRound);
+                if (nextGameState.TeslaHitList.Count > 0) {
+                    ProcessTeslaHitList(nextGameState.TeslaHitList);
+                }
             }
+
             ProcessIronCurtainHitList(gameState.Players);
             if (CanIncrementRound()) {
                 currentRound++;
