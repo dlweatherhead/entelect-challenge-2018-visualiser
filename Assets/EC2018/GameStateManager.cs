@@ -88,7 +88,24 @@ namespace EC2018 {
                     var y = cell.Y;
 
                     instantiator.InstantiateBuildingsAtLocation(cell.Buildings, x, y);
-                    instantiator.InstantiateMissileAtLocation(cell.Missiles, x, y, rate);
+
+                    //create list of player A missiles
+                    var missilesPlayerA = new List<Missile>();
+                    var missilesPlayerB = new List<Missile>();
+
+                    //create list of player B missiles
+                    if(cell.Missiles.Count > 0) {
+                        for (int m = 0; m < cell.Missiles.Count; m++) {
+                            if(cell.Missiles[m].PlayerType == PlayerType.A) {
+                                missilesPlayerA.Add(cell.Missiles[m]);
+                            } else {
+                                missilesPlayerB.Add(cell.Missiles[m]);
+                            }
+                        }
+                    }
+
+                    instantiator.InstantiateMissileAtLocation(missilesPlayerA, x, y, rate);
+                    instantiator.InstantiateMissileAtLocation(missilesPlayerB, x, y, rate);
 
                     if (currentRound == startRound) {
                         instantiator.InstantiateGroundTile(inner, outer, cell.CellOwner);

@@ -94,7 +94,7 @@ namespace EC2018 {
 				if(timeLeft == 9) {
 					GameObject obj = Instantiate (constructionAnimation);
 					obj.transform.position = transform.position + obj.transform.position;
-					Destroy (obj, 10f * gameSpeed);
+					Destroy (obj, 9f * gameSpeed);
 
                     audioSource.clip = teslaConstruction;
                     audioSource.pitch = Random.Range(0.7f, 1.3f);
@@ -104,7 +104,7 @@ namespace EC2018 {
 				if(timeLeft == 2) {
 					GameObject obj = Instantiate (constructionAnimation);
 					obj.transform.position = transform.position + obj.transform.position;
-					Destroy (obj, 3f * gameSpeed);
+					Destroy (obj, 2f * gameSpeed);
 
                     audioSource.clip = defenseConstruction;
                     audioSource.pitch = Random.Range(0.7f, 1.3f);

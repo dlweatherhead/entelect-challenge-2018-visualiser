@@ -151,7 +151,8 @@ namespace EC2018
             Destroy(lightningBoltObj, CommandLineUtil.GetRoundStep());
 
             var explosionToInstantiate = originPlayer == PlayerType.B ? explosionA : explosionB;
-            Instantiate(explosionToInstantiate, start.transform.position, Quaternion.identity);
+            var expObj = Instantiate(explosionToInstantiate, start.transform.position, Quaternion.identity);
+            expObj.transform.localScale = expObj.transform.localScale * 0.5f;
         }
 
         public void InstantiateTeslaHit(List<HitList> hitList, Player playerA, Player playerB) {
