@@ -1,16 +1,15 @@
 fileFormatVersion: 2
-guid: 367ac67727efb954da0c446ecf39e5f3
+guid: f5f89e66adbfcf141943ed995032182e
 labels:
 - usfx
 - imphenzia
 - weapon
-- machinegun
-- machine gun
+- firearm
+- shotgun
 - gun
-- RTS
 - fire
-- loop
-- mono
+- stereo
+- FPS
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6

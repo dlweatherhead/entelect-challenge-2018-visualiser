@@ -15934,9 +15934,9 @@ MonoBehaviour:
   teslaFiringSourceA: {fileID: 1202343502}
   teslaFiringSourceB: {fileID: 1202343510}
   firingSoundsPlayerA:
-  - {fileID: 8300000, guid: ddd33189d9e04264e9c3da2f6c003ee8, type: 3}
+  - {fileID: 8300000, guid: f5f89e66adbfcf141943ed995032182e, type: 3}
   firingSoundsPlayerB:
-  - {fileID: 8300000, guid: ddd33189d9e04264e9c3da2f6c003ee8, type: 3}
+  - {fileID: 8300000, guid: 0751eafcc3a9dab468a07c9744d210f5, type: 3}
 --- !u!114 &1202343504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28929,7 +28929,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
