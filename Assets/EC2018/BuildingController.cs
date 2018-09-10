@@ -86,9 +86,15 @@ namespace EC2018 {
 				SetConstructionParameters (startScale);
 			}
 
-			if(timeLeft <= 0) {
-				isUnderConstruction = false;
-			}
+            if(building.BuildingType == BuildingType.Tesla || building.BuildingType == BuildingType.Defense) {
+                if(timeLeft < 0) {
+                    isUnderConstruction = false;    
+                }
+            } else {
+                if(timeLeft <= 0) {
+                    isUnderConstruction = false;
+                }
+            }
 
 			if(building.BuildingType == BuildingType.Tesla) {
 				if(timeLeft == 9) {
