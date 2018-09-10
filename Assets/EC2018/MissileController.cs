@@ -38,7 +38,7 @@ public class MissileController : MonoBehaviour {
 
     public void PlaySound(AudioClip clip) {
         audioSource.clip = clip;
-        audioSource.pitch = Random.Range(0.7f, 1.3f);
+        audioSource.pitch = Random.Range(0.7f, 1f);
         audioSource.Play();
     }
 
