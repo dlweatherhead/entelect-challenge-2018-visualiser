@@ -20,8 +20,9 @@ public class CountInDetailPopulator : MonoBehaviour {
         string playerName;
 		if (playerType == PlayerType.A) {
 			playerName = new DirectoryInfo(allPlayers[0]).Name;
-		}
-		playerName = new DirectoryInfo(allPlayers[1]).Name;
+        } else {
+            playerName = new DirectoryInfo(allPlayers[1]).Name;   
+        }
 
         if(playerName.Length > MaxLength) {
             playerName = playerName.Substring(0, MaxLength) + "...";
