@@ -1,0 +1,1 @@
+"Playing oponing book move...\n"

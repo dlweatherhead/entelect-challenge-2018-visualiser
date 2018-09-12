@@ -123,6 +123,10 @@ namespace EC2018
 
             if(playerA.Health > playerB.Health) {
                 winningPlayer = PlayerType.A;
+            } else if (playerB.Health > playerA.Health) {
+                winningPlayer = PlayerType.B;
+            } else if (playerA.Score > playerB.Score ) {
+                winningPlayer = PlayerType.A;
             } else {
                 winningPlayer = PlayerType.B;
             }

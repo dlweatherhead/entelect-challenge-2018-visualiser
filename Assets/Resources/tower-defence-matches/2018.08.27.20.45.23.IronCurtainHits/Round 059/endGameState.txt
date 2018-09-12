@@ -1,4 +1,0 @@
-The winner is: Player B
-
-A - Brendan- score:4304 health:0
-Player B- score:6181 health:95
