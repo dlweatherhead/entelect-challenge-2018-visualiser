@@ -86,15 +86,7 @@ namespace EC2018 {
 				SetConstructionParameters (startScale);
 			}
 
-            if(timeLeft <= 0 && (building.BuildingType == BuildingType.Energy || building.BuildingType == BuildingType.Attack)) {
-                isUnderConstruction = false;
-            }
-
-            if (timeLeft <= 0 && building.PlayerType == PlayerType.A && (building.BuildingType == BuildingType.Tesla || building.BuildingType == BuildingType.Defense)) {
-                isUnderConstruction = false;
-            }
-
-            if (timeLeft < 0 && building.PlayerType == PlayerType.B && (building.BuildingType == BuildingType.Tesla || building.BuildingType == BuildingType.Defense)) {
+            if (timeLeft <= 0) {
                 isUnderConstruction = false;
             }
 
