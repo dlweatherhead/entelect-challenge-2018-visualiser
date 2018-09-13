@@ -53,6 +53,10 @@ public class MissileController : MonoBehaviour {
 
     void OnTriggerEnter(Collider other) {
         switch (other.tag) {
+            case Constants.Tags.Defense:
+            case Constants.Tags.Attack:
+            case Constants.Tags.Tesla:
+            case Constants.Tags.Energy:
             case Constants.Tags.MissileCollider:
                 var buildingCtrl = other.gameObject.GetComponentInParent<BuildingController>();
 				if (!buildingCtrl.isUnderConstruction) {
