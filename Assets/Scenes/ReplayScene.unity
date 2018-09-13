@@ -12248,7 +12248,7 @@ MonoBehaviour:
   losingPlayerStatsText: {fileID: 148899221}
   barrierHealthA: {fileID: 912874940}
   barrierHealthB: {fileID: 1641376618}
-  MaxLength: 20
+  MaxLength: 31
 --- !u!114 &893612604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28928,7 +28928,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.1
   m_Pitch: 1
   Loop: 1

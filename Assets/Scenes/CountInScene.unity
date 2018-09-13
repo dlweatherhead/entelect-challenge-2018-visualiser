@@ -1116,7 +1116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tmpPlayerA: {fileID: 300225247}
   tmpPlayerB: {fileID: 1831951726}
-  MaxLength: 20
+  MaxLength: 31
 --- !u!1 &1116120781
 GameObject:
   m_ObjectHideFlags: 0

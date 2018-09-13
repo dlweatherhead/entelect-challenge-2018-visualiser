@@ -98,7 +98,10 @@ namespace EC2018 {
 
                     audioSource.clip = teslaConstruction;
                     audioSource.pitch = Random.Range(0.7f, 1.3f);
-                    audioSource.Play();
+                    if (!audioSource.isPlaying) {
+                        audioSource.Stop();
+                        audioSource.Play();
+                    }
 				}
 			} else if (building.BuildingType == BuildingType.Defense) {
 				if(timeLeft == 2) {
@@ -108,7 +111,10 @@ namespace EC2018 {
 
                     audioSource.clip = defenseConstruction;
                     audioSource.pitch = Random.Range(0.7f, 1.3f);
-                    audioSource.Play();
+                    if (!audioSource.isPlaying) {
+                        audioSource.Stop();
+                        audioSource.Play();
+                    }
 				}
 			} else {
 				if(timeLeft == 0) {
@@ -123,7 +129,10 @@ namespace EC2018 {
                         audioSource.volume = 0.3f;
                     }
                     audioSource.pitch = Random.Range(0.7f, 1.3f);
-                    audioSource.Play();
+                    if (!audioSource.isPlaying) {
+                        audioSource.Stop();
+                        audioSource.Play();
+                    }
 				}
 			}
 				

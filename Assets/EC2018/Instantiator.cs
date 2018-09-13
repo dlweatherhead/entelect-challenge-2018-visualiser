@@ -171,9 +171,15 @@ namespace EC2018
             var originPlayer = originTower.PlayerType;
 
             if(originPlayer == PlayerType.A) {
-                teslaFiringSourceA.Play();
+                if(!teslaFiringSourceA.isPlaying) {
+                    teslaFiringSourceA.Stop();
+                    teslaFiringSourceA.Play();
+                }
             } else {
-                teslaFiringSourceB.Play();
+                if(!teslaFiringSourceB.isPlaying) {
+                    teslaFiringSourceB.Stop();
+                    teslaFiringSourceB.Play();   
+                }
             }
 
             // IRON CURTAIN HIT
