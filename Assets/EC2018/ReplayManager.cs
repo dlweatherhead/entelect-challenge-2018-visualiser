@@ -29,8 +29,7 @@ public class ReplayManager : MonoBehaviour {
         for (int roundNumber = 0; roundNumber < numberOfRounds; roundNumber++) {
             var roundName = ConvertRoundToFolderName(roundNumber);
             var statePlayerA = GetGameStateForPlayer(0, replayPath, roundName);
-            var statePlayerB = GetGameStateForPlayer(1, replayPath, roundName);
-            var round = new Round(statePlayerA, statePlayerB);
+            var round = new Round(statePlayerA, null);
             rounds.Add(round);
         }
     }

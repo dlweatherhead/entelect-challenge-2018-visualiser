@@ -155,6 +155,12 @@ namespace EC2018
             expObj.transform.localScale = expObj.transform.localScale * 0.5f;
         }
 
+        public void InstantiateExplosion(float x, float y, PlayerType player) {
+            var explosionToInstantiate = player == PlayerType.B ? explosionA : explosionB;
+            var expObj = Instantiate(explosionToInstantiate, new Vector3(x, 0.5f, y), Quaternion.identity);
+            expObj.transform.localScale = expObj.transform.localScale * 0.5f;
+        }
+
         public void InstantiateTeslaHit(List<HitList> hitList, Player playerA, Player playerB) {
             
             // if list is empty

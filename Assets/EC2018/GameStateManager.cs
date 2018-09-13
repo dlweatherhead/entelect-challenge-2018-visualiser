@@ -169,7 +169,10 @@ namespace EC2018 {
                 }
             }
 
-            ProcessIronCurtainHitList(gameState.Players);
+            if(currentRound > 0) {
+                ProcessIronCurtainHitList(gameState.Players);    
+            }
+
             if (CanIncrementRound()) {
                 currentRound++;
             } else {
@@ -193,9 +196,14 @@ namespace EC2018 {
 
         void ProcessIronCurtainHitList(List<Player> players) {
             for (int i = 0; i < players.Count; i++) {
-                var available = players[i].IronCurtainAvailable;
-                var lifetime = players[i].ActiveIronCurtainLifetime;
-                if (available && lifetime >= 0) {
+                if (players[i].IsIronCurtainActive) {
+
+                    var hitList = gameState.IroncurtainHitList;
+
+                    for (int h = 0; h < hitList.Count; h++) {
+                        instantiator.InstantiateExplosion(7.5f, hitList[h].Y, hitList[h].PlayerType);
+                    }
+                        
                     instantiator.ActivateIronCurtain(players[i].PlayerType);
                 } else {
                     instantiator.DeactivateIronCurtain(players[i].PlayerType);

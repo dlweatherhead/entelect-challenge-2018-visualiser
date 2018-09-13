@@ -8,7 +8,7 @@ public class CountInDetailPopulator : MonoBehaviour {
 
     public TextMeshProUGUI tmpPlayerA;
     public TextMeshProUGUI tmpPlayerB;
-    public int MaxLength = 20;
+    public int MaxLength = 31;
 
 	void Start () {
         tmpPlayerA.text = GetPlayerName (PlayerType.A);

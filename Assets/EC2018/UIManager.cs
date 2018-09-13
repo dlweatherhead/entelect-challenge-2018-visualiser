@@ -34,7 +34,7 @@ namespace EC2018
         public BarrierHealth barrierHealthA;
         public BarrierHealth barrierHealthB;
 
-        public int MaxLength = 20;
+        public int MaxLength = 31;
 
         GameManager gameManager;
 

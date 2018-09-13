@@ -14,5 +14,6 @@ namespace EC2018.Entities
         public int Score { get; set; }
 		public bool IronCurtainAvailable { get; set; }
 		public int ActiveIronCurtainLifetime { get; set; }
+        public bool IsIronCurtainActive { get; set; }
     }
 }
